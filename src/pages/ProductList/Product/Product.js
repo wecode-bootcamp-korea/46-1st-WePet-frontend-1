@@ -1,7 +1,8 @@
-import React from 'react';
+import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Product = () => {
-  return <h1>hello</h1>;
-};
+  return <h1>hello</h1>
+}
 
-export default Product;
+export default Product

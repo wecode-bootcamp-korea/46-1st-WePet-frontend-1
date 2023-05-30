@@ -7,7 +7,7 @@ import './Nav.scss'
 
 const SearchModal = () => {
   return (
-    <div className="SearchModal">
+    <div className="searchModal">
       <div className="searchModalContent">
         <div className="searchBar">
           <input type="text" placeholder="검색어를 입력하세요."></input>
@@ -23,11 +23,7 @@ const SearchModal = () => {
 }
 const Modal = () => {
   return (
-    <div className="Modal">
-      <div className="ham">
-        <div className="line modalHamLeftLine"></div>
-        <div className="line modalHamRightLine"></div>
-      </div>
+    <div className="modal">
       <div className="modalContent">
         <div className="modalPtag">
           <p>앗!</p>

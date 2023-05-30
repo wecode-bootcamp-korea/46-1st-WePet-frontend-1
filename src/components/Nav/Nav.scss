@@ -86,8 +86,21 @@ a {
 
   .ham {
     margin: 0px 5px;
+    &:hover .hamTopLine {
+      transform-origin: center;
+      transform: translateY(7px) rotate(45deg);
+    }
 
-    &:hover .line {
+    &:hover .hamMidLine {
+      opacity: 0;
+    }
+
+    &:hover .hamBtmLine {
+      transform-origin: center;
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    &:hover {
       cursor: pointer;
     }
   }
@@ -101,8 +114,8 @@ a {
   }
 }
 
-.Modal {
-  position: fixed;
+.modal {
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -113,14 +126,7 @@ a {
 .ham {
   float: right;
   margin: 5px 5px;
-}
-
-.ham div {
-  background-color: #000;
-  width: 22px;
-  height: 2px;
-  margin: 10px 10px;
-  z-index: 100;
+  z-index: 4;
 }
 
 .modalContent {
@@ -135,9 +141,9 @@ a {
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 15px;
   font-weight: 900;
-  animation: modal-show 0.3s;
+  animation: modalShowRight 0.3s;
 
-  @keyframes modal-show {
+  @keyframes modalShowRight {
     from {
       opacity: 0;
       margin-right: -50px;
@@ -214,13 +220,14 @@ a {
   }
 }
 
-.SearchModal {
+.searchModal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: #00000054;
+
   .searchModalContent {
     position: fixed;
     top: 0;
@@ -230,9 +237,9 @@ a {
     justify-content: center;
     height: 400px;
     background-color: #fff;
-    animation: modal-show 0.3s;
+    animation: modalShowTop 0.3s;
 
-    @keyframes modal-show {
+    @keyframes modalShowTop {
       from {
         opacity: 0;
         margin-top: -50px;

@@ -21,4 +21,4 @@ module.exports = {
     'scss/at-rule-conditional-no-parentheses': null,
     // 조건부 @ 규칙(if, elsif, while)(자동 수정 가능)에서 괄호를 허용합니다.
   },
-};
+}

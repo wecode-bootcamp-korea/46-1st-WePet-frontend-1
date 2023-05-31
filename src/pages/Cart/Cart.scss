@@ -6,7 +6,6 @@
   .cartHeader {
     margin: 20px auto;
     padding: 20px 0 70px 0;
-
     text-align: center;
 
     .headerTitle {
@@ -30,7 +29,9 @@
 
   .cartProduct {
     width: 60%;
+    height: 600px;
     margin: 20px;
+    overflow-y: scroll;
     border-right: 1px solid #ddd;
 
     .cartProductOption {

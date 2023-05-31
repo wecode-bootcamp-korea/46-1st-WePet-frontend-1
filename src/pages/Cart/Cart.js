@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Count from './Count/Count'
+import Modal from './Modal/Modal'
 import './Cart.scss'
 
 const Cart = () => {
@@ -8,6 +9,7 @@ const Cart = () => {
 
   const [checkItems, setCheckItems] = useState([])
   const [quantity, setQuantity] = useState({})
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   let totalPrice = 10000
   let deliveryPrice = 3000
@@ -54,12 +56,21 @@ const Cart = () => {
             <button
               className="cartProductDeleteBtn"
               onClick={() => {
-                alert('선택된 상품을 삭제하시겠습니까?')
+                setIsModalOpen(true)
               }}
             >
               선택삭제
             </button>
           </div>
+          {isModalOpen && (
+            <div className="modalLayout">
+              <div className="modalLayer" />
+              <Modal
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+              />
+            </div>
+          )}
           <ul className="cartProductList">
             {CART_ITEM_LIST.map((item, index) => {
               return (

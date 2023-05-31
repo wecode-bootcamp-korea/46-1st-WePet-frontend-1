@@ -1,0 +1,110 @@
+input {
+  padding: 22px 20px;
+}
+
+.signUp {
+  width: 400px;
+  margin: 0 auto;
+  padding-top: 80px;
+  .signUpTitle {
+    border-bottom: 1px solid lightgray;
+    font-size: 32px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 42px;
+    padding-bottom: 40px;
+  }
+  .infTitle {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 30px 0;
+  }
+  .signUpInputContainer {
+    list-style: none;
+    padding: 0;
+    .errorMsg {
+      color: red;
+      font-size: 12px;
+    }
+    input {
+      width: 100%;
+      height: 62px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    .input {
+      margin: 10px 0;
+    }
+    .input:focus {
+      outline: none;
+    }
+    .inputError {
+      border: 1px solid red;
+      margin: 10px 0;
+    }
+    .inputError:focus {
+      outline: none;
+    }
+  }
+  .termsTitle {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 30px 0;
+  }
+  .termsContainer {
+    list-style: none;
+    padding: 0;
+    li {
+      width: 100%;
+      .fullTermsBox {
+        margin: 20px 0;
+        .fullTermsTitle {
+          font-weight: 700;
+        }
+      }
+      .fullTermsContent {
+        font-size: 14px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        border-bottom: 1px solid lightgray;
+        color: #777;
+      }
+    }
+    .termsList {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+      .termsBtn {
+        border: none;
+        background-color: white;
+      }
+    }
+
+    .termsText {
+      width: 394px;
+      height: 211px;
+      padding: 20px;
+      resize: none;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      color: gray;
+      background-color: #f9f9f9;
+      font-size: 13px;
+    }
+    .termsText:focus {
+      outline: none;
+    }
+  }
+  footer {
+    .signUpBtn {
+      width: 100%;
+      height: 62px;
+      margin: 40px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #777777;
+    }
+  }
+}

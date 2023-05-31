@@ -1,0 +1,19 @@
+.count {
+  display: flex;
+  line-height: 16px;
+
+  .countBtn {
+    width: 16px;
+    height: 16px;
+    margin: 0 5px;
+    padding: 0;
+    border: none;
+    background-color: #ffbb0f;
+    color: white;
+  }
+
+  .totalQuantity {
+    width: 20px;
+    text-align: center;
+  }
+}

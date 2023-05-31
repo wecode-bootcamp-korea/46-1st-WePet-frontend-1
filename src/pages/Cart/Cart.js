@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Count from './Count/Count'
 import './Cart.scss'
 
 const Cart = () => {
-  const [checkItems, setCheckItems] = useState([])
   const navigate = useNavigate()
+
+  const [checkItems, setCheckItems] = useState([])
+  const [quantity, setQuantity] = useState({})
+
   let totalPrice = 10000
   let deliveryPrice = 3000
 
@@ -12,18 +16,20 @@ const Cart = () => {
     if (checked) {
       setCheckItems(prev => [...prev, id])
     } else {
-      setCheckItems(checkItems.filter(el => el !== id))
+      setCheckItems(checkItems.filter(item => item !== id))
     }
   }
 
   const handleAllCheck = checked => {
     if (checked) {
-      const checkedArray = []
-      CART_ITEM_LIST.forEach(el => checkedArray.push(el.id))
-      setCheckItems(checkedArray)
+      setCheckItems(CART_ITEM_LIST.map(item => item.id))
     } else {
       setCheckItems([])
     }
+  }
+
+  const handleQuantityChange = (id, value) => {
+    setQuantity(prev => ({ ...prev, [id]: value }))
   }
 
   return (
@@ -38,13 +44,21 @@ const Cart = () => {
               <input
                 type="checkbox"
                 onChange={e => handleAllCheck(e.target.checked)}
-                checked={
-                  checkItems.length === CART_ITEM_LIST.length ? true : false
-                }
+                checked={checkItems.length === CART_ITEM_LIST.length}
               />
               <span>전체선택</span>
+              <span className="checkedItems">
+                ({checkItems.length}/{CART_ITEM_LIST.length})
+              </span>
             </div>
-            <button className="cartProductDeleteBtn">선택삭제</button>
+            <button
+              className="cartProductDeleteBtn"
+              onClick={() => {
+                alert('선택상품을 지우시겠습니까?')
+              }}
+            >
+              선택삭제
+            </button>
           </div>
           <ul className="cartProductList">
             {CART_ITEM_LIST.map((item, index) => {
@@ -60,9 +74,13 @@ const Cart = () => {
                     src={item.url}
                     alt={`${item.name}-product-img`}
                   />
-                  <span>item.name</span>
-                  <span>item.qty</span>
-                  <span>item.price</span>
+                  <div className="cartProductName">{item.name}</div>
+                  <Count
+                    id={item.id}
+                    quantity={quantity[item.id] || 1}
+                    onChange={value => handleQuantityChange(item.id, value)}
+                  />
+                  <span className="cartProductPrice">{item.price}</span>
                 </li>
               )
             })}
@@ -91,7 +109,6 @@ const Cart = () => {
               <span className="keyValue">{`${totalPrice + 3000}원`}</span>
             </li>
           </ul>
-
           <button
             className="cartPurchaseBtn"
             onClick={() => {
@@ -113,28 +130,25 @@ const CART_ITEM_LIST = [
     id: 0,
     name: '배달이친구들 케이블타이 2종',
     price: '4000원',
-    qty: 1,
-    url: 'https://via.placeholder.com/600/92c952',
+
+    url: 'https://via.placeholder.com/600/8985dc',
   },
   {
     id: 1,
-    name: '화학표백을 하지 않은 재생지로 만든 메모잇',
+    name: '표백을 하지 않은 재생지로 만든 메모잇',
     price: '2300원',
-    qty: 1,
-    url: 'https://via.placeholder.com/600/92c952',
+    url: 'https://via.placeholder.com/600/56a8c2Q',
   },
   {
     id: 2,
     name: '커피찌꺼기를 재활용해 손으로 만든 연필',
     price: '23000원',
-    qty: 10,
-    url: 'https://via.placeholder.com/600/92c952',
+    url: 'https://via.placeholder.com/600/771796',
   },
   {
     id: 3,
     name: '커피찌꺼기를 재활용해 손으로 만든 연필',
     price: '23000원',
-    qty: 10,
     url: 'https://via.placeholder.com/600/92c952',
   },
 ]

@@ -72,7 +72,7 @@ const Nav = () => {
           </div>
         )}
       </div>
-      {searchModal === true ? (
+      {searchModal ? (
         <SearchModal
           searchModal={searchModal}
           setSearchModal={setSearchModal}

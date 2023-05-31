@@ -5,7 +5,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 import './Nav.scss'
 
-const SearchModal = (searchModal, setSearchModal) => {
+const SearchModal = ({ searchModal, setSearchModal }) => {
   return (
     <div className="searchModal">
       <div className="searchModalContent">

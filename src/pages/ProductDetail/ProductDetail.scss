@@ -36,7 +36,6 @@
       align-items: center;
       width: 500px;
       height: 500px;
-      background-color: aliceblue;
       margin: 0px 26px;
 
       .arrowLeft {
@@ -58,6 +57,10 @@
           color: #ffbb0f;
         }
       }
+    }
+
+    .mainImg {
+      width: 500px;
     }
     .productRight {
       width: 300px;

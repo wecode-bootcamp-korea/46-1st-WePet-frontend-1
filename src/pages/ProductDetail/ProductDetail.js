@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useTransition } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronLeft,
@@ -16,6 +16,7 @@ import './ProductDetail.scss'
 const ProductDetail = () => {
   const detailImgArr = PRODUCT_DATA[0].detailImg
   const [quantity, setQuantity] = useState(0)
+  const [mainImg, setMainImg] = useState(false)
   return (
     <div className="productDetail">
       <div className="product">
@@ -29,8 +30,13 @@ const ProductDetail = () => {
             icon={faChevronLeft}
             size="xl"
             className="arrowLeft"
+            // onClick={setMainImg(!mainImg)}
           />
-          <img src={PRODUCT_DATA[0].productImg} alt="productImage" />
+          <img
+            className="mainImg"
+            src={PRODUCT_DATA[0].productImg}
+            alt="productImage"
+          />
           <FontAwesomeIcon
             icon={faChevronRight}
             size="xl"

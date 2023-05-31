@@ -35,7 +35,7 @@ const Cart = () => {
   return (
     <div className="cart">
       <div className="cartHeader">
-        <h1>장바구니</h1>
+        <span className="headerTitle">장바구니</span>
       </div>
       <main className="cartContainer">
         <section className="cartProduct">
@@ -54,7 +54,7 @@ const Cart = () => {
             <button
               className="cartProductDeleteBtn"
               onClick={() => {
-                alert('선택상품을 지우시겠습니까?')
+                alert('선택된 상품을 삭제하시겠습니까?')
               }}
             >
               선택삭제
@@ -87,11 +87,11 @@ const Cart = () => {
         </section>
         <section className="cartPurchase">
           <ul className="cartPurchaseContainer">
-            <li className="cartPurchaseKey">
+            <li className="cartPurchaseKeyAmount">
               <span className="keyTitle">총 상품금액</span>
               <span className="keyValue">{`${totalPrice}원`}</span>
             </li>
-            <li className="cartPurchaseKey">
+            <li className="cartPurchaseKeyAmount">
               <span className="keyTitle">배송비</span>
               <span className="keyValue">{`${deliveryPrice}원`}</span>
             </li>
@@ -103,7 +103,7 @@ const Cart = () => {
                 <div className="deliveryAlertTriangle" />
               </div>
             ) : null}
-            <li className="cartPurchaseKey">
+            <li className="cartPurchaseKeyTotal">
               <span className="keyTitle">결제예상금액</span>
               <span className="keyValue">{`${totalPrice + 3000}원`}</span>
             </li>
@@ -146,8 +146,40 @@ const CART_ITEM_LIST = [
   },
   {
     id: 3,
+    name: '배달이친구들 케이블타이 2종',
+    price: '4000원',
+
+    url: 'https://via.placeholder.com/600/8985dc',
+  },
+  {
+    id: 4,
+    name: '표백을 하지 않은 재생지로 만든 메모잇',
+    price: '2300원',
+    url: 'https://via.placeholder.com/600/56a8c2Q',
+  },
+  {
+    id: 5,
     name: '커피찌꺼기를 재활용해 손으로 만든 연필',
     price: '23000원',
-    url: 'https://via.placeholder.com/600/92c952',
+    url: 'https://via.placeholder.com/600/771796',
+  },
+  {
+    id: 6,
+    name: '배달이친구들 케이블타이 2종',
+    price: '4000원',
+
+    url: 'https://via.placeholder.com/600/8985dc',
+  },
+  {
+    id: 7,
+    name: '표백을 하지 않은 재생지로 만든 메모잇',
+    price: '2300원',
+    url: 'https://via.placeholder.com/600/56a8c2Q',
+  },
+  {
+    id: 8,
+    name: '커피찌꺼기를 재활용해 손으로 만든 연필',
+    price: '23000원',
+    url: 'https://via.placeholder.com/600/771796',
   },
 ]

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { TERMS_BOX } from './termsBox'
 import TermsList from './TermsList'
 import './SignUp.scss'
@@ -6,27 +7,60 @@ import './SignUp.scss'
 const SignUp = () => {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordConfirm, setPasswordConfirm] = useState('')
+
+  const [isEmail, setIsEmail] = useState(true)
+  const [isName, setIsName] = useState(true)
+  const [isPassword, setIsPassword] = useState(true)
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(true)
+  const [isMatched, setIsMatched] = useState(true)
+  const [isAllValid, setIsAllValid] = useState(false)
+
   const [termsOn, setTermsOn] = useState([false, false, false])
   const [checkItems, setCheckItems] = useState([])
 
+  useEffect(() => {
+    if (isEmail && isName && isPassword && isPasswordConfirm && isMatched) {
+      const isButton1Checked = checkItems.includes(0)
+      const isButton2Checked = checkItems.includes(1)
+      setIsAllValid(isButton1Checked && isButton2Checked)
+    }
+  }, [isEmail, isName, isPassword, isPasswordConfirm, isMatched, checkItems])
+
   const handleSingleCheck = (checked, id) => {
     if (checked) {
-      // 단일 선택 시 체크된 아이템을 배열에 추가
       setCheckItems(prev => [...prev, id])
     } else {
-      // 단일 선택 해제 시 체크된 아이템을 제외한 배열 (필터)
       setCheckItems(checkItems.filter(el => el !== id))
     }
+
+    const isButton1Checked = id === 0 ? checked : checkItems.includes(0)
+    const isButton2Checked = id === 1 ? checked : checkItems.includes(1)
+
+    setIsAllValid(
+      isEmail &&
+        isName &&
+        isPassword &&
+        isPasswordConfirm &&
+        isMatched &&
+        isButton1Checked &&
+        isButton2Checked
+    )
+  }
+
+  const navigate = useNavigate()
+
+  const navigateToPurchase = () => {
+    navigate('/main')
   }
 
   const handleAllCheck = checked => {
     if (checked) {
-      // 전체 선택 클릭 시 데이터의 모든 아이템(id)를 담은 배열로 checkItems 상태 업데이트
       const idArray = []
       TERMS_BOX.forEach((el, index) => idArray.push(index))
       setCheckItems(idArray)
     } else {
-      // 전체 선택 해제 시 checkItems 를 빈 배열로 상태 업데이트
       setCheckItems([])
     }
   }
@@ -39,45 +73,69 @@ const SignUp = () => {
         <li>
           <input
             autoFocus={true}
-            className={email === true ? 'inputError' : 'input'}
+            className={!isEmail ? 'inputError' : 'input'}
             type="text"
             placeholder="이메일"
             onChange={e => {
               setEmail(e.target.value)
-              {
-                e.target.value === '' ? setEmail(true) : setEmail(false)
-              }
+              setIsEmail(e.target.value.includes('@'))
             }}
-          ></input>
+          />
         </li>
-        {email === true && (
-          <p className="errorMsg">이메일은 필수 입력값입니다.</p>
-        )}
-        <li className="password">
-          <input className="input" type="password" placeholder="비밀번호" />
-        </li>
-        <li>
-          <input
-            className="input"
-            type="password"
-            placeholder="비밀번호 확인"
-          ></input>
-        </li>
+        {!isEmail && <p className="errorMsg">이메일에 @가 필요합니다</p>}
+
         <li>
           <input
             autoFocus={true}
-            className={name === true ? 'inputError' : 'input'}
+            className={!isPassword ? 'inputError' : 'input'}
+            type="password"
+            placeholder="비밀번호"
+            onChange={e => {
+              setPassword(e.target.value)
+              setIsPassword(e.target.value.length >= 8)
+              setIsMatched(e.target.value === passwordConfirm)
+            }}
+          />
+        </li>
+
+        {!isPassword && (
+          <p className="errorMsg">비밀번호 8자리 이상 입력해주세요</p>
+        )}
+
+        <li>
+          <input
+            autoFocus={true}
+            className={!isPasswordConfirm ? 'inputError' : 'input'}
+            type="password"
+            placeholder="비밀번호 확인"
+            onChange={e => {
+              setPasswordConfirm(e.target.value)
+              setIsPasswordConfirm(e.target.value.length >= 8)
+              setIsMatched(e.target.value === password || password === '')
+            }}
+          />
+        </li>
+
+        {isPassword && passwordConfirm && !isMatched && (
+          <p className="errorMsg">비밀번호가 일치하지 않습니다</p>
+        )}
+        {isPassword && passwordConfirm && isMatched && (
+          <p className="successMsg">비밀번호가 일치합니다</p>
+        )}
+
+        <li>
+          <input
+            autoFocus={true}
+            className={!isName ? 'inputError' : 'input'}
             type="text"
             placeholder="이름"
             onChange={e => {
               setName(e.target.value)
-              {
-                e.target.value === '' ? setName(true) : setName(false)
-              }
+              setIsName(e.target.value.length >= 2)
             }}
-          ></input>
+          />
         </li>
-        {name === true && <p className="errorMsg">이름을 입력해주세요</p>}
+        {!isName && <p className="errorMsg">이름을 입력해주세요</p>}
       </ul>
       <div className="termsTitle">약관동의</div>
       <ul className="termsContainer">
@@ -89,9 +147,7 @@ const SignUp = () => {
                   type="checkbox"
                   onChange={e => handleAllCheck(e.target.checked)}
                   // 데이터 개수와 체크된 아이템의 개수가 다를 경우 선택 해제 (하나라도 해제 시 선택 해제)
-                  checked={
-                    checkItems.length === TERMS_BOX.length ? true : false
-                  }
+                  checked={checkItems.length === TERMS_BOX.length}
                 />
                 전체 동의합니다.
               </span>
@@ -116,7 +172,12 @@ const SignUp = () => {
         })}
       </ul>
       <footer className="signUpFooter">
-        <button className="signUpBtn">가입하기</button>
+        <button
+          className={`signUpBtn ${isAllValid ? 'signUpBtnValid' : ''}`}
+          onClick={navigateToPurchase}
+        >
+          가입하기
+        </button>
       </footer>
     </div>
   )

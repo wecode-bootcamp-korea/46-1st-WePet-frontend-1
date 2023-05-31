@@ -67,7 +67,7 @@ const Cart = () => {
                   <input
                     type="checkbox"
                     onChange={e => handleCheck(e.target.checked, item.id)}
-                    checked={checkItems.includes(item.id) ? true : false}
+                    checked={checkItems.includes(item.id)}
                   />
                   <img
                     className="cartProductItemImg"
@@ -76,9 +76,8 @@ const Cart = () => {
                   />
                   <div className="cartProductName">{item.name}</div>
                   <Count
-                    id={item.id}
                     quantity={quantity[item.id] || 1}
-                    onChange={value => handleQuantityChange(item.id, value)}
+                    handleChange={value => handleQuantityChange(item.id, value)}
                   />
                   <span className="cartProductPrice">{item.price}</span>
                 </li>

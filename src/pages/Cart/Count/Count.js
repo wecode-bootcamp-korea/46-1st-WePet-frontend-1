@@ -1,10 +1,10 @@
 import React from 'react'
 import './Count.scss'
 
-const Count = ({ id, quantity, onChange }) => {
+const Count = ({ id, quantity, handleChange }) => {
   const handleCount = value => {
     if (quantity + value < 1) return
-    onChange(quantity + value)
+    handleChange(quantity + value)
   }
 
   return (

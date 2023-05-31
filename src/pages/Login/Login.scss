@@ -5,14 +5,17 @@
   flex-direction: column;
   height: 100vh;
   margin: 0 60px;
+
   .loginTitle {
     padding-bottom: 40px;
     font-size: 32px;
     font-weight: 700;
   }
+
   .loginInputContainer {
     margin-top: 40px;
     padding: 0;
+
     .inputBox {
       position: relative;
       list-style: none;
@@ -20,6 +23,7 @@
       .label {
         position: absolute;
       }
+
       .input {
         padding: 22px 20px;
         margin-top: 10px;
@@ -27,32 +31,38 @@
         height: 62px;
         border-radius: 6px;
         border: 1px solid lightgray;
+
+        &:focus {
+          outline: none;
+        }
       }
-      .input:focus {
-        outline: none;
-      }
+
       .inputError {
         padding: 22px 20px;
         width: 400px;
         height: 62px;
         border-radius: 6px;
         border: 1px solid red;
-      }
-      .inputError:focus {
-        outline: none;
+
+        &:focus {
+          outline: none;
+        }
       }
     }
   }
+
   .errorMsg {
     color: red;
     font-size: 12px;
     padding-top: 10px;
   }
+
   .saveEmail {
     width: 400px;
     margin: 20px 0;
     color: gray;
   }
+
   .loginBtn {
     width: 400px;
     height: 62px;
@@ -64,6 +74,7 @@
     font-size: 16px;
     font-weight: 700;
   }
+
   .toSignUp {
     font-size: 14px;
     color: gray;

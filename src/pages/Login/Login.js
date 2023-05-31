@@ -49,7 +49,7 @@ const Login = () => {
             }}
           ></input>
         </li>
-        {emailError ? <p className="errorMsg">이메일을 입력해주세요</p> : null}
+        {emailError && <p className="errorMsg">이메일을 입력해주세요</p>}
         <li className="inputBox">
           <input
             className="input"

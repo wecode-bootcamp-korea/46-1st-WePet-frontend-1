@@ -55,15 +55,9 @@ const SignUp = () => {
             }}
           ></input>
         </li>
-        {emailError ? (
-          <p className="errorMsg">이메일은 필수 입력값입니다.</p>
-        ) : null}
+        {emailError && <p className="errorMsg">이메일은 필수 입력값입니다.</p>}
         <li className="password">
-          <input
-            className="input"
-            type="password"
-            placeholder="비밀번호"
-          ></input>
+          <input className="input" type="password" placeholder="비밀번호" />
         </li>
         <li>
           <input
@@ -86,7 +80,7 @@ const SignUp = () => {
             }}
           ></input>
         </li>
-        {nameError ? <p className="errorMsg">이름을 입력해주세요</p> : null}
+        {nameError && <p className="errorMsg">이름을 입력해주세요</p>}
       </ul>
       <div className="termsTitle">약관동의</div>
       <ul className="termsContainer">
@@ -124,7 +118,7 @@ const SignUp = () => {
           )
         })}
       </ul>
-      <footer>
+      <footer className="signUpFooter">
         <button className="signUpBtn">가입하기</button>
       </footer>
     </div>

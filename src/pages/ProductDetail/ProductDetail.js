@@ -1,8 +1,8 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon, useState } from '@fortawesome/react-fontawesome'
 
 const ProductDetail = () => {
-  return <h1>hello</h1>
+  return <div className="productDetail">{/* <div className='top' */}</div>
 }
 
 export default ProductDetail

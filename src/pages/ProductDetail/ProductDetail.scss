@@ -1,8 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Noto Sans KR', sans-serif;
+
 .productDetail {
   width: 1200px;
-  display: flex;
-  justify-content: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0 auto;
 
-.
+  .product {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    p {
+      margin: 6px 0px;
+    }
+    .productLeft {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 300px;
+      height: 500px;
+      font-size: 30px;
+      .productName {
+        font-family: 'Roboto', sans-serif;
+      }
+      .price {
+        font-size: 17px;
+        font-weight: 800;
+      }
+    }
+    .productMainImg {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 500px;
+      height: 500px;
+      background-color: aliceblue;
+      margin: 0px 26px;
+
+      .arrowLeft {
+        position: absolute;
+        left: 10px;
+        &:hover {
+          cursor: pointer;
+          color: #bebebe;
+        }
+      }
+      .arrowRight {
+        position: absolute;
+        right: 10px;
+        &:hover {
+          cursor: pointer;
+          color: #bebebe;
+        }
+      }
+    }
+    .productRight {
+      width: 300px;
+      height: 500px;
+      font-size: 18px;
+
+      .line {
+        width: 300px;
+        height: 1px;
+        background-color: #dadada;
+        margin: 20px 0px;
+      }
+      .grey {
+        color: #afafaf;
+        margin: 10px 0px;
+      }
+      .greyBox {
+        background-color: #ebebeb55;
+        border-radius: 7px;
+        width: 300px;
+        height: 120px;
+        padding: 16px;
+        margin: 20px 0px;
+      }
+      .totalPrice {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        span {
+          font-weight: 900;
+          font-size: 18px;
+        }
+      }
+
+      .shoppingBtn {
+        display: flex;
+        justify-content: space-between;
+
+        .cartBtn {
+          border: 2px solid #ffbb0f;
+          border-radius: 4px;
+          padding: 7px;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &:hover {
+            cursor: pointer;
+          }
+          .cartIcon {
+            font-size: 24px;
+          }
+        }
+        .buy {
+          width: 230px;
+          height: 51px;
+          border: none;
+          border-radius: 4px;
+          color: #fff;
+          background-color: #ffbb0f;
+          font-size: 18px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .rowLine {
+    width: 1200px;
+    height: 1px;
+    background-color: #dadada;
+    margin: 20px 0px;
+  }
+  .table {
+    display: flex;
+    justify-content: space-evenly;
+
+    .columLine {
+      height: 10px;
+      width: 1px;
+      background-color: #dadada;
+    }
+    .greyTitle {
+      color: #bebebe;
+      width: 400px;
+      text-align: center;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .productImgs {
+    width: 900px;
+    margin: 0 auto;
+
+    img {
+      width: 900px;
+    }
+  }
 }
- 

@@ -5,6 +5,19 @@ import './ProductList.scss'
 
 const ProductList = () => {
   const [dropBox, setDropBox] = useState(false)
+  const [products, setProducts] = useState([])
+
+  fetch('', {
+    headers: { 'Content-Type': 'application/json;charset=utf-8' },
+  })
+    .then(response => {
+      //console.log(response)
+      return response.json()
+    })
+    .then(response => {
+      // console.log(response)
+      setProducts(response.data)
+    })
 
   return (
     <>
@@ -60,15 +73,20 @@ const ProductList = () => {
           </div>
         )}
 
+        <img
+          className="productImg"
+          src={'https://unsplash.com/ko/%EC%82%AC%EC%A7%84/brFsZ7qszSY'}
+        />
+
         <div className="productListMain">
-          {PRODUCT_DATA.map((item, index) => {
+          {products.map((item, idx) => {
             return (
-              <div className="productItem">
-                <img className="productImg" src={item.url}></img>
+              <div className="productItem" key={idx}>
+                <img className="productImg" src={item.productImage} />
                 <div className="productText">
                   <p className="itemIcon">{item.icon}</p>
-                  <p className="itemName">{item.name}</p>
-                  <p className="itemPrice">{item.price}</p>
+                  <p className="itemName">{item.productName}</p>
+                  <p className="itemPrice">{item.productQuantity}</p>
                 </div>
               </div>
             )
@@ -81,61 +99,61 @@ const ProductList = () => {
 
 export default ProductList
 
-const PRODUCT_DATA = [
-  {
-    id: 1,
-    icon: 'BEST',
-    name: '맥주',
-    price: '1000원',
-    url: 'https://via.placeholder.com/600/92c952',
-  },
-  {
-    id: 2,
-    icon: 'BEST',
-    name: '맥주',
-    price: '1000원',
-    url: 'https://via.placeholder.com/600/92c952',
-  },
-  {
-    id: 3,
-    icon: 'BEST',
-    name: '맥주',
-    price: '1000원',
-    url: 'https://via.placeholder.com/600/92c952',
-  },
-  {
-    id: 4,
-    icon: 'BEST',
-    name: '맥주',
-    price: '1000원',
-    url: 'https://via.placeholder.com/600/92c952',
-  },
-  {
-    id: 5,
-    icon: 'BEST',
-    name: '맥주',
-    price: '1000원',
-    url: 'https://via.placeholder.com/600/92c952',
-  },
-  {
-    id: 6,
-    icon: 'BEST',
-    name: '맥주',
-    price: '1000원',
-    url: 'https://via.placeholder.com/600/92c952',
-  },
-  {
-    id: 7,
-    icon: 'BEST',
-    name: '맥주',
-    price: '1000원',
-    url: 'https://via.placeholder.com/600/92c952',
-  },
-  {
-    id: 8,
-    icon: 'BEST',
-    name: '맥주',
-    price: '1000원',
-    url: 'https://via.placeholder.com/600/92c952',
-  },
-]
+// const PRODUCT_DATA = [
+//   {
+//     id: 1,
+//     icon: 'BEST',
+//     name: '맥주',
+//     price: '1000원',
+//     url: 'https://via.placeholder.com/600/92c952',
+//   },
+//   {
+//     id: 2,
+//     icon: 'BEST',
+//     name: '맥주',
+//     price: '1000원',
+//     url: 'https://via.placeholder.com/600/92c952',
+//   },
+//   {
+//     id: 3,
+//     icon: 'BEST',
+//     name: '맥주',
+//     price: '1000원',
+//     url: 'https://via.placeholder.com/600/92c952',
+//   },
+//   {
+//     id: 4,
+//     icon: 'BEST',
+//     name: '맥주',
+//     price: '1000원',
+//     url: 'https://via.placeholder.com/600/92c952',
+//   },
+//   {
+//     id: 5,
+//     icon: 'BEST',
+//     name: '맥주',
+//     price: '1000원',
+//     url: 'https://via.placeholder.com/600/92c952',
+//   },
+//   {
+//     id: 6,
+//     icon: 'BEST',
+//     name: '맥주',
+//     price: '1000원',
+//     url: 'https://via.placeholder.com/600/92c952',
+//   },
+//   {
+//     id: 7,
+//     icon: 'BEST',
+//     name: '맥주',
+//     price: '1000원',
+//     url: 'https://via.placeholder.com/600/92c952',
+//   },
+//   {
+//     id: 8,
+//     icon: 'BEST',
+//     name: '맥주',
+//     price: '1000원',
+//     url: 'https://via.placeholder.com/600/92c952',
+//   },
+// ]

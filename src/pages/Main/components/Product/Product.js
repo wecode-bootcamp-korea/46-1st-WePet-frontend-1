@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Product.scss'
 
 function Product() {
+  useEffect(() => {
+    fetch('http://10.58.52.148:3000/products', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+  }, [])
   return (
     <div className="product">
       <div className="productList">

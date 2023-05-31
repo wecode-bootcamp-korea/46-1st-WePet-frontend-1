@@ -9,7 +9,7 @@ const PRODUCT_DATA = [
     title: 'WePet Food',
     price: 3500,
     productImg: { img1 },
-    detailImg: [{ img1 }, { img2 }, { img3 }, { img4 }],
+    detailImg: [img1, img2, img3, img4],
   },
 ]
 

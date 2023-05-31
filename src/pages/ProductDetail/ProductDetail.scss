@@ -27,8 +27,7 @@
         font-family: 'Roboto', sans-serif;
       }
       .price {
-        font-size: 17px;
-        font-weight: 800;
+        font-size: 15px;
       }
     }
     .productMainImg {
@@ -43,17 +42,20 @@
       .arrowLeft {
         position: absolute;
         left: 10px;
+        color: #bebebe;
         &:hover {
           cursor: pointer;
-          color: #bebebe;
+          color: #ffbb0f;
         }
       }
       .arrowRight {
         position: absolute;
         right: 10px;
+        color: #bebebe;
+
         &:hover {
           cursor: pointer;
-          color: #bebebe;
+          color: #ffbb0f;
         }
       }
     }

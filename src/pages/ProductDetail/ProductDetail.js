@@ -21,21 +21,19 @@ const ProductDetail = () => {
       <div className="product">
         <div className="productLeft">
           <p className="productName">{PRODUCT_DATA[0].title}</p>
-          <p className="price">{PRODUCT_DATA[0].price}</p>
+          <p className="price">{PRODUCT_DATA[0].price}원</p>
         </div>
 
         <div className="productMainImg">
           <FontAwesomeIcon
             icon={faChevronLeft}
             size="xl"
-            style={{ color: '#000000' }}
             className="arrowLeft"
           />
           <img src={PRODUCT_DATA[0].productImg} alt="productImage" />
           <FontAwesomeIcon
             icon={faChevronRight}
             size="xl"
-            style={{ color: '#000000' }}
             className="arrowRight"
           />
         </div>
@@ -84,7 +82,7 @@ const ProductDetail = () => {
       <div className="productImgs">
         {detailImgArr.map((img, index) => {
           // const imgValue = img.value
-          // console.log({ img })
+          console.log(img)
           return <img index={index} src={img} alt="productImages" />
         })}
       </div>

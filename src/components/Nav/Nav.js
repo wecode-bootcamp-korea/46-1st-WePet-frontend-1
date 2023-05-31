@@ -41,7 +41,7 @@ const Nav = () => {
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             onClick={() => {
-              setSearchModal(true)
+              setSearchModal(!searchModal)
             }}
             size="lg"
             className="icon"
@@ -57,18 +57,29 @@ const Nav = () => {
         >
           로그인
         </button>
-        <div
-          className="ham"
-          onClick={() => {
-            setModal(!modal)
-          }}
-        >
-          <div className="line hamTopLine"></div>
-          <div className="line hamMidLine"></div>
-          <div className="line hamBtmLine"></div>
-        </div>
+        {searchModal ? (
+          ''
+        ) : (
+          <div
+            className="ham"
+            onClick={() => {
+              setModal(!modal)
+            }}
+          >
+            <div className={`line ${modal && 'hamTopLine'}`}></div>
+            <div className={`line ${modal && 'hamMidLine'}`}></div>
+            <div className={`line ${modal && 'hamBtmLine'}`}></div>
+          </div>
+        )}
       </div>
-      {searchModal === true ? <SearchModal /> : ''}
+      {searchModal === true ? (
+        <SearchModal
+          searchModal={searchModal}
+          setSearchModal={setSearchModal}
+        />
+      ) : (
+        ''
+      )}
       {modal === true ? <Modal /> : ''}
     </>
   )

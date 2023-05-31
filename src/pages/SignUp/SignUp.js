@@ -5,6 +5,8 @@ import TermsList from './TermsList'
 import './SignUp.scss'
 
 const SignUp = () => {
+  const navigate = useNavigate()
+
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
@@ -19,6 +21,28 @@ const SignUp = () => {
 
   const [termsOn, setTermsOn] = useState([false, false, false])
   const [checkItems, setCheckItems] = useState([])
+
+  const signupHandler = () => {
+    fetch('http://localhost:3005/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+      }),
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(response => {
+        if (response.success === true) {
+          navigate('/main')
+        } else {
+          alert('회원가입에 실패했습니다.')
+        }
+      })
+  }
 
   useEffect(() => {
     if (isEmail && isName && isPassword && isPasswordConfirm && isMatched) {
@@ -47,12 +71,6 @@ const SignUp = () => {
         isButton1Checked &&
         isButton2Checked
     )
-  }
-
-  const navigate = useNavigate()
-
-  const navigateToPurchase = () => {
-    navigate('/main')
   }
 
   const handleAllCheck = checked => {
@@ -174,7 +192,8 @@ const SignUp = () => {
       <footer className="signUpFooter">
         <button
           className={`signUpBtn ${isAllValid ? 'signUpBtnValid' : ''}`}
-          onClick={navigateToPurchase}
+          onClick={signupHandler}
+          disabled={!isAllValid}
         >
           가입하기
         </button>

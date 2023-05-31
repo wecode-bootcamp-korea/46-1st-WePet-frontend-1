@@ -1,0 +1,48 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.sliderContent {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  justify-content: space-around;
+  width: 50%;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+}
+
+.sliderItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 250px;
+  margin: 0 15px;
+  padding: 15px;
+  border: 1px solid black;
+
+  .sliderImg {
+    width: 150px;
+    height: 150px;
+  }
+
+  .sliderText {
+    height: 53px;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .sliderName {
+    height: 24px;
+    margin: 0;
+  }
+
+  .sliderPrice {
+    height: 19px;
+    margin-bottom: 0;
+  }
+}

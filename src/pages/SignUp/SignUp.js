@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { TERMS_BOX } from './termsBox'
+import TermsList from './TermsList'
 import './SignUp.scss'
 
 const SignUp = () => {
   const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState(false)
   const [name, setName] = useState('')
-  const [nameError, setNameError] = useState(false)
   const [termsOn, setTermsOn] = useState([false, false, false])
   const [checkItems, setCheckItems] = useState([])
 
@@ -42,20 +39,20 @@ const SignUp = () => {
         <li>
           <input
             autoFocus={true}
-            className={emailError ? 'inputError' : 'input'}
+            className={email === true ? 'inputError' : 'input'}
             type="text"
             placeholder="이메일"
             onChange={e => {
               setEmail(e.target.value)
               {
-                e.target.value === ''
-                  ? setEmailError(true)
-                  : setEmailError(false)
+                e.target.value === '' ? setEmail(true) : setEmail(false)
               }
             }}
           ></input>
         </li>
-        {emailError && <p className="errorMsg">이메일은 필수 입력값입니다.</p>}
+        {email === true && (
+          <p className="errorMsg">이메일은 필수 입력값입니다.</p>
+        )}
         <li className="password">
           <input className="input" type="password" placeholder="비밀번호" />
         </li>
@@ -69,18 +66,18 @@ const SignUp = () => {
         <li>
           <input
             autoFocus={true}
-            className={nameError ? 'inputError' : 'input'}
+            className={name === true ? 'inputError' : 'input'}
             type="text"
             placeholder="이름"
             onChange={e => {
               setName(e.target.value)
               {
-                e.target.value === '' ? setNameError(true) : setNameError(false)
+                e.target.value === '' ? setName(true) : setName(false)
               }
             }}
           ></input>
         </li>
-        {nameError && <p className="errorMsg">이름을 입력해주세요</p>}
+        {name === true && <p className="errorMsg">이름을 입력해주세요</p>}
       </ul>
       <div className="termsTitle">약관동의</div>
       <ul className="termsContainer">
@@ -126,43 +123,3 @@ const SignUp = () => {
 }
 
 export default SignUp
-
-const TermsList = props => {
-  return (
-    <>
-      <li className="termsList">
-        <div>
-          <label>
-            <span>
-              <input
-                type="checkbox"
-                onChange={e =>
-                  props.handleSingleCheck(e.target.checked, props.index)
-                }
-                // 체크된 아이템 배열에 해당 아이템이 있을 경우 선택 활성화, 아닐 시 해제
-                checked={props.checkItems.includes(props.index) ? true : false}
-              />
-              {props.termsInf.subject}
-            </span>
-          </label>
-        </div>
-        <button
-          className="termsBtn"
-          onClick={() => {
-            props.setTermsOn(prev => {
-              prev[props.index] = !prev[props.index]
-              return [...prev]
-            })
-          }}
-        >
-          <FontAwesomeIcon icon={faChevronDown} style={{ color: '#060709' }} />
-        </button>
-      </li>
-      {!props.termsOn[props.index] ? null : (
-        <textarea className="termsText" disabled>
-          {props.termsInf.content}
-        </textarea>
-      )}
-    </>
-  )
-}

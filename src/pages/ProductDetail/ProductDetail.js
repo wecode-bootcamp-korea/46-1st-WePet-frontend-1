@@ -15,6 +15,7 @@ import './ProductDetail.scss'
 
 const ProductDetail = () => {
   const detailImgArr = PRODUCT_DATA[0].detailImg
+  const [quantity, setQuantity] = useState(0)
   return (
     <div className="productDetail">
       <div className="product">
@@ -46,12 +47,15 @@ const ProductDetail = () => {
           <p className="grey">오후 1시 당일배송마감</p>
           <div className="line" />
           <div className="greyBox">
-            <p>{PRODUCT_DATA[0].title}</p>
-            <Count />
+            <p className="title">{PRODUCT_DATA[0].title}</p>
+            <div className="countPrice">
+              <Count quantity={quantity} setQuantity={setQuantity} />
+              <p>{quantity * PRODUCT_DATA[0].price}원</p>
+            </div>
           </div>
           <div className="totalPrice">
             <span>총 금액</span>
-            <span>3,500원</span>
+            <span>{quantity * PRODUCT_DATA[0].price}원</span>
           </div>
           <div className="shoppingBtn">
             <div className="cartBtn">

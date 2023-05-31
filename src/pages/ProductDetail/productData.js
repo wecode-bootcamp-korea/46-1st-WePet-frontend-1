@@ -7,7 +7,7 @@ const PRODUCT_DATA = [
   {
     id: 1,
     title: 'WePet Food',
-    price: '3,500원',
+    price: 3500,
     productImg: { img1 },
     detailImg: [{ img1 }, { img2 }, { img3 }, { img4 }],
   },

@@ -1,11 +1,8 @@
-.slides {
+.active {
+  display: inline-block;
   position: relative;
   width: 100%;
   height: 50vh;
-}
-
-.active {
-  display: inline-block;
 }
 
 .inactive {

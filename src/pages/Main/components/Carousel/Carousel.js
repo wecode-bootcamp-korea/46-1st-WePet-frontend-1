@@ -2,17 +2,18 @@ import React, { useState } from 'react'
 import CarouselContent from './components/CarouselContent'
 import Arrows from './components/Arrows'
 import Dots from './components/Dots'
-import { IMAGE_SLIDER } from './IMAGE_SLIDER'
+import { IMAGE_INFO_LIST } from './IMAGE_INFO_LIST'
 import './Carousel.scss'
 
 const Carousel = () => {
-  const lastIndex = IMAGE_SLIDER.length - 1
   const [activeCarousel, setActiveCarousel] = useState(0)
+  const lastIndex = IMAGE_INFO_LIST.length - 1
+
   return (
     <div className="carouselContainer">
       <CarouselContent
         activeCarousel={activeCarousel}
-        imageSlider={IMAGE_SLIDER}
+        imageSlider={IMAGE_INFO_LIST}
       />
       <Arrows
         prev={() =>
@@ -26,8 +27,8 @@ const Carousel = () => {
       />
       <Dots
         activeCarousel={activeCarousel}
-        imageSlider={IMAGE_SLIDER}
-        onClick={activeCarousel => setActiveCarousel(activeCarousel)}
+        imageSlider={IMAGE_INFO_LIST}
+        setActiveCarousel={setActiveCarousel}
       />
     </div>
   )

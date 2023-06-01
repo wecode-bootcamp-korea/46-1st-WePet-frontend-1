@@ -10,7 +10,7 @@ const SliderContent = ({ firstSlide, productData }) => {
             <div key={index} className="sliderItem">
               <img
                 className="sliderImg"
-                src={item.productImage}
+                src={item.mainThumbnailImage}
                 alt="productChoice"
               />
               <div className="sliderText">
@@ -20,7 +20,7 @@ const SliderContent = ({ firstSlide, productData }) => {
             </div>
           )
         })
-        .slice(firstSlide, firstSlide + 3)}
+        .slice(firstSlide, firstSlide + 4)}
     </div>
   )
 }

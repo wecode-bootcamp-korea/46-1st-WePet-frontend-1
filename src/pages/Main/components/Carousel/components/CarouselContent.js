@@ -7,7 +7,7 @@ const CarouselContent = ({ activeCarousel, imageSlider }) => {
       {imageSlider.map((slide, index) => (
         <div
           key={index}
-          className={index === activeCarousel ? 'active slides' : 'inactive'}
+          className={index === activeCarousel ? 'active' : 'inactive'}
         >
           <img
             className="slideImage"

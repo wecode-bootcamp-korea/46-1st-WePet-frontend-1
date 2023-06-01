@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/Dots.scss'
 
-const Dots = ({ activeCarousel, onClick, imageSlider }) => {
+const Dots = ({ activeCarousel, setActiveCarousel, imageSlider }) => {
   return (
     <div className="allDots">
       {imageSlider.map((slide, index) => {
@@ -9,7 +9,7 @@ const Dots = ({ activeCarousel, onClick, imageSlider }) => {
           <span
             key={index}
             className={activeCarousel === index ? 'activeDot dot' : 'dot'}
-            onClick={() => onClick(index)}
+            onClick={() => setActiveCarousel(index)}
           />
         )
       })}

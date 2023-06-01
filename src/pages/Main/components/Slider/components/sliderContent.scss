@@ -1,8 +1,3 @@
-p {
-  margin: 0;
-  padding: 0;
-}
-
 .sliderContent {
   display: flex;
   position: absolute;
@@ -28,6 +23,10 @@ p {
   .sliderImg {
     width: 150px;
     height: 150px;
+
+    &:hover {
+      transform: scale(1.5);
+    }
   }
 
   .sliderText {
@@ -39,6 +38,7 @@ p {
   .sliderName {
     height: 24px;
     margin: 0;
+    white-space: nowrap;
   }
 
   .sliderPrice {

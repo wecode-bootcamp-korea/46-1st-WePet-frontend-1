@@ -3,7 +3,7 @@ import Second from '../../assets/Second.jpg'
 import Third from '../../assets/Third.jpg'
 import Fourth from '../../assets/Fourth.jpg'
 
-export const IMAGE_SLIDER = [
+export const IMAGE_INFO_LIST = [
   {
     title: 'WePet',
     description: 'WePet is...',

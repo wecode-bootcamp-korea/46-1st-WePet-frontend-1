@@ -15,15 +15,18 @@
   .modalText {
     padding: 60px 30px;
   }
+
   .modalBtn {
     display: flex;
     width: 100%;
     border-top: 1px #777 solid;
   }
+
   .cancelBtn,
   .deleteBtn {
     width: 50%;
     height: 50px;
+    padding: 5px;
     border: none;
     border-radius: 8px;
     background-color: white;
@@ -31,7 +34,6 @@
   }
 
   .cancelBtn {
-    padding: 5px;
     border-right: 1px solid #777;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -39,7 +41,6 @@
   }
 
   .deleteBtn {
-    padding: 5px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-left-radius: 0;

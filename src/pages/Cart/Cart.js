@@ -12,9 +12,7 @@ const Cart = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
-    fetch('/data/product.json', {
-      method: 'GET',
-    })
+    fetch('/data/product.json')
       .then(res => res.json())
       .then(data => {
         setCartData(data)
@@ -118,14 +116,14 @@ const Cart = () => {
               <span className="keyTitle">배송비</span>
               <span className="keyValue">{`${deliveryPrice.toLocaleString()}원`}</span>
             </li>
-            {totalPrice < 30000 ? (
+            {totalPrice < 30000 && (
               <div className="deliveryAlert">
                 <div className="deliveryAlertMessage">{`${(
                   30000 - totalPrice
                 ).toLocaleString()}원 더 주문 시, 무료배송`}</div>
                 <div className="deliveryAlertTriangle" />
               </div>
-            ) : null}
+            )}
             <li className="cartPurchaseKeyTotal">
               <span className="keyTitle">결제예상금액</span>
               <span className="keyValue">{`${(

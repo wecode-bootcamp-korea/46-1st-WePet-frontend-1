@@ -6,7 +6,7 @@ import './ProductList.scss'
 const ProductList = () => {
   const [dropBox, isOpenDropBox] = useState(false)
   const [products, setProducts] = useState([])
-  fetch('http://10.58.52.150:3000/products', {
+  fetch('', {
     headers: { 'Content-Type': 'application/json;charset=utf-8' },
   })
     .then(response => response.json())
@@ -25,9 +25,9 @@ const ProductList = () => {
 
           <div className="headerContentBox">
             <p className="headerContent">
-              가장 신선하고, 건강한 유기농 제품으로
+              가장 신선하고, 차별화된 유기농 제품으로
             </p>
-            <p className="headerContent">우리 아이들의 건강까지 생각했습니다</p>
+            <p className="headerContent">우리 아이들의 건강까지 생각합니다 </p>
           </div>
         </header>
         <div className="filterBox">
@@ -35,26 +35,28 @@ const ProductList = () => {
             <button className="catBtn">고양이</button>
             <button className="dogBtn">강아지</button>
           </div>
-          <button
-            className="dropBox"
-            onClick={() => {
-              isOpenDropBox(prev => !prev)
-            }}
-          >
-            추천순
-            <FontAwesomeIcon className="dropBoxArrow" icon={faChevronDown} />
-          </button>
-        </div>
-        {dropBox && (
-          <div className="dropBoxListContainer">
-            <div className="dropBoxList">
-              <a className="dropBoxContent">추천순</a>
-              <a className="dropBoxContent">최신순</a>
-              <a className="dropBoxContent">가격높은순</a>
-              <a className="dropBoxContent">가격낮은순</a>
-            </div>
+          <div className="dropBoxWrapper">
+            <button
+              className="dropBox"
+              onClick={() => {
+                isOpenDropBox(prev => !prev)
+              }}
+            >
+              추천순
+              <FontAwesomeIcon className="dropBoxArrow" icon={faChevronDown} />
+            </button>
+            {dropBox && (
+              <div className="dropBoxListContainer">
+                <div className="dropBoxList">
+                  <a className="dropBoxContent">추천순</a>
+                  <a className="dropBoxContent">최신순</a>
+                  <a className="dropBoxContent">가격높은순</a>
+                  <a className="dropBoxContent">가격낮은순</a>
+                </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
 
         <div className="productListMain">
           {products.map(({ productImage, productName, productQuantity }) => {

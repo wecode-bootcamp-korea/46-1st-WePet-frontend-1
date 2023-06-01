@@ -4,8 +4,7 @@ import './Login.scss'
 
 const Login = () => {
   const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [pw, setPw] = useState('')
+  const [signInfo, setSignInfo] = useState({ email: '', password: '' })
   const [emailError, setEmailError] = useState(false)
   const [pwError, setPwError] = useState(false)
   const [isValid, setIsValid] = useState(false)
@@ -15,8 +14,8 @@ const Login = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
-        email: email,
-        password: pw,
+        email: signInfo.email,
+        password: signInfo.password,
       }),
     })
       .then(response => {
@@ -34,8 +33,8 @@ const Login = () => {
   }
 
   useEffect(() => {
-    setIsValid(email && pw)
-  }, [email, pw])
+    setIsValid(signInfo.email && signInfo.password)
+  }, [signInfo])
 
   return (
     <div className="wePetContainer">
@@ -49,14 +48,17 @@ const Login = () => {
               type="text"
               placeholder="이메일"
               onChange={e => {
-                setEmail(e.target.value)
+                setSignInfo(prev => {
+                  return { ...prev, email: e.target.value }
+                })
+
                 {
                   e.target.value === ''
                     ? setEmailError(true)
                     : setEmailError(false)
                 }
               }}
-            ></input>
+            />
           </li>
           {emailError && <p className="errorMsg">이메일을 입력해주세요</p>}
           <li className="inputBox">
@@ -66,10 +68,14 @@ const Login = () => {
               type="password"
               placeholder="비밀번호"
               onChange={e => {
-                setPw(e.target.value)
-                e.target.value === '' ? setPwError(true) : setPwError(false)
+                setSignInfo(prev => {
+                  return { ...prev, password: e.target.value }
+                })
+                {
+                  e.target.value === '' ? setPwError(true) : setPwError(false)
+                }
               }}
-            ></input>
+            />
           </li>
           {pwError && <p className="errorMsg">비밀번호를 입력해주세요</p>}
         </ul>

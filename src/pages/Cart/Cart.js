@@ -7,10 +7,10 @@ import './Cart.scss'
 const Cart = () => {
   const navigate = useNavigate()
 
+  const [cartData, setCartData] = useState([])
   const [checkItems, setCheckItems] = useState([])
   const [quantity, setQuantity] = useState({})
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [cartData, setCartData] = useState([])
 
   useEffect(() => {
     fetch('/data/product.json', {

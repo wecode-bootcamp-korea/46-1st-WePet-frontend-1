@@ -4,18 +4,13 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import './ProductList.scss'
 
 const ProductList = () => {
-  const [dropBox, setDropBox] = useState(false)
+  const [dropBox, isOpenDropBox] = useState(false)
   const [products, setProducts] = useState([])
-
-  fetch('', {
+  fetch('http://10.58.52.150:3000/products', {
     headers: { 'Content-Type': 'application/json;charset=utf-8' },
   })
+    .then(response => response.json())
     .then(response => {
-      //console.log(response)
-      return response.json()
-    })
-    .then(response => {
-      // console.log(response)
       setProducts(response.data)
     })
 
@@ -30,11 +25,9 @@ const ProductList = () => {
 
           <div className="headerContentBox">
             <p className="headerContent">
-              마음의 양식은 뭐니 뭐니 해도 책이죠.
+              가장 신선하고, 건강한 유기농 제품으로
             </p>
-            <p className="headerContent">
-              그렇다면 먹는 것을 다루는 책은 얼마나 좋은 양식일까요?
-            </p>
+            <p className="headerContent">우리 아이들의</p>
             <p className="headerContent">
               맛있는 책들을 보면서 마음까지 배부르게 채워보세요.
             </p>
@@ -48,18 +41,11 @@ const ProductList = () => {
           <button
             className="dropBox"
             onClick={() => {
-              setDropBox(prev => {
-                prev = !prev
-                return prev
-              })
+              isOpenDropBox(prev => !prev)
             }}
           >
             추천순
-            <FontAwesomeIcon
-              className="dropBoxArrow"
-              icon={faChevronDown}
-              style={{ color: '#000000' }}
-            />
+            <FontAwesomeIcon className="dropBoxArrow" icon={faChevronDown} />
           </button>
         </div>
         {dropBox === false ? null : (
@@ -72,11 +58,6 @@ const ProductList = () => {
             </div>
           </div>
         )}
-
-        <img
-          className="productImg"
-          src={'https://unsplash.com/ko/%EC%82%AC%EC%A7%84/brFsZ7qszSY'}
-        />
 
         <div className="productListMain">
           {products.map((item, idx) => {

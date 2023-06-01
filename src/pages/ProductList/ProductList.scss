@@ -1,10 +1,10 @@
 .productList {
   width: 1200px;
   margin: auto;
+
   .productListHeader {
-    border-bottom: 1px solid black;
-    padding-bottom: 40px;
-    padding-top: 80px;
+    border-bottom: 1px solid lightgray;
+    padding: 80px 0 40px 0;
 
     .productListTitle {
       font-size: 55px;
@@ -35,6 +35,10 @@
         border-radius: 2px;
         font-size: 16px;
         background-color: white;
+        &:hover {
+          background-color: red;
+          color: white;
+        }
       }
       .dogBtn {
         padding: 10px;
@@ -42,15 +46,10 @@
         border-radius: 2px;
         font-size: 16px;
         background-color: white;
-      }
-      .catBtn:hover {
-        background-color: red;
-        color: white;
-      }
-
-      .dogBtn:hover {
-        background-color: orange;
-        color: white;
+        &:hover {
+          background-color: orange;
+          color: white;
+        }
       }
     }
     .dropBox {
@@ -60,17 +59,15 @@
       background-color: white;
       .dropBoxArrow {
         padding-left: 8px;
+        color: '#000000';
       }
     }
   }
   .dropBoxListContainer {
     position: relative;
     .dropBoxList {
-      margin-left: 1081px;
-      margin-top: 6px;
-      padding-top: 15px;
-      padding-bottom: 15px;
-      padding-right: 15px;
+      margin: 6px 0 0 1081px;
+      padding: 15px 15px 15px 0;
       border: 1px solid lightgray;
       border-radius: 5px;
       .dropBoxContent {
@@ -112,7 +109,6 @@
 
         .itemPrice {
           margin-top: 10px;
-          margin-bottom: 0;
           height: 19px;
         }
       }

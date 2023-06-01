@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { TERMS_BOX } from './termsBox'
 import TermsList from './TermsList'
+import { TERMS_BOX } from './termsBox'
 import './SignUp.scss'
 
 const SignUp = () => {
@@ -12,18 +12,18 @@ const SignUp = () => {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
 
-  const [isEmail, setIsEmail] = useState(true)
-  const [isName, setIsName] = useState(true)
-  const [isPassword, setIsPassword] = useState(true)
-  const [isPasswordConfirm, setIsPasswordConfirm] = useState(true)
+  const [isEmail, setIsEmail] = useState(false)
+  const [isName, setIsName] = useState(false)
+  const [isPassword, setIsPassword] = useState(false)
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
   const [isMatched, setIsMatched] = useState(true)
   const [isAllValid, setIsAllValid] = useState(false)
 
-  const [termsOn, setTermsOn] = useState([false, false, false])
+  const [isOpenTerms, setIsOpenTerms] = useState([false, false, false])
   const [checkItems, setCheckItems] = useState([])
 
   const signupHandler = () => {
-    fetch('http://localhost:3005/signup', {
+    fetch('', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -91,7 +91,7 @@ const SignUp = () => {
         <li>
           <input
             autoFocus={true}
-            className={!isEmail ? 'inputError' : 'input'}
+            className={!isEmail && email !== '' ? 'inputError' : 'input'}
             type="text"
             placeholder="이메일"
             onChange={e => {
@@ -100,12 +100,14 @@ const SignUp = () => {
             }}
           />
         </li>
-        {!isEmail && <p className="errorMsg">이메일에 @가 필요합니다</p>}
+        {!isEmail && email !== '' && (
+          <p className="errorMsg">이메일에 @가 필요합니다</p>
+        )}
 
         <li>
           <input
             autoFocus={true}
-            className={!isPassword ? 'inputError' : 'input'}
+            className={!isPassword && password !== '' ? 'inputError' : 'input'}
             type="password"
             placeholder="비밀번호"
             onChange={e => {
@@ -116,14 +118,18 @@ const SignUp = () => {
           />
         </li>
 
-        {!isPassword && (
+        {!isPassword && password !== '' && (
           <p className="errorMsg">비밀번호 8자리 이상 입력해주세요</p>
         )}
 
         <li>
           <input
             autoFocus={true}
-            className={!isPasswordConfirm ? 'inputError' : 'input'}
+            className={
+              !isPasswordConfirm && passwordConfirm !== ''
+                ? 'inputError'
+                : 'input'
+            }
             type="password"
             placeholder="비밀번호 확인"
             onChange={e => {
@@ -144,7 +150,7 @@ const SignUp = () => {
         <li>
           <input
             autoFocus={true}
-            className={!isName ? 'inputError' : 'input'}
+            className={!isName && name !== '' ? 'inputError' : 'input'}
             type="text"
             placeholder="이름"
             onChange={e => {
@@ -153,7 +159,9 @@ const SignUp = () => {
             }}
           />
         </li>
-        {!isName && <p className="errorMsg">이름을 입력해주세요</p>}
+        {!isName && name !== '' && (
+          <p className="errorMsg">이름을 입력해주세요</p>
+        )}
       </ul>
       <div className="termsTitle">약관동의</div>
       <ul className="termsContainer">
@@ -179,8 +187,8 @@ const SignUp = () => {
         {TERMS_BOX.map((termsInf, index) => {
           return (
             <TermsList
-              termsOn={termsOn}
-              setTermsOn={setTermsOn}
+              isOpenTerms={isOpenTerms}
+              setIsOpenTerms={setIsOpenTerms}
               index={index}
               termsInf={termsInf}
               handleSingleCheck={handleSingleCheck}

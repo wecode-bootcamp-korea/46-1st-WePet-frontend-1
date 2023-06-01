@@ -109,7 +109,9 @@ const Cart = () => {
                     handleChange={value => handleQuantityChange(item.id, value)}
                   />
                   <span className="cartProductPrice">
-                    {`${item.price * (quantity[item.id] || 1)}원`}
+                    {`${(
+                      item.price * (quantity[item.id] || 1)
+                    ).toLocaleString()}원`}
                   </span>
                 </li>
               )
@@ -120,23 +122,25 @@ const Cart = () => {
           <ul className="cartPurchaseContainer">
             <li className="cartPurchaseKeyAmount">
               <span className="keyTitle">총 상품금액</span>
-              <span className="keyValue">{`${totalPrice}원`}</span>
+              <span className="keyValue">{`${totalPrice.toLocaleString()}원`}</span>
             </li>
             <li className="cartPurchaseKeyAmount">
               <span className="keyTitle">배송비</span>
-              <span className="keyValue">{`${deliveryPrice}원`}</span>
+              <span className="keyValue">{`${deliveryPrice.toLocaleString()}원`}</span>
             </li>
             {totalPrice < 30000 ? (
               <div className="deliveryAlert">
-                <div className="deliveryAlertMessage">{`${
+                <div className="deliveryAlertMessage">{`${(
                   30000 - totalPrice
-                }원 더 주문 시, 무료배송`}</div>
+                ).toLocaleString()}원 더 주문 시, 무료배송`}</div>
                 <div className="deliveryAlertTriangle" />
               </div>
             ) : null}
             <li className="cartPurchaseKeyTotal">
               <span className="keyTitle">결제예상금액</span>
-              <span className="keyValue">{`${totalPrice + 3000}원`}</span>
+              <span className="keyValue">{`${(
+                totalPrice + 3000
+              ).toLocaleString()}원`}</span>
             </li>
           </ul>
           <button

@@ -44,6 +44,7 @@
       .cartProductDeleteBtn {
         border: none;
         color: #777;
+        font-size: 1rem;
       }
     }
 
@@ -56,7 +57,7 @@
       .cartProductItem {
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         width: 681px;
         padding: 24px 0;
         border-top: 1px solid #ddd;
@@ -75,12 +76,13 @@
 
       .cartProductName {
         width: 300px;
-        text-align: center;
+        white-space: normal;
       }
 
       .cartProductPrice {
         width: 61px;
         text-align: center;
+        white-space: nowrap;
       }
     }
   }
@@ -133,6 +135,8 @@
       border-radius: 5px;
       background-color: #ffbb0f;
       color: white;
+      font-weight: bold;
+      letter-spacing: 1px;
 
       &:hover {
         border: #ffbb0f 0.5px solid;

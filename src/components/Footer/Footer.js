@@ -19,7 +19,6 @@ const Footer = () => {
                 {data.icon && (
                   <FontAwesomeIcon
                     icon={faInstagram}
-                    style={{ color: '#000000' }}
                     size="lg"
                     className="icon"
                   />

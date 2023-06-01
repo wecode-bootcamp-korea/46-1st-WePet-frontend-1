@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
-import Modal from './Modal'
-import SearchModal from './SearchModal'
+import React from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { faCartShopping, faHeadset } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+
+import Modal from './Modal'
+import SearchModal from './SearchModal'
+import MODAL_DATA from './modalData'
 import './Nav.scss'
 
 const Nav = () => {
   const [isHover, setIsHover] = useState(false)
-  const [modal, setModal] = useState(false)
-  const [searchModal, setSearchModal] = useState(false)
+  const [isModal, setIsModal] = useState(false)
+  const [isSearchModal, setIsSearchModal] = useState(false)
 
   const handleMouseOver = () => {
     setIsHover(true)
@@ -21,19 +24,19 @@ const Nav = () => {
 
   return (
     <>
-      <div className="Nav">
+      <div className="nav">
         <Link to="/">
           <div className="logo">WePet</div>
         </Link>
         <div className="category">
-          <Link to="/">
-            <span>사료</span>
+          <Link to="/productlist">
+            <span className="categoryName">{MODAL_DATA.list1}</span>
           </Link>
-          <Link to="/">
-            <span>간식</span>
+          <Link to="/productlist">
+            <span className="categoryName">{MODAL_DATA.list2}</span>
           </Link>
-          <Link to="/">
-            <span>용품</span>
+          <Link to="/productlist">
+            <span className="categoryName">{MODAL_DATA.list3}</span>
           </Link>
         </div>
 
@@ -41,7 +44,7 @@ const Nav = () => {
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             onClick={() => {
-              setSearchModal(!searchModal)
+              setIsSearchModal(!isSearchModal)
             }}
             size="lg"
             className="icon"
@@ -50,37 +53,39 @@ const Nav = () => {
         <div className="navIcon">
           <FontAwesomeIcon icon={faCartShopping} size="lg" className="icon" />
         </div>
-        <button
-          className={isHover ? 'btnColorChange' : 'loginBtn'}
-          onMouseOver={handleMouseOver}
-          onMouseOut={handleMouseOut}
-        >
-          로그인
-        </button>
-        {searchModal ? (
+        <Link to="/login">
+          <button
+            className={isHover ? 'btnColorChange' : 'loginBtn'}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+          >
+            로그인
+          </button>
+        </Link>
+        {isSearchModal ? (
           ''
         ) : (
           <div
             className="ham"
             onClick={() => {
-              setModal(!modal)
+              setIsModal(!isModal)
             }}
           >
-            <div className={`line ${modal && 'hamTopLine'}`}></div>
-            <div className={`line ${modal && 'hamMidLine'}`}></div>
-            <div className={`line ${modal && 'hamBtmLine'}`}></div>
+            <div className={`line ${isModal && 'hamTopLine'}`}></div>
+            <div className={`line ${isModal && 'hamMidLine'}`}></div>
+            <div className={`line ${isModal && 'hamBtmLine'}`}></div>
           </div>
         )}
       </div>
-      {searchModal ? (
+      {isSearchModal ? (
         <SearchModal
-          searchModal={searchModal}
-          setSearchModal={setSearchModal}
+          searchModal={isSearchModal}
+          setSearchModal={setIsSearchModal}
         />
       ) : (
         ''
       )}
-      {modal === true ? <Modal /> : ''}
+      {isModal === true ? <Modal /> : ''}
     </>
   )
 }

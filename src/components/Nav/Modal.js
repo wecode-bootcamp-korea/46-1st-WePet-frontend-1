@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadset } from '@fortawesome/free-solid-svg-icons'
+import MODAL_DATA from './modalData'
 
-import './Nav.scss'
+import './Modal.scss'
 
 const Modal = () => {
   return (
@@ -16,42 +17,38 @@ const Modal = () => {
         <span className="ulTitle">테마</span>
         <ul className="ulBox">
           <Link to="/">
-            <li>전체보기</li>
+            <li>{MODAL_DATA.list0}</li>
           </Link>
           <Link to="/">
-            <li>우리가 돈 나가는 일에 대처하는 자세</li>
+            <li>{MODAL_DATA.list4}</li>
           </Link>
           <Link to="/">
-            <li>버츄얼굿즈의 탄생</li>
+            <li>{MODAL_DATA.list5}</li>
           </Link>
           <Link to="/">
-            <li>제 방 구경하실 분</li>
+            <li>{MODAL_DATA.list6}</li>
           </Link>
         </ul>
         <span className="ulTitle">카테고리</span>
         <ul className="ulBox">
-          <Link to="/">
-            <li>전체보기</li>
+          <Link to="/productlist">
+            <li>{MODAL_DATA.list0}</li>
           </Link>
-          <Link to="/">
-            <li>사료</li>
+          <Link to="/productlist">
+            <li>{MODAL_DATA.list1}</li>
           </Link>
-          <Link to="/">
-            <li>간식</li>
+          <Link to="/productlist">
+            <li>{MODAL_DATA.list2}</li>
           </Link>
-          <Link to="/">
-            <li>용품</li>
+          <Link to="/productlist">
+            <li>{MODAL_DATA.list3}</li>
           </Link>
         </ul>
 
         <div className="modalBottom">
           <div className="inquire">
             <div className="inquireIcon">
-              <FontAwesomeIcon
-                icon={faHeadset}
-                style={{ color: '#ffffff' }}
-                size="lg"
-              />
+              <FontAwesomeIcon icon={faHeadset} size="lg" className="icon" />
             </div>
             <span>1:1 문의</span>
           </div>

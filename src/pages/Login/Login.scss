@@ -1,15 +1,23 @@
-.signIn {
+.wePetContainer {
+  width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 80px 0 200px 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  height: 100vh;
-  margin: 0 60px;
+  flex: 1;
+}
+
+.signIn {
+  width: 400px;
+  margin: 0 auto;
+  padding-top: 20px;
 
   .loginTitle {
     padding-bottom: 40px;
     font-size: 32px;
     font-weight: 700;
+    text-align: center;
   }
 
   .loginInputContainer {
@@ -38,6 +46,7 @@
       }
 
       .inputError {
+        margin-top: 10px;
         padding: 22px 20px;
         width: 400px;
         height: 62px;
@@ -54,7 +63,7 @@
   .errorMsg {
     color: red;
     font-size: 12px;
-    padding-top: 10px;
+    padding: 10px 0 10px 0;
   }
 
   .saveEmail {
@@ -74,9 +83,18 @@
     font-size: 16px;
     font-weight: 700;
   }
+  .valid {
+    background-color: #ffbb0f;
+    color: white;
+  }
 
-  .toSignUp {
-    font-size: 14px;
-    color: gray;
+  .toSignUpBox {
+    display: flex;
+    justify-content: center;
+    .toSignUp {
+      text-align: center;
+      font-size: 14px;
+      color: gray;
+    }
   }
 }

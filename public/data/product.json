@@ -3,55 +3,63 @@
     "id": 0,
     "name": "배달이친구들 케이블타이 2종",
     "price": "4000",
+    "quantity": 2,
     "url": "https://via.placeholder.com/600/8985dc"
   },
   {
     "id": 1,
     "name": "화학 표백을 하지 않은 재생지로 만든 메모잇",
     "price": "2300",
+    "quantity": 2,
     "url": "https://via.placeholder.com/600/56a8c2Q"
   },
   {
     "id": 2,
     "name": "커피찌꺼기를 재활용해 손으로 만든 연필",
     "price": "23000",
+    "quantity": 3,
     "url": "https://via.placeholder.com/600/771796"
   },
   {
     "id": 3,
     "name": "배달이친구들 케이블타이 2종",
     "price": "4000",
-
+    "quantity": 2,
     "url": "https://via.placeholder.com/600/8985dc"
   },
   {
     "id": 4,
     "name": "화학 표백을 하지 않은 재생지로 만든 메모잇",
     "price": "2300",
+    "quantity": 5,
     "url": "https://via.placeholder.com/600/56a8c2Q"
   },
   {
     "id": 5,
     "name": "커피찌꺼기를 재활용해 손으로 만든 연필",
     "price": "23000",
+    "quantity": 5,
     "url": "https://via.placeholder.com/600/771796"
   },
   {
     "id": 6,
     "name": "배달이친구들 케이블타이 2종",
     "price": "4000",
+    "quantity": 2,
     "url": "https://via.placeholder.com/600/8985dc"
   },
   {
     "id": 7,
     "name": "화학 표백을 하지 않은 재생지로 만든 메모잇",
     "price": "2300",
+    "quantity": 6,
     "url": "https://via.placeholder.com/600/56a8c2Q"
   },
   {
     "id": 8,
     "name": "커피찌꺼기를 재활용해 손으로 만든 연필",
     "price": "23000",
+    "quantity": 7,
     "url": "https://via.placeholder.com/600/771796"
   }
 ]

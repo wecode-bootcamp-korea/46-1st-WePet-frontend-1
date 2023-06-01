@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Count.scss'
 
-const Count = ({ id, quantity, handleChange }) => {
+const Count = ({ quantity }) => {
+  const [count, setCount] = useState(quantity)
   const handleCount = value => {
-    if (quantity + value < 1) return
-    handleChange(quantity + value)
+    if (quantity + value >= 1) {
+      setCount(prev => prev + value)
+    } else {
+      return
+    }
   }
 
   return (
-    <div className="count" id={id}>
+    <div className="count">
       <button
         className="countBtn"
         onClick={() => {
@@ -17,7 +21,7 @@ const Count = ({ id, quantity, handleChange }) => {
       >
         -
       </button>
-      <div className="totalQuantity">{quantity}</div>
+      <div className="totalQuantity">{count}</div>
       <button
         className="countBtn"
         onClick={() => {

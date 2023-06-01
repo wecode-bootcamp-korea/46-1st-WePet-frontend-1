@@ -9,7 +9,6 @@ const Cart = () => {
 
   const [cartData, setCartData] = useState([])
   const [checkItems, setCheckItems] = useState([])
-  const [quantity, setQuantity] = useState({})
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
@@ -39,10 +38,6 @@ const Cart = () => {
     } else {
       setCheckItems([])
     }
-  }
-
-  const handleQuantityChange = (id, value) => {
-    setQuantity(prev => ({ ...prev, [id]: value }))
   }
 
   const deleteCartItem = () => {
@@ -104,14 +99,9 @@ const Cart = () => {
                     alt={`${item.name}-product-img`}
                   />
                   <div className="cartProductName">{item.name}</div>
-                  <Count
-                    quantity={quantity[item.id] || 1}
-                    handleChange={value => handleQuantityChange(item.id, value)}
-                  />
+                  <Count quantity={item.quantity} />
                   <span className="cartProductPrice">
-                    {`${(
-                      item.price * (quantity[item.id] || 1)
-                    ).toLocaleString()}원`}
+                    {`${(item.price * item.quantity).toLocaleString()}원`}
                   </span>
                 </li>
               )

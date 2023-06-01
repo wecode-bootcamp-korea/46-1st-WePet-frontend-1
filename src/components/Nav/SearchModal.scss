@@ -56,6 +56,12 @@
       }
     }
 
+    .icon {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     .searchBar {
       display: flex;
       justify-content: space-between;

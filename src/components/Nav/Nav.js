@@ -39,7 +39,6 @@ const Nav = () => {
             <span className="categoryName">{MODAL_DATA.list3}</span>
           </Link>
         </div>
-
         <div className="navIcon">
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
@@ -50,9 +49,11 @@ const Nav = () => {
             className="icon"
           />
         </div>
-        <div className="navIcon">
-          <FontAwesomeIcon icon={faCartShopping} size="lg" className="icon" />
-        </div>
+        <Link to="/cart">
+          <div className="navIcon">
+            <FontAwesomeIcon icon={faCartShopping} size="lg" className="icon" />
+          </div>
+        </Link>
         <Link to="/login">
           <button
             className={isHover ? 'btnColorChange' : 'loginBtn'}

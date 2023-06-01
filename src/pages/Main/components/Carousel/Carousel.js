@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CarouselContent from './components/CarouselContent'
 import Arrows from './components/Arrows'
 import Dots from './components/Dots'
-import { IMAGE_INFO_LIST } from './IMAGE_INFO_LIST'
+import { IMAGE_INFO_LIST } from './carouselImageData'
 import './Carousel.scss'
 
 const Carousel = () => {

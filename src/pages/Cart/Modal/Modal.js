@@ -1,7 +1,7 @@
 import React from 'react'
 import './Modal.scss'
 
-const Modal = ({ isModalOpen, setIsModalOpen }) => {
+const Modal = ({ isModalOpen, setIsModalOpen, deleteCartItem }) => {
   return (
     <>
       <div className="modal">
@@ -17,7 +17,15 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
           >
             취소
           </button>
-          <button className="deleteBtn">삭제하기</button>
+          <button
+            className="deleteBtn"
+            onClick={() => {
+              deleteCartItem()
+              setIsModalOpen(!isModalOpen)
+            }}
+          >
+            삭제하기
+          </button>
         </div>
       </div>
       <div className="layer show" />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Count from './Count/Count'
 import Modal from './Modal/Modal'
@@ -10,6 +10,17 @@ const Cart = () => {
   const [checkItems, setCheckItems] = useState([])
   const [quantity, setQuantity] = useState({})
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [cartData, setCartData] = useState([])
+
+  useEffect(() => {
+    fetch('/data/product.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setCartData(data)
+      })
+  }, [])
 
   let totalPrice = 10000
   let deliveryPrice = 3000
@@ -24,7 +35,7 @@ const Cart = () => {
 
   const handleAllCheck = checked => {
     if (checked) {
-      setCheckItems(CART_ITEM_LIST.map(item => item.id))
+      setCheckItems(cartData.map(item => item.id))
     } else {
       setCheckItems([])
     }
@@ -32,6 +43,12 @@ const Cart = () => {
 
   const handleQuantityChange = (id, value) => {
     setQuantity(prev => ({ ...prev, [id]: value }))
+  }
+
+  const deleteCartItem = () => {
+    const newCartItem = cartData.filter(item => !checkItems.includes(item.id))
+    setCartData(newCartItem)
+    setCheckItems([])
   }
 
   return (
@@ -46,17 +63,17 @@ const Cart = () => {
               <input
                 type="checkbox"
                 onChange={e => handleAllCheck(e.target.checked)}
-                checked={checkItems.length === CART_ITEM_LIST.length}
+                checked={checkItems.length === cartData.length}
               />
               <span>전체선택</span>
               <span className="checkedItems">
-                ({checkItems.length}/{CART_ITEM_LIST.length})
+                ({checkItems.length}/{cartData.length})
               </span>
             </div>
             <button
               className="cartProductDeleteBtn"
               onClick={() => {
-                setIsModalOpen(true)
+                if (checkItems.length !== 0) setIsModalOpen(true)
               }}
             >
               선택삭제
@@ -68,11 +85,12 @@ const Cart = () => {
               <Modal
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
+                deleteCartItem={deleteCartItem}
               />
             </div>
           )}
           <ul className="cartProductList">
-            {CART_ITEM_LIST.map((item, index) => {
+            {cartData.map((item, index) => {
               return (
                 <li className="cartProductItem" key={index}>
                   <input
@@ -90,7 +108,9 @@ const Cart = () => {
                     quantity={quantity[item.id] || 1}
                     handleChange={value => handleQuantityChange(item.id, value)}
                   />
-                  <span className="cartProductPrice">{item.price}</span>
+                  <span className="cartProductPrice">
+                    {`${item.price * (quantity[item.id] || 1)}원`}
+                  </span>
                 </li>
               )
             })}
@@ -134,63 +154,3 @@ const Cart = () => {
 }
 
 export default Cart
-
-const CART_ITEM_LIST = [
-  {
-    id: 0,
-    name: '배달이친구들 케이블타이 2종',
-    price: '4000원',
-
-    url: 'https://via.placeholder.com/600/8985dc',
-  },
-  {
-    id: 1,
-    name: '표백을 하지 않은 재생지로 만든 메모잇',
-    price: '2300원',
-    url: 'https://via.placeholder.com/600/56a8c2Q',
-  },
-  {
-    id: 2,
-    name: '커피찌꺼기를 재활용해 손으로 만든 연필',
-    price: '23000원',
-    url: 'https://via.placeholder.com/600/771796',
-  },
-  {
-    id: 3,
-    name: '배달이친구들 케이블타이 2종',
-    price: '4000원',
-
-    url: 'https://via.placeholder.com/600/8985dc',
-  },
-  {
-    id: 4,
-    name: '표백을 하지 않은 재생지로 만든 메모잇',
-    price: '2300원',
-    url: 'https://via.placeholder.com/600/56a8c2Q',
-  },
-  {
-    id: 5,
-    name: '커피찌꺼기를 재활용해 손으로 만든 연필',
-    price: '23000원',
-    url: 'https://via.placeholder.com/600/771796',
-  },
-  {
-    id: 6,
-    name: '배달이친구들 케이블타이 2종',
-    price: '4000원',
-
-    url: 'https://via.placeholder.com/600/8985dc',
-  },
-  {
-    id: 7,
-    name: '표백을 하지 않은 재생지로 만든 메모잇',
-    price: '2300원',
-    url: 'https://via.placeholder.com/600/56a8c2Q',
-  },
-  {
-    id: 8,
-    name: '커피찌꺼기를 재활용해 손으로 만든 연필',
-    price: '23000원',
-    url: 'https://via.placeholder.com/600/771796',
-  },
-]

@@ -27,10 +27,7 @@ const ProductList = () => {
             <p className="headerContent">
               가장 신선하고, 건강한 유기농 제품으로
             </p>
-            <p className="headerContent">우리 아이들의</p>
-            <p className="headerContent">
-              맛있는 책들을 보면서 마음까지 배부르게 채워보세요.
-            </p>
+            <p className="headerContent">우리 아이들의 건강까지 생각했습니다</p>
           </div>
         </header>
         <div className="filterBox">
@@ -48,7 +45,7 @@ const ProductList = () => {
             <FontAwesomeIcon className="dropBoxArrow" icon={faChevronDown} />
           </button>
         </div>
-        {dropBox === false ? null : (
+        {dropBox && (
           <div className="dropBoxListContainer">
             <div className="dropBoxList">
               <a className="dropBoxContent">추천순</a>
@@ -60,14 +57,14 @@ const ProductList = () => {
         )}
 
         <div className="productListMain">
-          {products.map((item, idx) => {
+          {products.map(({ productImage, productName, productQuantity }) => {
             return (
-              <div className="productItem" key={idx}>
-                <img className="productImg" src={item.productImage} />
+              <div className="productItem">
+                <img className="productImg" src={productImage} />
                 <div className="productText">
-                  <p className="itemIcon">{item.icon}</p>
-                  <p className="itemName">{item.productName}</p>
-                  <p className="itemPrice">{item.productQuantity}</p>
+                  <p className="itemIcon" />
+                  <p className="itemName">{productName}</p>
+                  <p className="itemPrice">{productQuantity}</p>
                 </div>
               </div>
             )
@@ -79,62 +76,3 @@ const ProductList = () => {
 }
 
 export default ProductList
-
-// const PRODUCT_DATA = [
-//   {
-//     id: 1,
-//     icon: 'BEST',
-//     name: '맥주',
-//     price: '1000원',
-//     url: 'https://via.placeholder.com/600/92c952',
-//   },
-//   {
-//     id: 2,
-//     icon: 'BEST',
-//     name: '맥주',
-//     price: '1000원',
-//     url: 'https://via.placeholder.com/600/92c952',
-//   },
-//   {
-//     id: 3,
-//     icon: 'BEST',
-//     name: '맥주',
-//     price: '1000원',
-//     url: 'https://via.placeholder.com/600/92c952',
-//   },
-//   {
-//     id: 4,
-//     icon: 'BEST',
-//     name: '맥주',
-//     price: '1000원',
-//     url: 'https://via.placeholder.com/600/92c952',
-//   },
-//   {
-//     id: 5,
-//     icon: 'BEST',
-//     name: '맥주',
-//     price: '1000원',
-//     url: 'https://via.placeholder.com/600/92c952',
-//   },
-//   {
-//     id: 6,
-//     icon: 'BEST',
-//     name: '맥주',
-//     price: '1000원',
-//     url: 'https://via.placeholder.com/600/92c952',
-//   },
-//   {
-//     id: 7,
-//     icon: 'BEST',
-//     name: '맥주',
-//     price: '1000원',
-//     url: 'https://via.placeholder.com/600/92c952',
-//   },
-//   {
-//     id: 8,
-//     icon: 'BEST',
-//     name: '맥주',
-//     price: '1000원',
-//     url: 'https://via.placeholder.com/600/92c952',
-//   },
-// ]

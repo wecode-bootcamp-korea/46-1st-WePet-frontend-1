@@ -20,6 +20,7 @@ const Login = () => {
         return response.json()
       })
       .then(response => {
+        console.log(response)
         if (response.data === null) {
           alert('로그인실패')
         } else {

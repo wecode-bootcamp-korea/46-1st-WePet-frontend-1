@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadset } from '@fortawesome/free-solid-svg-icons'
-import MODAL_DATA from './modalData'
+import MODAL_DATA1 from './modalData'
+import MODAL_DATA2 from './modalData2'
 
 import './Modal.scss'
 
@@ -16,33 +17,23 @@ const Modal = () => {
         </div>
         <span className="ulTitle">테마</span>
         <ul className="ulBox">
-          <Link to="/">
-            <li>{MODAL_DATA.list0}</li>
-          </Link>
-          <Link to="/">
-            <li>{MODAL_DATA.list4}</li>
-          </Link>
-          <Link to="/">
-            <li>{MODAL_DATA.list5}</li>
-          </Link>
-          <Link to="/">
-            <li>{MODAL_DATA.list6}</li>
-          </Link>
+          {MODAL_DATA1.map(data => {
+            return (
+              <Link to={data.link}>
+                <li>{data.name}</li>
+              </Link>
+            )
+          })}
         </ul>
         <span className="ulTitle">카테고리</span>
         <ul className="ulBox">
-          <Link to="/productlist">
-            <li>{MODAL_DATA.list0}</li>
-          </Link>
-          <Link to="/productlist">
-            <li>{MODAL_DATA.list1}</li>
-          </Link>
-          <Link to="/productlist">
-            <li>{MODAL_DATA.list2}</li>
-          </Link>
-          <Link to="/productlist">
-            <li>{MODAL_DATA.list3}</li>
-          </Link>
+          {MODAL_DATA2.map(data => {
+            return (
+              <Link to={data.link}>
+                <li>{data.name}</li>
+              </Link>
+            )
+          })}
         </ul>
 
         <div className="modalBottom">

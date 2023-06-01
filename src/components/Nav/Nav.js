@@ -7,7 +7,8 @@ import { faCartShopping, faHeadset } from '@fortawesome/free-solid-svg-icons'
 
 import Modal from './Modal'
 import SearchModal from './SearchModal'
-import MODAL_DATA from './modalData'
+import MENU_DATA from './navData'
+
 import './Nav.scss'
 
 const Nav = () => {
@@ -29,15 +30,13 @@ const Nav = () => {
           <div className="logo">WePet</div>
         </Link>
         <div className="category">
-          <Link to="/productlist">
-            <span className="categoryName">{MODAL_DATA.list1}</span>
-          </Link>
-          <Link to="/productlist">
-            <span className="categoryName">{MODAL_DATA.list2}</span>
-          </Link>
-          <Link to="/productlist">
-            <span className="categoryName">{MODAL_DATA.list3}</span>
-          </Link>
+          {MENU_DATA.map(data => {
+            return (
+              <Link to={MENU_DATA.link}>
+                <span className="categoryName">{data.name}</span>
+              </Link>
+            )
+          })}
         </div>
         <div className="navIcon">
           <FontAwesomeIcon

@@ -1,9 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { faCartShopping, faHeadset } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCartShopping,
+  faMagnifyingGlass,
+} from '@fortawesome/free-solid-svg-icons'
 
 import Modal from './Modal'
 import SearchModal from './SearchModal'

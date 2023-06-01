@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 import './SearchModal.scss'
+import './modalAnimation.scss'
 
 const SearchModal = ({ searchModal, setSearchModal }) => {
   return (
@@ -15,11 +16,15 @@ const SearchModal = ({ searchModal, setSearchModal }) => {
             setSearchModal(!searchModal)
           }}
         >
-          <div className="line hamTopLine"></div>
-          <div className="line hamBtmLine"></div>
+          <div className="line hamTopLine" />
+          <div className="line hamBtmLine" />
         </div>
         <div className="searchBar">
-          <input type="text" placeholder="검색어를 입력하세요."></input>
+          <input
+            type="text"
+            placeholder="검색어를 입력하세요."
+            className="searchBarInput"
+          />
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             size="lg"

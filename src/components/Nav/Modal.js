@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadset } from '@fortawesome/free-solid-svg-icons'
-import MODAL_DATA1 from './modalData'
-import MODAL_DATA2 from './modalData2'
+import { MODAL_UPPER_DATA, MODAL_LOWER_DATA } from './modalData'
 
 import './Modal.scss'
+import './modalAnimation.scss'
 
 const Modal = () => {
   return (
@@ -17,20 +17,20 @@ const Modal = () => {
         </div>
         <span className="ulTitle">테마</span>
         <ul className="ulBox">
-          {MODAL_DATA1.map(data => {
+          {MODAL_UPPER_DATA.map(data => {
             return (
               <Link to={data.link}>
-                <li>{data.name}</li>
+                <li className="list">{data.name}</li>
               </Link>
             )
           })}
         </ul>
         <span className="ulTitle">카테고리</span>
         <ul className="ulBox">
-          {MODAL_DATA2.map(data => {
+          {MODAL_LOWER_DATA.map(data => {
             return (
               <Link to={data.link}>
-                <li>{data.name}</li>
+                <li className="list">{data.name}</li>
               </Link>
             )
           })}

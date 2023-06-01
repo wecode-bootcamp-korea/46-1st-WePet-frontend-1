@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
 
-import PURCHASE_LIST from './purchaseListData'
+import PURCHASE_LIST from './Data/purchaseListData'
 import './Purchase.scss'
 
 const Purchase = () => {

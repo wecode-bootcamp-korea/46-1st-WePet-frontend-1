@@ -9,7 +9,7 @@ const Slider = ({ productData }) => {
   const [firstSlide, setFirstSlide] = useState(0)
   return (
     <div className="sliderContainer">
-      <SliderContent firstSlide={firstSlide} recommendationData={productData} />
+      <SliderContent firstSlide={firstSlide} productData={productData} />
       <Arrows
         prev={() =>
           setFirstSlide(firstSlide < 1 ? lastIndex - 2 : firstSlide - 3)

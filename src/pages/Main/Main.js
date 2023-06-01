@@ -6,6 +6,8 @@ import Banner from './components/Banner/Banner'
 import './Main.scss'
 
 const Main = () => {
+  const [productData, setProductData] = useState([])
+
   useEffect(() => {
     fetch('http://10.58.52.150:3000/products', {
       method: 'GET',
@@ -16,8 +18,6 @@ const Main = () => {
       .then(response => response.json())
       .then(data => setProductData(data))
   }, [])
-
-  const [productData, setProductData] = useState([])
 
   return (
     <div className="main">

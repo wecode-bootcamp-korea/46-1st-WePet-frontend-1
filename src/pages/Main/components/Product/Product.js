@@ -11,10 +11,10 @@ function Product({ productData }) {
               <img
                 className="productImg"
                 src={item.productImage}
-                alt={`${item.name} productImg`}
+                alt={`${item.productName} productImg`}
               />
               <div className="productText">
-                <p className="itemIcon">{item.icon}</p>
+                {/*<p className="itemIcon">{item.icon}</p>*/}
                 <p className="itemName">{item.productName}</p>
                 <p className="itemPrice">{item.productPrice}</p>
               </div>

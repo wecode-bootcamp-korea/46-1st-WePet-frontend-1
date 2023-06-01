@@ -7,7 +7,7 @@ import './Main.scss'
 
 const Main = () => {
   useEffect(() => {
-    fetch('http://10.58.52.148:3000/products', {
+    fetch('http://10.58.52.150:3000/products', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

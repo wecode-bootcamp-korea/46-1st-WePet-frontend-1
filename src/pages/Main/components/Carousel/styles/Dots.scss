@@ -15,14 +15,14 @@
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
-  }
 
-  .activeDot {
-    background-color: #ffbb0f;
-  }
+    & .activeDot {
+      background-color: #ffbb0f;
+    }
 
-  .dot:hover {
-    transition: all 0.5s ease-in;
-    background-color: #ffbb0f;
+    &:hover {
+      transition: all 0.3s ease-in;
+      background-color: #ffbb0f;
+    }
   }
 }

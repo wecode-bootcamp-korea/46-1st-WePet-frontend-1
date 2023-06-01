@@ -1,4 +1,4 @@
-import React, { useTransition } from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronLeft,
@@ -6,11 +6,13 @@ import {
   faCartShopping,
 } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Count from './Count'
+import Count from './Component/Count'
 import DetailInformation from './DetailInformation'
 import PRODUCT_DATA from './productData'
-import DETAILINFORMATION_DATA from './detailInformationData'
+import {
+  DETAILINFORMATION_DATA,
+  DETAIL_BOTTOM_DATA,
+} from './Data/detailInformationData'
 import './ProductDetail.scss'
 
 const ProductDetail = () => {
@@ -87,8 +89,6 @@ const ProductDetail = () => {
 
       <div className="productImgs">
         {detailImgArr.map((img, index) => {
-          // const imgValue = img.value
-          console.log(img)
           return <img index={index} src={img} alt="productImages" />
         })}
       </div>

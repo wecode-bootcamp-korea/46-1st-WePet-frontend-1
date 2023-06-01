@@ -1,13 +1,13 @@
 import React from 'react'
 import './Count.scss'
 
-const Count = ({ id, quantity, setQuantity }) => {
+const Count = ({ quantity, setQuantity }) => {
   const handleCount = value => {
     if (quantity + value < 1) return
     setQuantity(quantity + value)
   }
   return (
-    <div className="count" id={id}>
+    <div className="count">
       <button
         className="countBtn"
         onClick={() => {

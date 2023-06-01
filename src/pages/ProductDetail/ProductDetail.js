@@ -1,24 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronLeft,
   faChevronRight,
   faCartShopping,
 } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+
 import Count from './Component/Count'
-import DetailInformation from './DetailInformation'
-import PRODUCT_DATA from './productData'
-import {
-  DETAILINFORMATION_DATA,
-  DETAIL_BOTTOM_DATA,
-} from './Data/detailInformationData'
+import DetailInformation from './Component/DetailInformation'
+import PRODUCT_DATA from './Data/productData'
 import './ProductDetail.scss'
 
 const ProductDetail = () => {
   const detailImgArr = PRODUCT_DATA[0].detailImg
   const [quantity, setQuantity] = useState(0)
-  const [mainImg, setMainImg] = useState(false)
+  const [data, setData] = useState()
+  // const [mainImg, setMainImg] = useState(false)
+
+  useEffect(() => {
+    fetch('./Data.detailBottom.json', { method: 'GET' })
+      .then(respose => respose.json())
+      .then(result => {
+        setData(result)
+      })
+  })
   return (
     <div className="productDetail">
       <div className="product">

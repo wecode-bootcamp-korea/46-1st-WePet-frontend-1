@@ -1,5 +1,5 @@
 import React from 'react'
-import DETAILINFORMATION_DATA from './detailInformationData'
+import DETAILINFORMATION_DATA from '../Data/detailInformationData'
 import './DetailInformation.scss'
 
 const DetailInformation = ({ title, size, manufacture, age, inquire }) => {

@@ -1,4 +1,36 @@
-const FOOTER_DATA2 = [
+export const FOOTER_LINK_LIST = [
+  {
+    name: 'About',
+    link: '/',
+  },
+  {
+    name: '공지사항',
+    link: '/',
+  },
+  {
+    name: '이용약관',
+    link: '/',
+  },
+  {
+    name: '개인정보처리방침',
+    link: '/',
+  },
+  {
+    name: '대량구매/제휴안내',
+    link: '/',
+  },
+  {
+    name: '대량구매/제휴안내',
+    link: '/',
+  },
+  {
+    name: '@wepet_store',
+    icon: true,
+    link: '/',
+  },
+]
+
+export const FOOTER_INFO = [
   {
     name: '상호 : WePet',
   },
@@ -30,5 +62,3 @@ const FOOTER_DATA2 = [
     name: '© Wepet Corp. All rights reserved',
   },
 ]
-
-export default FOOTER_DATA2

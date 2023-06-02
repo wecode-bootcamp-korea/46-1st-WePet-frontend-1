@@ -23,7 +23,7 @@ const SignUp = () => {
   const [checkItems, setCheckItems] = useState([])
 
   const signupHandler = () => {
-    fetch('http://10.58.52.159:8000/users/signup', {
+    fetch('http://10.58.52.150:3000/users/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({

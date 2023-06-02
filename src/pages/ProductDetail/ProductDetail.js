@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState, useEffect } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -63,12 +63,12 @@ const ProductDetail = () => {
             <p className="title">{PRODUCT_DATA[0].title}</p>
             <div className="countPrice">
               <Count quantity={quantity} setQuantity={setQuantity} />
-              <p>{quantity * PRODUCT_DATA[0].price}원</p>
+              <p>{(quantity * PRODUCT_DATA[0].price).toLocaleString()}원</p>
             </div>
           </div>
           <div className="totalPrice">
             <span>총 금액</span>
-            <span>{quantity * PRODUCT_DATA[0].price}원</span>
+            <span>{(quantity * PRODUCT_DATA[0].price).toLocaleString()}원</span>
           </div>
           <div className="shoppingBtn">
             <div className="cartBtn">

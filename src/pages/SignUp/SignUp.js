@@ -6,18 +6,39 @@ import './SignUp.scss'
 
 const SignUp = () => {
   const navigate = useNavigate()
+  // const [email, setEmail] = useState('')
+  // const [name, setName] = useState('')
+  // const [password, setPassword] = useState('')
+  // const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [userInfo, setUserInfo] = useState({
+    email: '',
+    name: '',
+    password: '',
+    passwordConfirm: '',
+  })
 
-  const [email, setEmail] = useState('')
-  const [name, setName] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
+  const handleUserInfo = e => {
+    const { name, value } = e.target
+    setUserInfo(prev => ({ ...prev, [name]: value }))
+  }
 
-  const [isEmail, setIsEmail] = useState(false)
-  const [isName, setIsName] = useState(false)
-  const [isPassword, setIsPassword] = useState(false)
-  const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
+  const infoValids = {
+    email: userInfo.email.includes('@'),
+    name: userInfo.name.length >= 2,
+    password: userInfo.password.length >= 8,
+    passwordConfirm: userInfo.password === userInfo.passwordConfirm,
+  }
+
+  const isAlValid = Object.values(infoValids).every(el => {
+    return el === true
+  })
+
+  // const [isEmail, setIsEmail] = useState(false)
+  // const [isName, setIsName] = useState(false)
+  // const [isPassword, setIsPassword] = useState(false)
+  // const [isPasswordConfirm, setIsPasswordConfirm] = useState(false)
   const [isMatched, setIsMatched] = useState(true)
-  const [isAllValid, setIsAllValid] = useState(false)
+  // const [isAllValid, setIsAllValid] = useState(false)
 
   const [isOpenTerms, setIsOpenTerms] = useState([false, false, false])
   const [checkItems, setCheckItems] = useState([])
@@ -89,13 +110,38 @@ const SignUp = () => {
       <h1 className="signUpTitle">회원가입</h1>
       <div className="infTitle">회원정보</div>
       <ul className="signUpInputContainer">
+        {SIGNUP_INPUT.map(info => {
+          return (
+            <React.Fragment key={info.id}>
+              <li>
+                <input
+                  autoFocus={true}
+                  className={
+                    !infoValids[info.name] && userInfo[info.name] !== ''
+                      ? 'inputError'
+                      : 'input'
+                  }
+                  type={info.type}
+                  placeholder={info.placeholder}
+                  name={info.name}
+                  onChange={handleUserInfo}
+                />
+              </li>
+              {!infoValids[info.name] && userInfo[info.name] !== '' && (
+                <p className="errorMsg">{info.error}</p>
+              )}
+            </React.Fragment>
+          )
+        })}
         <li>
           <input
             autoFocus={true}
             className={!isEmail && email !== '' ? 'inputError' : 'input'}
             type="text"
             placeholder="이메일"
+            name="email"
             onChange={e => {
+              handleUserInfo(e)
               setEmail(e.target.value)
               setIsEmail(e.target.value.includes('@'))
             }}
@@ -104,25 +150,24 @@ const SignUp = () => {
         {!isEmail && email !== '' && (
           <p className="errorMsg">이메일에 @가 필요합니다</p>
         )}
-
         <li>
           <input
             autoFocus={true}
             className={!isPassword && password !== '' ? 'inputError' : 'input'}
             type="password"
             placeholder="비밀번호"
+            name="password"
             onChange={e => {
+              handleUserInfo(e)
               setPassword(e.target.value)
               setIsPassword(e.target.value.length >= 8)
               setIsMatched(e.target.value === passwordConfirm)
             }}
           />
         </li>
-
         {!isPassword && password !== '' && (
           <p className="errorMsg">비밀번호 8자리 이상 입력해주세요</p>
         )}
-
         <li>
           <input
             autoFocus={true}
@@ -133,28 +178,31 @@ const SignUp = () => {
             }
             type="password"
             placeholder="비밀번호 확인"
+            name="passwordConfirm"
             onChange={e => {
+              handleUserInfo(e)
               setPasswordConfirm(e.target.value)
               setIsPasswordConfirm(e.target.value.length >= 8)
               setIsMatched(e.target.value === password || password === '')
             }}
           />
         </li>
-
         {isPassword && passwordConfirm && !isMatched && (
           <p className="errorMsg">비밀번호가 일치하지 않습니다</p>
         )}
+
         {isPassword && passwordConfirm && isMatched && (
           <p className="successMsg">비밀번호가 일치합니다</p>
         )}
-
         <li>
           <input
             autoFocus={true}
             className={!isName && name !== '' ? 'inputError' : 'input'}
             type="text"
             placeholder="이름"
+            name="name"
             onChange={e => {
+              handleUserInfo(e)
               setName(e.target.value)
               setIsName(e.target.value.length >= 2)
             }}
@@ -212,3 +260,34 @@ const SignUp = () => {
 }
 
 export default SignUp
+
+const SIGNUP_INPUT = [
+  {
+    id: 1,
+    type: 'text',
+    placeholder: '이메일',
+    name: 'email',
+    error: '이메일에 @가 필요합니다',
+  },
+  {
+    id: 2,
+    type: 'password',
+    placeholder: '비밀번호',
+    name: 'password',
+    error: '비밀번호 8자리 이상 입력해주세요',
+  },
+  {
+    id: 3,
+    type: 'password',
+    placeholder: '비밀번호 확인',
+    name: 'passwordConfirm',
+    error: '비밀번호 8자리 이상 입력해주세요',
+  },
+  {
+    id: 4,
+    type: 'password',
+    placeholder: '비밀번호',
+    name: 'password',
+    error: '비밀번호 8자리 이상 입력해주세요',
+  },
+]

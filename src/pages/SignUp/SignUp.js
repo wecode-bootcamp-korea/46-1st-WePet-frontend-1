@@ -23,7 +23,7 @@ const SignUp = () => {
   const [checkItems, setCheckItems] = useState([])
 
   const signupHandler = () => {
-    fetch('', {
+    fetch('http://10.58.52.159:8000/users/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -36,11 +36,12 @@ const SignUp = () => {
         return response.json()
       })
       .then(response => {
-        if (response.success === true) {
-          navigate('/main')
-        } else {
-          alert('회원가입에 실패했습니다.')
-        }
+        console.log(response)
+        // if (response.success === true) {
+        //   navigate('/main')
+        // } else {
+        //   alert('회원가입에 실패했습니다.')
+        // }
       })
   }
 

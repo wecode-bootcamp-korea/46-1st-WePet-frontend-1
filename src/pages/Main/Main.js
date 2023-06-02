@@ -22,7 +22,7 @@ const Main = () => {
   return (
     <div className="main">
       <Carousel />
-      <Banner src={Banner_Food} />
+      <Banner src={Banner_Food} data={BANNER_DATA.food} />
       {productData && (
         <>
           <Slider productData={productData} />
@@ -30,7 +30,7 @@ const Main = () => {
           <Link to="/products/category?sort=popular">
             <Product />
           </Link>
-          <Banner src={Banner_Toy} />
+          <Banner src={Banner_Toy} data={BANNER_DATA.toy} />
           <Slider productData={productData} />
           <h2 className="newTitle">새로 나왔어요</h2>
           <Link to="/products/category?sort=new">
@@ -43,3 +43,8 @@ const Main = () => {
 }
 
 export default Main
+
+const BANNER_DATA = {
+  toy: `우리애들\n행복하게`,
+  food: `우리애들\n배부르게`,
+}

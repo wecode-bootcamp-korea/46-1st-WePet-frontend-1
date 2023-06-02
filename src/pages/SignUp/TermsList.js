@@ -13,9 +13,9 @@ const TermsList = props => {
               <input
                 type="checkbox"
                 onChange={e =>
-                  props.handleSingleCheck(e.target.checked, props.index)
+                  props.handleSingleCheck(e.target.checked, props.termsInf.id)
                 }
-                checked={props.checkItems.includes(props.index)}
+                checked={props.checkItems.includes(props.termsInf.id)}
               />
               {props.termsInf.subject}
             </span>

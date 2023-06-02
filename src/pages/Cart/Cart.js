@@ -18,9 +18,6 @@ const Cart = () => {
       })
   }, [])
 
-  let totalPrice = 10000
-  let deliveryPrice = 3000
-
   const handleCheck = (checked, id) => {
     if (checked) {
       setCheckItems(prev => [...prev, id])
@@ -42,6 +39,13 @@ const Cart = () => {
     setCartData(newCartItem)
     setCheckItems([])
   }
+
+  const totalPrice = cartData.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  )
+
+  const deliveryPrice = totalPrice > 30000 ? 0 : 3000
 
   return (
     <div className="cart">
@@ -114,6 +118,7 @@ const Cart = () => {
           <ul className="cartPurchaseContainer">
             <li className="cartPurchaseKeyAmount">
               <span className="keyTitle">총 상품금액</span>
+              {/*     <span className="keyValue"></span>*/}
               <span className="keyValue">{`${totalPrice.toLocaleString()}원`}</span>
             </li>
             <li className="cartPurchaseKeyAmount">

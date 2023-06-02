@@ -23,12 +23,13 @@ const Login = () => {
       })
       .then(response => {
         console.log(response)
-        // if (response.success === true) {
-        //   navigate('/main')
-        // } else {
-        //   alert('로그인에 실패하셨습니다.')
-        //   localStorage.setItem('access_token', response.data.accessToken)
-        // }
+        if (response.success === true) {
+          //여기바꾸고
+          localStorage.setItem('TOKEN', response.data.accessToken) //여기바꾸고
+          navigate('/main')
+        } else {
+          alert('로그인에 실패하셨습니다.')
+        }
       })
   }
 

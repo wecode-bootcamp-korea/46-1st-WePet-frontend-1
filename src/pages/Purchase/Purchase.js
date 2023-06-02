@@ -5,24 +5,19 @@ import { faLocationDot, faCheck, faL } from '@fortawesome/free-solid-svg-icons'
 import PURCHASE_LIST from './Data/purchaseListData'
 import './Purchase.scss'
 
-//전체 동의 시에만 버튼 활성화 하기 => state, 깊은 복사?
-//아이콘 state 각각 관리하기 => state 4개 : 너무 많은 렌더링 거절당함
-//forEach? => quantity * price : => ???????
-
 const Purchase = () => {
   const [isCheckLeft, setIsCheckLeft] = useState(false)
   const [isCheckRight, setIsCheckRight] = useState(false)
-  // const [isChcekAll, setIsCheckAll] = useState(false)
 
-  const [bottomAgreeList, setBottomAgreeList] = useState({
+  const [AgreeList, setAgreeList] = useState({
     isInfoAgree: false,
     isUseAgree: false,
   })
 
-  const { isInfoAgree, isUseAgree } = bottomAgreeList
+  const { isInfoAgree, isUseAgree } = AgreeList
 
-  const handleBottomAgree = name => {
-    setBottomAgreeList(prev => ({ ...prev, [name]: !prev[name] }))
+  const handleAgree = name => {
+    setAgreeList(prev => ({ ...prev, [name]: !prev[name] }))
   }
 
   const totalPrice = PURCHASE_LIST.reduce(
@@ -31,16 +26,8 @@ const Purchase = () => {
   )
 
   const isActivePurchaseBtn = () => {
-    // if (!isCheck1 && !isCheck2) {
-    //   let copy = [isCheck1, isCheck2]
-    //   setIsCheckAll(!isChcekAll)
-    // }
     return !isCheckLeft && !isCheckRight ? true : false
   }
-
-  // const totalPrice = () => {
-  //   let totalPrice
-  // }
 
   return (
     <div className="purchase">
@@ -106,14 +93,14 @@ const Purchase = () => {
                   setIsCheckLeft(!isCheckLeft)
                 }}
               />
-              <span className="subTitle">전체 동의</span>
+              <span className="subTitle">전체동의</span>
             </div>
             <div className="subTitleGrey">
               <FontAwesomeIcon
                 icon={faCheck}
                 className={`${isInfoAgree ? 'checkIconYellow' : 'checkIcon'}`}
                 onClick={() => {
-                  handleBottomAgree('isInfoAgree')
+                  handleAgree('isInfoAgree')
                 }}
               />
               &#40;필수&#41; 구매할 상품의 결제정보&#40;상품명, 상품가격&#41;를
@@ -122,10 +109,10 @@ const Purchase = () => {
             <div className="subTitleGrey">
               <FontAwesomeIcon
                 icon={faCheck}
-                onClick={() => {
-                  handleBottomAgree('isUseAgree')
-                }}
                 className={`${isUseAgree ? 'checkIconYellow' : 'checkIcon'}`}
+                onClick={() => {
+                  handleAgree('isUseAgree')
+                }}
               />
               &#40;필수&#41; 개인정보 수집 및 이용에 동의합니다.
             </div>
@@ -134,12 +121,12 @@ const Purchase = () => {
         <div className="orderListRight">
           <p className="spaceBetween">
             <span className="title">주문금액</span>
-            <span>1,200원</span>
+            <span>{totalPrice.toLocaleString()}원</span>
           </p>
 
           <p className="spaceBetween">
             <span className="title">배송비</span>
-            <span> + 3,000원</span>
+            <span>{totalPrice > 30000 ? '-' : +3000}</span>
           </p>
           <div className="line" />
 
@@ -160,9 +147,9 @@ const Purchase = () => {
             <div className="check">
               <FontAwesomeIcon
                 icon={faCheck}
-                className={`${isCheckRight ? 'checkIconYellow' : 'checkIcon'}`}
+                className={`${isInfoAgree ? 'checkIconYellow' : 'checkIcon'}`}
                 onClick={() => {
-                  setIsCheckRight(!isCheckRight)
+                  handleAgree('isInfoAgree')
                 }}
               />
               &#40;필수&#41; 구매할 상품의 결제정보&#40;상품명, 상품가격&#41;를
@@ -171,7 +158,10 @@ const Purchase = () => {
             <div className="check">
               <FontAwesomeIcon
                 icon={faCheck}
-                className={`${isCheckRight ? 'checkIconYellow' : 'checkIcon'}`}
+                className={`${isUseAgree ? 'checkIconYellow' : 'checkIcon'}`}
+                onClick={() => {
+                  handleAgree('isUseAgree')
+                }}
               />
               &#40;필수&#41; 개인정보 수집 및 이용에 동의합니다.
             </div>

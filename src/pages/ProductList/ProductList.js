@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import './ProductList.scss'
@@ -6,13 +6,16 @@ import './ProductList.scss'
 const ProductList = () => {
   const [dropBox, isOpenDropBox] = useState(false)
   const [products, setProducts] = useState([])
-  fetch('', {
-    headers: { 'Content-Type': 'application/json;charset=utf-8' },
-  })
-    .then(response => response.json())
-    .then(response => {
-      setProducts(response.data)
+  useEffect(() => {
+    fetch('http://10.58.52.159:3000/products', {
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })
+      .then(response => response.json())
+      .then(response => {
+        console.log(response)
+        setProducts(response.data)
+      })
+  }, [])
 
   return (
     <>
@@ -59,18 +62,20 @@ const ProductList = () => {
         </div>
 
         <div className="productListMain">
-          {products.map(({ productImage, productName, productQuantity }) => {
-            return (
-              <div className="productItem">
-                <img className="productImg" src={productImage} />
-                <div className="productText">
-                  <p className="itemIcon" />
-                  <p className="itemName">{productName}</p>
-                  <p className="itemPrice">{productQuantity}</p>
+          {products.map(
+            ({ mainThumbnailImage, productName, productQuantity }) => {
+              return (
+                <div className="productItem">
+                  <img className="productImg" src={mainThumbnailImage} />
+                  <div className="productText">
+                    <p className="itemIcon" />
+                    <p className="itemName">{productName}</p>
+                    <p className="itemPrice">{productQuantity}</p>
+                  </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            }
+          )}
         </div>
       </div>
     </>

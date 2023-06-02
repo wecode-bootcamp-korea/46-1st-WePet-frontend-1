@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronLeft,
@@ -9,27 +10,32 @@ import {
 
 import Count from './Component/Count'
 import DetailInformation from './Component/DetailInformation'
-import PRODUCT_DATA from './data/productData'
 import './ProductDetail.scss'
 
 const ProductDetail = () => {
-  const detailImgArr = PRODUCT_DATA[0].detailImg
   const [quantity, setQuantity] = useState(0)
-  const [data, setData] = useState()
+  const [data, setData] = useState({})
 
   useEffect(() => {
-    fetch('./data.detailBottom.json', { method: 'GET' })
+    fetch('/data/productData.json')
       .then(response => response.json())
       .then(result => {
         setData(result)
       })
+      .catch(error => {
+        console.error('Error fetching data:', error)
+      })
   })
+
+  // let detailImgArr = data.detailImg
+  console.log(data)
+
   return (
     <div className="productDetail">
       <div className="product">
         <div className="productLeft">
-          <p className="productName">{PRODUCT_DATA[0].title}</p>
-          <p className="price">{PRODUCT_DATA[0].price.toLocaleString()}원</p>
+          <p className="productName">{data.title}</p>
+          <p className="price">{data.price.toLocaleString()}원</p>
         </div>
 
         <div className="productMainImg">
@@ -38,11 +44,7 @@ const ProductDetail = () => {
             size="xl"
             className="arrowLeft"
           />
-          <img
-            className="mainImg"
-            src={PRODUCT_DATA[0].productImg}
-            alt="productImage"
-          />
+          <img className="mainImg" src={data.productImg} alt="productImage" />
           <FontAwesomeIcon
             icon={faChevronRight}
             size="xl"
@@ -57,15 +59,15 @@ const ProductDetail = () => {
           <p className="grey">오후 1시 당일배송마감</p>
           <div className="line" />
           <div className="greyBox">
-            <p className="title">{PRODUCT_DATA[0].title}</p>
+            <p className="title">{data.title}</p>
             <div className="countPrice">
               <Count quantity={quantity} setQuantity={setQuantity} />
-              <p>{(quantity * PRODUCT_DATA[0].price).toLocaleString()}원</p>
+              <p>{(quantity * data.price).toLocaleString()}원</p>
             </div>
           </div>
           <div className="totalPrice">
             <span>총 금액</span>
-            <span>{(quantity * PRODUCT_DATA[0].price).toLocaleString()}원</span>
+            <span>{(quantity * data.price).toLocaleString()}원</span>
           </div>
           <div className="shoppingBtn">
             <div className="cartBtn">

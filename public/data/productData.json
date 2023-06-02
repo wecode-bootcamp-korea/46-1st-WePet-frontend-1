@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "title": "WePet Food",
+  "price": 3500,
+  "productImg": "../assets/강아지장난감1-1.avif",
+  "detailImg": [
+    "../assets/강아지장난감1-1.avif",
+    "../assets/강아지장난감1-2.avif",
+    "../assets/강아지장난감1-3.avif",
+    "../assets/강아지장난감1-4.avif"
+  ]
+}

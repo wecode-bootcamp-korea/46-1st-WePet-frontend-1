@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import Carousel from './components/Carousel/Carousel'
 import Product from './components/Product/Product'
@@ -26,11 +27,15 @@ const Main = () => {
         <>
           <Slider productData={productData} />
           <h2 className="popularTitle">요즘 잘 나가요</h2>
-          <Product productData={productData} />
+          <Link to="/products/category?sort=popular">
+            <Product />
+          </Link>
           <Banner src={Banner_Toy} />
           <Slider productData={productData} />
           <h2 className="newTitle">새로 나왔어요</h2>
-          <Product productData={productData} />
+          <Link to="/products/category?sort=new">
+            <Product />
+          </Link>
         </>
       )}
     </div>

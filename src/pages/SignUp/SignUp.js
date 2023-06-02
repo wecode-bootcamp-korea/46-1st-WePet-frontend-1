@@ -36,12 +36,12 @@ const SignUp = () => {
         return response.json()
       })
       .then(response => {
-        console.log(response)
-        // if (response.success === true) {
-        //   navigate('/main')
-        // } else {
-        //   alert('회원가입에 실패했습니다.')
-        // }
+        if (response.messge === 'SIGNUP_SUCCESS') {
+          // localStorage.setItem('TOKEN', response.result) 관용님 토큰 키값만 확인하면 된다.
+          navigate('/main')
+        } else {
+          alert('회원가입에 실패했습니다.')
+        }
       })
   }
 

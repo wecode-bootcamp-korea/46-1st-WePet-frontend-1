@@ -6,28 +6,38 @@ import PURCHASE_LIST from './Data/purchaseListData'
 import './Purchase.scss'
 
 const Purchase = () => {
-  const [isCheckLeft, setIsCheckLeft] = useState(false)
-  const [isCheckRight, setIsCheckRight] = useState(false)
-
-  const [AgreeList, setAgreeList] = useState({
+  const [agreeList, setAgreeList] = useState({
     isInfoAgree: false,
     isUseAgree: false,
   })
 
-  const { isInfoAgree, isUseAgree } = AgreeList
+  const { isInfoAgree, isUseAgree } = agreeList // 구조분해할당
+
+  const isAllChecked = Object.values(agreeList).every(list => list === true)
+  //const isAllChecked =
+  //Object.values(agreeList) : 해당 객체의 value값만 모아서 배열로 새로 Object.values( )
+  //.every(list => list === true) : 배열 내의 모든 개체를 검사해서, 모두가 true 일때만 true 반환,
+  //                                이외의 경우는 모두 false 반환
 
   const handleAgree = name => {
     setAgreeList(prev => ({ ...prev, [name]: !prev[name] }))
+  }
+  //
+
+  const handleAllCheck = () => {
+    if (isAllChecked) {
+      setAgreeList(prev => ({ ...prev, isInfoAgree: false, isUseAgree: false }))
+    } else {
+      setAgreeList(prev => ({ ...prev, isInfoAgree: true, isUseAgree: true }))
+    }
   }
 
   const totalPrice = PURCHASE_LIST.reduce(
     (acc, cur) => acc + cur.quantity * cur.price,
     0
   )
-
-  const isActivePurchaseBtn = () => {
-    return !isCheckLeft && !isCheckRight ? true : false
-  }
+  // .reduce(acc, cur) : acc 기존 값(누적 값) + cur(현재 값)
+  // acc는 순회 중 유지 되므로 결과값은 모든 값의 총 계를 반환
 
   return (
     <div className="purchase">
@@ -89,9 +99,8 @@ const Purchase = () => {
             <div className="checkBox">
               <input
                 type="checkbox"
-                onClick={() => {
-                  setIsCheckLeft(!isCheckLeft)
-                }}
+                checked={isAllChecked}
+                onChange={handleAllCheck}
               />
               <span className="subTitle">전체동의</span>
             </div>
@@ -139,9 +148,8 @@ const Purchase = () => {
             <input
               type="checkbox"
               className="checkBox"
-              onClick={() => {
-                setIsCheckRight(!isCheckRight)
-              }}
+              checked={isAllChecked}
+              onChange={handleAllCheck}
             />
             <span className="title">전체동의</span>
             <div className="check">
@@ -167,10 +175,8 @@ const Purchase = () => {
             </div>
           </p>
           <button
-            className={`${
-              !isActivePurchaseBtn() ? 'purchaseBtnActive' : 'purchaseBtn'
-            }`}
-            disabled={!isActivePurchaseBtn()}
+            className={`${isAllChecked ? 'purchaseBtnActive' : 'purchaseBtn'}`}
+            disabled={!isAllChecked}
           >
             {/*얘 왜 한개만 충족되도 되는지 모르겟음!*/} 원 결제하기
           </button>

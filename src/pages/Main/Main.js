@@ -10,7 +10,7 @@ const Main = () => {
   const [productData, setProductData] = useState([])
 
   useEffect(() => {
-    fetch('http://10.58.52.150:3000/products')
+    fetch('http://10.58.52.159:3000/products')
       .then(response => response.json())
       .then(data => setProductData(data.data))
   }, [])

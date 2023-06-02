@@ -10,7 +10,7 @@ const Login = () => {
   const [isValid, setIsValid] = useState(false)
 
   const signIn = () => {
-    fetch('', {
+    fetch('http://10.58.52.150:3000/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({

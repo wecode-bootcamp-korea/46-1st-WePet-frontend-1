@@ -136,7 +136,7 @@ const Cart = () => {
             <li className="cartPurchaseKeyTotal">
               <span className="keyTitle">결제예상금액</span>
               <span className="keyValue">{`${(
-                totalPrice + 3000
+                totalPrice + deliveryPrice
               ).toLocaleString()}원`}</span>
             </li>
           </ul>
@@ -146,7 +146,7 @@ const Cart = () => {
               navigate('/purchase')
             }}
           >
-            {`${totalPrice + deliveryPrice}원`} 주문하기
+            {`${(totalPrice + deliveryPrice).toLocaleString()}원`} 주문하기
           </button>
         </section>
       </main>

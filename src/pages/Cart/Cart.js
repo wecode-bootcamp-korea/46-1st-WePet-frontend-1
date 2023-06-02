@@ -6,7 +6,6 @@ import './Cart.scss'
 
 const Cart = () => {
   const navigate = useNavigate()
-  const [quantity, setQuantity] = useState([])
   const [cartData, setCartData] = useState([])
   const [checkItems, setCheckItems] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -16,7 +15,6 @@ const Cart = () => {
       .then(res => res.json())
       .then(data => {
         setCartData(data)
-        setQuantity(data.map(data => data.quantity))
       })
   }, [])
 
@@ -99,12 +97,13 @@ const Cart = () => {
                   />
                   <div className="cartProductName">{item.name}</div>
                   <Count
-                    index={index}
-                    quantity={quantity}
-                    setQuantity={setQuantity}
+                    id={item.id}
+                    quantity={item.quantity}
+                    cartData={cartData}
+                    setCartData={setCartData}
                   />
                   <span className="cartProductPrice">
-                    {`${(item.price * quantity[item.id]).toLocaleString()}원`}
+                    {`${(item.price * item.quantity).toLocaleString()}원`}
                   </span>
                 </li>
               )

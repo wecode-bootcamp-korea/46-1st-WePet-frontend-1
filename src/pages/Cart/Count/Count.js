@@ -1,17 +1,18 @@
 import React from 'react'
 import './Count.scss'
 
-const Count = ({ index, quantity, setQuantity }) => {
+const Count = ({ id, quantity, cartData, setCartData }) => {
   const handleCount = value => {
-    if (quantity[index] + value >= 1) {
-      setQuantity(prev => {
-        const newQuantity = [...prev]
-        newQuantity[index] += value
-        return newQuantity
+    const newArray = [...cartData]
+    setCartData(
+      newArray.map(list => {
+        if (list.id === id) {
+          return { ...list, quantity: list.quantity + value }
+        } else {
+          return list
+        }
       })
-    } else {
-      return
-    }
+    )
   }
 
   return (
@@ -19,16 +20,16 @@ const Count = ({ index, quantity, setQuantity }) => {
       <button
         className="countBtn"
         onClick={() => {
-          handleCount(-1)
+          if (quantity - 1 > 0) handleCount(-1)
         }}
       >
         -
       </button>
-      <div className="totalQuantity">{quantity[index]}</div>
+      <div className="totalQuantity">{quantity}</div>
       <button
         className="countBtn"
         onClick={() => {
-          handleCount(1)
+          if (quantity + 1 < 21) handleCount(1)
         }}
       >
         +

@@ -43,7 +43,7 @@ const Nav = () => {
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             onClick={() => {
-              setIsSearchModal(!isSearchModal)
+              setIsSearchModal(prev => !prev)
             }}
             size="lg"
             className="icon"
@@ -69,7 +69,7 @@ const Nav = () => {
           <div
             className="ham"
             onClick={() => {
-              setIsModal(!isModal)
+              setIsModal(prev => !prev)
             }}
           >
             <div className={`line ${isModal && 'hamTopLine'}`}></div>

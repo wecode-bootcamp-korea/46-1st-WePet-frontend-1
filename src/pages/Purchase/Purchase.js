@@ -1,12 +1,47 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot, faCheck, faL } from '@fortawesome/free-solid-svg-icons'
 
 import PURCHASE_LIST from './Data/purchaseListData'
 import './Purchase.scss'
 
+//전체 동의 시에만 버튼 활성화 하기 => state, 깊은 복사?
+//아이콘 state 각각 관리하기 => state 4개 : 너무 많은 렌더링 거절당함
+//forEach? => quantity * price : => ???????
+
 const Purchase = () => {
-  const [isCheck, setIsCheck] = useState(false)
+  const [isCheckLeft, setIsCheckLeft] = useState(false)
+  const [isCheckRight, setIsCheckRight] = useState(false)
+  // const [isChcekAll, setIsCheckAll] = useState(false)
+
+  const [bottomAgreeList, setBottomAgreeList] = useState({
+    isInfoAgree: false,
+    isUseAgree: false,
+  })
+
+  const { isInfoAgree, isUseAgree } = bottomAgreeList
+
+  const handleBottomAgree = name => {
+    setBottomAgreeList(prev => ({ ...prev, [name]: !prev[name] }))
+  }
+
+  const totalPrice = PURCHASE_LIST.reduce(
+    (acc, cur) => acc + cur.quantity * cur.price,
+    0
+  )
+
+  const isActivePurchaseBtn = () => {
+    // if (!isCheck1 && !isCheck2) {
+    //   let copy = [isCheck1, isCheck2]
+    //   setIsCheckAll(!isChcekAll)
+    // }
+    return !isCheckLeft && !isCheckRight ? true : false
+  }
+
+  // const totalPrice = () => {
+  //   let totalPrice
+  // }
+
   return (
     <div className="purchase">
       <p className="orderListTitle">주문서</p>
@@ -23,19 +58,38 @@ const Purchase = () => {
           <div className="leftInnerBox">
             {PURCHASE_LIST.map(data => {
               return (
-                <div className="subTitle">
+                <p className="spaceBetween" key={data.id}>
                   {data.name}
                   <span>{data.quantity}개</span>
-                </div>
+                </p>
               )
             })}
           </div>
           <p className="title">포인트결제</p>
           <div className="leftInnerBox">
-            <p>
-              <input className="radio" type="radio" />
-              <span>포인트결제</span>
-              <input className="point" type="number" ç />
+            <p className="spaceBetween">
+              <div>
+                <input className="radio" type="radio" />
+                <span>포인트결제</span>
+                <input
+                  className="point"
+                  type="number"
+                  onKeyDown={e => {
+                    if (
+                      (e.keyCode >= 96 && e.keyCode <= 105) ||
+                      (e.keyCode >= 48 && e.keyCode <= 57) ||
+                      e.keyCode === 8 ||
+                      e.keyCode === 9
+                    ) {
+                      return true
+                    } else {
+                      e.preventDefault()
+                      return false
+                    }
+                  }}
+                />
+              </div>
+              <span className="grey">총 10000포인트 사용 가능</span>
             </p>
             <p>
               <input type="checkbox" className="checkBox" />
@@ -46,23 +100,33 @@ const Purchase = () => {
           <p className="title">약관동의</p>
           <div className="leftInnerBoxBottom">
             <div className="checkBox">
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                onClick={() => {
+                  setIsCheckLeft(!isCheckLeft)
+                }}
+              />
               <span className="subTitle">전체 동의</span>
             </div>
             <div className="subTitleGrey">
               <FontAwesomeIcon
                 icon={faCheck}
-                // className={`${isCheck ? 'checkIconYellow' : 'checkIcon'}`}
+                className={`${isInfoAgree ? 'checkIconYellow' : 'checkIcon'}`}
                 onClick={() => {
-                  setIsCheck(!isCheck)
-                  console.log(isCheck)
+                  handleBottomAgree('isInfoAgree')
                 }}
               />
               &#40;필수&#41; 구매할 상품의 결제정보&#40;상품명, 상품가격&#41;를
               확인하였으며, 구매진행에 동의합니다.
             </div>
             <div className="subTitleGrey">
-              <FontAwesomeIcon icon={faCheck} className="checkIcon" />
+              <FontAwesomeIcon
+                icon={faCheck}
+                onClick={() => {
+                  handleBottomAgree('isUseAgree')
+                }}
+                className={`${isUseAgree ? 'checkIconYellow' : 'checkIcon'}`}
+              />
               &#40;필수&#41; 개인정보 수집 및 이용에 동의합니다.
             </div>
           </div>
@@ -81,23 +145,45 @@ const Purchase = () => {
 
           <p className="spaceBetween">
             <span className="title">총 결제금액</span>
-            <span className>-</span>
+            <span>{totalPrice.toLocaleString()}원</span>
           </p>
           <div className="line"></div>
           <p>
-            <input type="checkbox" className="checkBox" />
+            <input
+              type="checkbox"
+              className="checkBox"
+              onClick={() => {
+                setIsCheckRight(!isCheckRight)
+              }}
+            />
             <span className="title">전체동의</span>
             <div className="check">
-              <FontAwesomeIcon icon={faCheck} className="checkIcon" />
+              <FontAwesomeIcon
+                icon={faCheck}
+                className={`${isCheckRight ? 'checkIconYellow' : 'checkIcon'}`}
+                onClick={() => {
+                  setIsCheckRight(!isCheckRight)
+                }}
+              />
               &#40;필수&#41; 구매할 상품의 결제정보&#40;상품명, 상품가격&#41;를
               확인하였으며, 구매진행에 동의합니다.
             </div>
             <div className="check">
-              <FontAwesomeIcon icon={faCheck} className="checkIcon" />
+              <FontAwesomeIcon
+                icon={faCheck}
+                className={`${isCheckRight ? 'checkIconYellow' : 'checkIcon'}`}
+              />
               &#40;필수&#41; 개인정보 수집 및 이용에 동의합니다.
             </div>
           </p>
-          <button className="purchaseBtn">- 원 결제하기 </button>
+          <button
+            className={`${
+              !isActivePurchaseBtn() ? 'purchaseBtnActive' : 'purchaseBtn'
+            }`}
+            disabled={!isActivePurchaseBtn()}
+          >
+            {/*얘 왜 한개만 충족되도 되는지 모르겟음!*/} 원 결제하기
+          </button>
         </div>
       </div>
     </div>

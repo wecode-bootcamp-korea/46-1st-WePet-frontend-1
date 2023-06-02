@@ -27,6 +27,8 @@
   }
 
   .orderListLeft {
+    height: 10000px; //***
+
     .title {
       margin-top: 80px;
       font-family: 'Roboto', sans-serif;
@@ -57,12 +59,14 @@
         justify-content: space-between;
       }
 
-      .subTitleGrey {
+      .spaceBetween {
         display: flex;
         justify-content: space-between;
-        color: #a0a0a0;
-        width: 800px;
-        margin: 8px 0px;
+        margin: 6px 0px;
+
+        .grey {
+          color: #a0a0a0;
+        }
       }
     }
 
@@ -99,17 +103,22 @@
         color: #a0a0a0;
         font-size: 14px;
         margin-bottom: 7px;
+
         .checkIcon {
           margin-right: 7px;
           &:hover {
             cursor: pointer;
           }
         }
-      }
 
-      .icon {
-        margin-left: 4px;
-        margin-right: 10px;
+        .checkIconYellow {
+          margin-right: 7px;
+          color: #ffbb0f;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
       }
     }
 
@@ -121,7 +130,10 @@
       color: #fff;
       border: none;
       font-size: 16px;
-
+      .icon {
+        margin-left: 4px;
+        margin-right: 10px;
+      }
       &:hover {
         cursor: pointer;
       }
@@ -129,6 +141,8 @@
   }
 
   .orderListRight {
+    position: sticky; // ?
+    top: 80px;
     background-color: #f1f1f1b8;
     border: 1px solid #e6e6e6;
     margin-left: 30px;
@@ -159,10 +173,7 @@
       }
     }
 
-    input {
-      margin-right: 8px;
-    }
-    .purchaseBtn {
+    .purchaseBtnActive {
       width: 264px;
       height: 50px;
       border-radius: 4px;
@@ -176,23 +187,40 @@
         cursor: pointer;
       }
     }
+    .purchaseBtn {
+      width: 264px;
+      height: 50px;
+      border-radius: 4px;
+      margin-top: 46px;
+      background-color: #d2d2d2;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
     .check {
       margin-top: 10px;
-      color: #a0a0a0;
       font-size: 14px;
       margin-bottom: 7px;
+
       .checkIcon {
         margin-right: 7px;
+        color: #a0a0a0;
+
         &:hover {
           cursor: pointer;
         }
       }
       .checkIconYellow {
         margin-right: 7px;
+        color: #ffbb0f;
+
         &:hover {
           cursor: pointer;
         }
-        color: #ffbb0f;
       }
     }
   }

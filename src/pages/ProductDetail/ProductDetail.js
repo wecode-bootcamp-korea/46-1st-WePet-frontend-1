@@ -10,18 +10,17 @@ import {
 
 import Count from './Component/Count'
 import DetailInformation from './Component/DetailInformation'
-import PRODUCT_DATA from './Data/productData'
+import PRODUCT_DATA from './data/productData'
 import './ProductDetail.scss'
 
 const ProductDetail = () => {
   const detailImgArr = PRODUCT_DATA[0].detailImg
   const [quantity, setQuantity] = useState(0)
   const [data, setData] = useState()
-  // const [mainImg, setMainImg] = useState(false)
 
   useEffect(() => {
-    fetch('./Data.detailBottom.json', { method: 'GET' })
-      .then(respose => respose.json())
+    fetch('./data.detailBottom.json', { method: 'GET' })
+      .then(response => response.json())
       .then(result => {
         setData(result)
       })
@@ -31,7 +30,7 @@ const ProductDetail = () => {
       <div className="product">
         <div className="productLeft">
           <p className="productName">{PRODUCT_DATA[0].title}</p>
-          <p className="price">{PRODUCT_DATA[0].price}원</p>
+          <p className="price">{PRODUCT_DATA[0].price.toLocaleString()}원</p>
         </div>
 
         <div className="productMainImg">
@@ -39,7 +38,6 @@ const ProductDetail = () => {
             icon={faChevronLeft}
             size="xl"
             className="arrowLeft"
-            // onClick={setMainImg(!mainImg)}
           />
           <img
             className="mainImg"

@@ -6,6 +6,7 @@ import './SignUp.scss'
 
 const SignUp = () => {
   const navigate = useNavigate()
+  const [isOpenTerms, setIsOpenTerms] = useState([false, false, false])
   const [checkItems, setCheckItems] = useState([])
   const [userInfo, setUserInfo] = useState({
     email: '',
@@ -30,8 +31,6 @@ const SignUp = () => {
   const isAlValid = Object.values(infoValids).every(el => {
     return el === true
   })
-
-  const [isOpenTerms, setIsOpenTerms] = useState([false, false, false])
 
   const signupHandler = () => {
     fetch('http://10.58.52.150:3000/users/signup', {

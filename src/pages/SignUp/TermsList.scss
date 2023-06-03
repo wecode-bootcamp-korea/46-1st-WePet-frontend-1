@@ -6,6 +6,10 @@
   .termsBtn {
     border: none;
     background-color: white;
+
+    .arrow {
+      color: '#060709';
+    }
   }
 }
 
@@ -19,6 +23,7 @@
   color: gray;
   background-color: #f9f9f9;
   font-size: 13px;
+
   &:focus {
     outline: none;
   }

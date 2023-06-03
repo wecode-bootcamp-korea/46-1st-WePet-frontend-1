@@ -3,7 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import './TermsList.scss'
 
-const TermsList = props => {
+const TermsList = ({
+  isOpenTerms,
+  setIsOpenTerms,
+  index,
+  termsInf,
+  handleSingleCheck,
+  checkItems,
+}) => {
   return (
     <>
       <li className="termsList">
@@ -12,30 +19,28 @@ const TermsList = props => {
             <span>
               <input
                 type="checkbox"
-                onChange={e =>
-                  props.handleSingleCheck(e.target.checked, props.termsInf.id)
-                }
-                checked={props.checkItems.includes(props.termsInf.id)}
+                onChange={e => handleSingleCheck(e.target.checked, termsInf.id)}
+                checked={checkItems.includes(termsInf.id)}
               />
-              {props.termsInf.subject}
+              {termsInf.subject}
             </span>
           </label>
         </div>
         <button
           className="termsBtn"
           onClick={() => {
-            props.setIsOpenTerms(prev => {
-              prev[props.index] = !prev[props.index]
+            setIsOpenTerms(prev => {
+              prev[index] = !prev[index]
               return [...prev]
             })
           }}
         >
-          <FontAwesomeIcon icon={faChevronDown} style={{ color: '#060709' }} />
+          <FontAwesomeIcon className="arrow" icon={faChevronDown} />
         </button>
       </li>
-      {!props.isOpenTerms[props.index] ? null : (
+      {isOpenTerms[index] && (
         <textarea className="termsText" disabled>
-          {props.termsInf.content}
+          {termsInf.content}
         </textarea>
       )}
     </>

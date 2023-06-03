@@ -13,17 +13,30 @@ const Address = () => {
           <div className="line rightLine"></div>
         </div>
         <p className="mainTitle">배송지 등록</p>
-        <div className="greyLine"></div>
-        {ADDRESS_DATA.map((data, i) => {
-          return (
-            <div>
-              <p className="title">
-                {ADDRESS_DATA[i].name} <span className="must">*</span>
-              </p>
-              <input type="text" placeholder={ADDRESS_DATA[i].nameHolder} />
+        <div className="addressInnerBox">
+          <div className="greyLine">
+            <div className="addressMapBox">
+              {ADDRESS_DATA.map((data, i) => {
+                return (
+                  <div className="addressInput">
+                    <p className="title">
+                      {ADDRESS_DATA[i].name}
+                      <span className="must"> {ADDRESS_DATA[i].must}</span>
+                    </p>
+
+                    <input
+                      className="inputBox"
+                      type="text"
+                      placeholder={ADDRESS_DATA[i].nameHolder}
+                    />
+                  </div>
+                )
+              })}
             </div>
-          )
-        })}
+            <div className="LowergreyLine" />
+            {/* <button className='applyx' */}
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -6,6 +6,7 @@ import './ProductList.scss'
 const ProductList = () => {
   const [dropBox, isOpenDropBox] = useState(false)
   const [products, setProducts] = useState([])
+
   useEffect(() => {
     fetch('http://10.58.52.159:3000/products', {
       headers: { 'Content-Type': 'application/json;charset=utf-8' },

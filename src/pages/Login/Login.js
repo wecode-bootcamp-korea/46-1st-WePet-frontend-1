@@ -5,6 +5,10 @@ import './Login.scss'
 const Login = () => {
   const navigate = useNavigate()
   const [signInfo, setSignInfo] = useState({ email: '', password: '' })
+  const [checkError, setCheckError] = useState({
+    email: false,
+    password: false,
+  })
   const [isValid, setIsValid] = useState(false)
 
   const signIn = () => {
@@ -37,6 +41,13 @@ const Login = () => {
   const handleSignInfo = e => {
     const { name, value } = e.target
     setSignInfo(prev => ({ ...prev, [name]: value }))
+    setCheckError(prev => {
+      if (value === '') {
+        return { ...prev, [name]: true }
+      } else {
+        return { ...prev, [name]: false }
+      }
+    })
   }
 
   useEffect(() => {
@@ -54,14 +65,18 @@ const Login = () => {
                 <li className="inputBox">
                   <input
                     autoFocus={true}
-                    className={!infoValids[info.name] ? 'inputError' : 'input'}
+                    className={
+                      !infoValids[info.name] && checkError[info.name]
+                        ? 'inputError'
+                        : 'input'
+                    }
                     type={info.type}
                     placeholder={info.placeholder}
                     name={info.name}
                     onChange={handleSignInfo}
                   />
                 </li>
-                {(!infoValids[info.name] || signInfo[info.name] === '') && (
+                {!infoValids[info.name] && checkError[info.name] && (
                   <p className="errorMsg">{info.error}</p>
                 )}
               </React.Fragment>

@@ -8,7 +8,7 @@ const Login = () => {
   const [isValid, setIsValid] = useState(false)
 
   const signIn = () => {
-    fetch('http://10.58.52.150:3000/users/login', {
+    fetch('https://reqres.in/api/loign', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -20,7 +20,6 @@ const Login = () => {
         return response.json()
       })
       .then(response => {
-        console.log(response)
         if (response.success === true) {
           localStorage.setItem('TOKEN', response.data.accessToken) //여기바꾸고
           navigate('/main')
@@ -39,6 +38,10 @@ const Login = () => {
     const { name, value } = e.target
     setSignInfo(prev => ({ ...prev, [name]: value }))
   }
+
+  useEffect(() => {
+    setIsValid(signInfo.email && signInfo.password)
+  }, [signInfo])
 
   return (
     <div className="wePetContainer">
@@ -64,43 +67,6 @@ const Login = () => {
               </React.Fragment>
             )
           })}
-          {/* <li className="inputBox">
-            <input
-              autoFocus={true}
-              className={emailError ? 'inputError' : 'input'}
-              type="text"
-              placeholder="이메일"
-              onChange={e => {
-                setSignInfo(prev => {
-                  return { ...prev, email: e.target.value }
-                })
-
-                {
-                  e.target.value === ''
-                    ? setEmailError(true)
-                    : setEmailError(false)
-                }
-              }}
-            />
-          </li>
-          {emailError && <p className="errorMsg">이메일을 입력해주세요</p>}
-          <li className="inputBox">
-            <input
-              autoFocus={true}
-              className={pwError ? 'inputError' : 'input'}
-              type="password"
-              placeholder="비밀번호"
-              onChange={e => {
-                setSignInfo(prev => {
-                  return { ...prev, password: e.target.value }
-                })
-                {
-                  e.target.value === '' ? setPwError(true) : setPwError(false)
-                }
-              }}
-            />
-          </li>
-          {pwError && <p className="errorMsg">비밀번호를 입력해주세요</p>} */}
         </ul>
         <div className="saveEmail">
           <label>

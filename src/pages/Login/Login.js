@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import './Login.scss'
 
 const Login = () => {
   const navigate = useNavigate()
   const [signInfo, setSignInfo] = useState({ email: '', password: '' })
-  const [checkError, setCheckError] = useState({
+  const [isErrors, setIsErrors] = useState({
     email: false,
     password: false,
   })
-  const [isValid, setIsValid] = useState(false)
+
+  const [isAllValidation, setIsAllValidation] = useState(false)
+
+  useEffect(() => {
+    const isError = Object.values(isErrors).every(el => {
+      return el === false
+    })
+
+    const signValidation = Object.values(signInfo).every(el => {
+      return el !== ''
+    })
+
+    if (isError && signValidation) setIsAllValidation(true)
+  }, [isErrors, signInfo])
 
   const signIn = () => {
-    fetch('https://reqres.in/api/loign', {
+    fetch('', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -25,7 +38,7 @@ const Login = () => {
       })
       .then(response => {
         if (response.success === true) {
-          localStorage.setItem('TOKEN', response.data.accessToken) //여기바꾸고
+          // localStorage.setItem('TOKEN', response.data.accessToken) 추가구현예정
           navigate('/main')
         } else {
           alert('로그인에 실패하셨습니다.')
@@ -33,15 +46,10 @@ const Login = () => {
       })
   }
 
-  const infoValids = {
-    email: signInfo.email !== '',
-    password: signInfo.password !== '',
-  }
-
   const handleSignInfo = e => {
     const { name, value } = e.target
     setSignInfo(prev => ({ ...prev, [name]: value }))
-    setCheckError(prev => {
+    setIsErrors(prev => {
       if (value === '') {
         return { ...prev, [name]: true }
       } else {
@@ -49,10 +57,6 @@ const Login = () => {
       }
     })
   }
-
-  useEffect(() => {
-    setIsValid(signInfo.email && signInfo.password)
-  }, [signInfo])
 
   return (
     <div className="wePetContainer">
@@ -65,18 +69,14 @@ const Login = () => {
                 <li className="inputBox">
                   <input
                     autoFocus={true}
-                    className={
-                      !infoValids[info.name] && checkError[info.name]
-                        ? 'inputError'
-                        : 'input'
-                    }
+                    className={isErrors[info.name] ? 'inputError' : 'input'}
                     type={info.type}
                     placeholder={info.placeholder}
                     name={info.name}
                     onChange={handleSignInfo}
                   />
                 </li>
-                {!infoValids[info.name] && checkError[info.name] && (
+                {isErrors[info.name] && (
                   <p className="errorMsg">{info.error}</p>
                 )}
               </React.Fragment>
@@ -92,14 +92,16 @@ const Login = () => {
           </label>
         </div>
         <button
-          className={`loginBtn ${isValid ? 'valid' : ''}`}
+          className={`loginBtn ${isAllValidation ? 'valid' : ''}`}
           onClick={signIn}
-          disabled={!isValid}
+          disabled={!isAllValidation}
         >
           로그인
         </button>
         <div className="toSignUpBox">
-          <a className="toSignUp">회원가입</a>
+          <Link className="toSignUp" to="/signup">
+            회원가입
+          </Link>
         </div>
       </div>
     </div>

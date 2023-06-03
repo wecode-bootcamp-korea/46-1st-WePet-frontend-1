@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TermsList from './TermsList'
 import { TERMS_BOX } from './termsBox'
@@ -163,7 +163,7 @@ const SIGNUP_INPUT = [
     type: 'password',
     placeholder: '비밀번호',
     name: 'password',
-    error: '비밀번호 8자리 이상 입력해주세요',
+    error: '비밀번호는 문자, 숫자, 특수문자 조합으로 8자리 이상 입력해주세요',
   },
   {
     id: 3,

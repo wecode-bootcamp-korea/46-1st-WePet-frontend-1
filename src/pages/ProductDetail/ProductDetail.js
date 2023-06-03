@@ -19,16 +19,13 @@ const ProductDetail = () => {
   useEffect(() => {
     fetch('/data/productData.json')
       .then(response => response.json())
-      .then(result => {
-        setData(result)
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error)
-      })
-  })
+      .then(result => setData(result))
+      .catch(error => {})
+  }, [])
 
-  // let detailImgArr = data.detailImg
-  console.log(data)
+  let detailImgArr = data.detailImg
+
+  if (!data.price) return null
 
   return (
     <div className="productDetail">
@@ -94,8 +91,8 @@ const ProductDetail = () => {
       <div className="rowLine" />
 
       <div className="productImgs">
-        {detailImgArr.map((img, index) => {
-          return <img index={index} src={img} alt="productImages" />
+        {detailImgArr.map((img, id) => {
+          return <img key={id} src={img} alt="productImages" />
         })}
       </div>
       <div className="detailInformationBox">

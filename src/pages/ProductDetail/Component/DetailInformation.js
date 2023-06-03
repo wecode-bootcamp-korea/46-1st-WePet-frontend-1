@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import DETAILINFORMATION_DATA from '../data/detailInformationData'
+import DETAILINFORMATION_DATA from '../Data/detailInformationData'
 import './DetailInformation.scss'
 
 const DetailInformation = () => {

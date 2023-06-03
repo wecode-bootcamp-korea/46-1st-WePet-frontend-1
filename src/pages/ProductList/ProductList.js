@@ -13,7 +13,6 @@ const ProductList = () => {
     })
       .then(response => response.json())
       .then(response => {
-        console.log(response)
         setProducts(response.data)
       })
   }, [])
@@ -52,10 +51,10 @@ const ProductList = () => {
             {dropBox && (
               <div className="dropBoxListContainer">
                 <div className="dropBoxList">
-                  <a className="dropBoxContent">추천순</a>
-                  <a className="dropBoxContent">최신순</a>
-                  <a className="dropBoxContent">가격높은순</a>
-                  <a className="dropBoxContent">가격낮은순</a>
+                  <span className="dropBoxContent">추천순</span>
+                  <span className="dropBoxContent">최신순</span>
+                  <span className="dropBoxContent">가격높은순</span>
+                  <span className="dropBoxContent">가격낮은순</span>
                 </div>
               </div>
             )}

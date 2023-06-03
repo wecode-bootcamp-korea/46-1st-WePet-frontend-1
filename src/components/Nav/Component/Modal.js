@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadset } from '@fortawesome/free-solid-svg-icons'
-import { MODAL_UPPER_DATA, MODAL_LOWER_DATA } from './modalData'
+import { MODAL_UPPER_DATA, MODAL_LOWER_DATA } from '../data/modalData'
 
 import './Modal.scss'
 import './modalAnimation.scss'

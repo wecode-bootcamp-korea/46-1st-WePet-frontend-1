@@ -18,12 +18,12 @@
   top: 0;
   bottom: 0;
   right: 0;
-  width: 260px;
+  width: 300px;
   background-color: #fff;
   padding: 20px;
   padding-top: 60px;
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 900;
   animation: modalShowRight 0.3s;
 
@@ -33,7 +33,7 @@
 
   .ulTitle {
     font-weight: 900;
-    font-size: 12px;
+    font-size: 18px;
     color: #bebebe;
   }
 
@@ -41,17 +41,18 @@
     margin-bottom: 30px;
     .list {
       margin-bottom: 10px;
-      margin: 6px 0px;
-      font-size: 13px;
+      margin: 9px 0px;
+      font-size: 16px;
       color: #000;
     }
   }
 
   .modalBottom {
     position: fixed;
-    width: 260px;
+    width: 300px;
     height: 80px;
     display: flex;
+    justify-content: center;
     align-items: center;
     bottom: 0;
     right: 0;

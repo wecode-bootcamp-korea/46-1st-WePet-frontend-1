@@ -5,8 +5,6 @@ import './Login.scss'
 const Login = () => {
   const navigate = useNavigate()
   const [signInfo, setSignInfo] = useState({ email: '', password: '' })
-  const [emailError, setEmailError] = useState(false)
-  const [pwError, setPwError] = useState(false)
   const [isValid, setIsValid] = useState(false)
 
   const signIn = () => {
@@ -24,7 +22,6 @@ const Login = () => {
       .then(response => {
         console.log(response)
         if (response.success === true) {
-          //여기바꾸고
           localStorage.setItem('TOKEN', response.data.accessToken) //여기바꾸고
           navigate('/main')
         } else {
@@ -33,16 +30,41 @@ const Login = () => {
       })
   }
 
-  useEffect(() => {
-    setIsValid(signInfo.email && signInfo.password)
-  }, [signInfo])
+  const infoValids = {
+    email: signInfo.email !== '',
+    password: signInfo.password !== '',
+  }
+
+  const handleSignInfo = e => {
+    const { name, value } = e.target
+    setSignInfo(prev => ({ ...prev, [name]: value }))
+  }
 
   return (
     <div className="wePetContainer">
       <div className="signIn">
         <h1 className="loginTitle">로그인</h1>
         <ul className="loginInputContainer">
-          <li className="inputBox">
+          {LOGIN_INPUT.map(info => {
+            return (
+              <React.Fragment key={info.id}>
+                <li className="inputBox">
+                  <input
+                    autoFocus={true}
+                    className={!infoValids[info.name] ? 'inputError' : 'input'}
+                    type={info.type}
+                    placeholder={info.placeholder}
+                    name={info.name}
+                    onChange={handleSignInfo}
+                  />
+                </li>
+                {(!infoValids[info.name] || signInfo[info.name] === '') && (
+                  <p className="errorMsg">{info.error}</p>
+                )}
+              </React.Fragment>
+            )
+          })}
+          {/* <li className="inputBox">
             <input
               autoFocus={true}
               className={emailError ? 'inputError' : 'input'}
@@ -78,7 +100,7 @@ const Login = () => {
               }}
             />
           </li>
-          {pwError && <p className="errorMsg">비밀번호를 입력해주세요</p>}
+          {pwError && <p className="errorMsg">비밀번호를 입력해주세요</p>} */}
         </ul>
         <div className="saveEmail">
           <label>
@@ -104,3 +126,20 @@ const Login = () => {
 }
 
 export default Login
+
+const LOGIN_INPUT = [
+  {
+    id: 1,
+    type: 'text',
+    placeholder: '이메일',
+    name: 'email',
+    error: '이메일을 입력해주세요',
+  },
+  {
+    id: 2,
+    type: 'password',
+    placeholder: '비밀번호',
+    name: 'password',
+    error: '비밀번호를 입력해주세요',
+  },
+]

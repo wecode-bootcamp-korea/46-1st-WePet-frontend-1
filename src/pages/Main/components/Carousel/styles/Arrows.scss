@@ -1,0 +1,33 @@
+.prev,
+.next {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  width: auto;
+  padding: 1rem;
+  transform: translate(0, -50%);
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.prev {
+  border-radius: 0px 5px 5px 0px;
+
+  &:hover {
+    transition: all 0.5s ease-;
+    background-color: #ffbb0f;
+    color: white;
+  }
+}
+
+.next {
+  right: 0;
+  border-radius: 5px 0px 0px 5px;
+
+  &:hover {
+    transition: all 0.5s ease-;
+    background-color: #ffbb0f;
+    color: white;
+  }
+}

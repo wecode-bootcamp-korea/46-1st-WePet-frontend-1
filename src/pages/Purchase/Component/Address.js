@@ -5,6 +5,13 @@ import ADDRESS_DATA from '../Data/addressData'
 import './Address.scss'
 
 const Address = () => {
+  const [inputValue, setInputValue] = useState()
+
+  const isButtonActive =
+    ADDRESS_DATA[0].value === '' &&
+    ADDRESS_DATA[1].value === '' &&
+    ADDRESS_DATA[2].value === ''
+
   return (
     <div className="address">
       <div className="addressBox">
@@ -34,7 +41,10 @@ const Address = () => {
               })}
             </div>
             <div className="LowergreyLine" />
-            {/* <button className='applyx' */}
+
+            <button className={!isButtonActive ? 'apply' : 'applyActive'}>
+              등록하기
+            </button>
           </div>
         </div>
       </div>

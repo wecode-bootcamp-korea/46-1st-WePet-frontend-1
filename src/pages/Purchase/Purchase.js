@@ -187,7 +187,7 @@ const Purchase = () => {
           </div>
         </div>
       </div>
-      <Address />
+      <Address isAllChecked={isAllChecked} />
     </>
   )
 }

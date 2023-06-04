@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot, faCheck, faL } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import PURCHASE_LIST from './data/purchaseListData'
 import Address from './Component/Address'
@@ -47,7 +47,7 @@ const Purchase = () => {
       .then(result => setData(result))
   }, [])
 
-  if (!data.point) return null
+  // if (!data.point) return null
 
   return (
     <>
@@ -103,7 +103,7 @@ const Purchase = () => {
                   />
                 </div>
                 <span className="grey">
-                  총 {data.point.toLocaleString()}포인트 사용 가능
+                  {/* 총 {data.point.toLocaleString()}포인트 사용 가능 */}
                 </span>
               </p>
               <p>
@@ -198,7 +198,7 @@ const Purchase = () => {
               }`}
               disabled={!isAllChecked}
             >
-              {/*얘 왜 한개만 충족되도 되는지 모르겟음!*/} 원 결제하기
+              {totalPrice.toLocaleString()} 원 결제하기
             </button>
           </div>
           {isModal && <Address />}

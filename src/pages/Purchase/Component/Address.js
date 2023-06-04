@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ADDRESS_DATA from '../Data/addressData'
+import ADDRESS_DATA from '../data/addressData'
 
 import './Address.scss'
 
-const Address = () => {
+const Address = (isModal, setIsModal) => {
   const [inputValue, setInputValue] = useState()
 
   const isButtonActive =
@@ -15,7 +15,12 @@ const Address = () => {
   return (
     <div className="address">
       <div className="addressBox">
-        <div className="ham">
+        <div
+          className="ham"
+          onClick={() => {
+            setIsModal(prev => !prev)
+          }}
+        >
           <div className="line leftLine"></div>
           <div className="line rightLine"></div>
         </div>
@@ -42,7 +47,7 @@ const Address = () => {
             </div>
             <div className="LowergreyLine" />
 
-            <button className={!isButtonActive ? 'apply' : 'applyActive'}>
+            <button className={!isButtonActive ? 'applyBtn' : 'applyBtnActive'}>
               등록하기
             </button>
           </div>

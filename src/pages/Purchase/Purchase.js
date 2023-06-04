@@ -1,29 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faCheck, faL } from '@fortawesome/free-solid-svg-icons'
 
-import PURCHASE_LIST from './Data/purchaseListData'
+import PURCHASE_LIST from './data/purchaseListData'
 import Address from './Component/Address'
 import './Purchase.scss'
 
+//1. Address Modal 끄기
+//2. 포인트 fetch 빈객체............... => .point 못읽음
+//3. map 으로 만든 list 내 input.value 각각 관리하기
+//   => 위의 3개의 input.value 가 true 이면 버튼 활성화하기
+
 const Purchase = () => {
+  const [isModal, setIsModal] = useState(false)
+  const [data, setData] = useState()
+
   const [agreeList, setAgreeList] = useState({
     isInfoAgree: false,
     isUseAgree: false,
   })
 
-  const { isInfoAgree, isUseAgree } = agreeList // 구조분해할당
+  const { isInfoAgree, isUseAgree } = agreeList
 
   const isAllChecked = Object.values(agreeList).every(list => list === true)
-  //const isAllChecked =
-  //Object.values(agreeList) : 해당 객체의 value값만 모아서 배열로 새로 Object.values( )
-  //.every(list => list === true) : 배열 내의 모든 개체를 검사해서, 모두가 true 일때만 true 반환,
-  //                                이외의 경우는 모두 false 반환
 
   const handleAgree = name => {
     setAgreeList(prev => ({ ...prev, [name]: !prev[name] }))
   }
-  //
 
   const handleAllCheck = () => {
     if (isAllChecked) {
@@ -37,8 +40,14 @@ const Purchase = () => {
     (acc, cur) => acc + cur.quantity * cur.price,
     0
   )
-  // .reduce(acc, cur) : acc 기존 값(누적 값) + cur(현재 값)
-  // acc는 순회 중 유지 되므로 결과값은 모든 값의 총 계를 반환
+
+  useEffect(() => {
+    fetch('/data/pointData.json')
+      .then(response => response.json())
+      .then(result => setData(result))
+  }, [])
+
+  if (!data.point) return null
 
   return (
     <>
@@ -48,7 +57,12 @@ const Purchase = () => {
           <div className="orderListLeft">
             <p className="title">배송지</p>
             <div className="leftInnerBoxCenter">
-              <button className="addressBtn">
+              <button
+                className="addressBtn"
+                onClick={() => {
+                  setIsModal(prev => !prev)
+                }}
+              >
                 <FontAwesomeIcon className="icon" icon={faLocationDot} />
                 배송지 등록하기
               </button>
@@ -88,7 +102,9 @@ const Purchase = () => {
                     }}
                   />
                 </div>
-                <span className="grey">총 10000포인트 사용 가능</span>
+                <span className="grey">
+                  총 {data.point.toLocaleString()}포인트 사용 가능
+                </span>
               </p>
               <p>
                 <input type="checkbox" className="checkBox" />
@@ -185,9 +201,9 @@ const Purchase = () => {
               {/*얘 왜 한개만 충족되도 되는지 모르겟음!*/} 원 결제하기
             </button>
           </div>
+          {isModal && <Address />}
         </div>
       </div>
-      <Address isAllChecked={isAllChecked} />
     </>
   )
 }

@@ -14,7 +14,7 @@
   .addressBox {
     position: fixed;
     left: 50%;
-    top: 280px;
+    top: 190px;
     margin-left: -250px;
     width: 500px;
     height: 525px;
@@ -47,9 +47,10 @@
     }
 
     .mainTitle {
-      margin-top: 20px;
+      padding-top: 20px;
       text-align: center;
       font-size: 20px;
+      font-family: 'Roboto', sans-serif;
     }
 
     .addressInnerBox {
@@ -95,16 +96,18 @@
       margin-top: 50px;
     }
 
-    .apply {
+    .applyBtn {
       width: 460px;
       height: 42px;
       margin: 15px 20px;
       border: none;
       border-radius: 4px;
-      font-size: 20px;
+      font-size: 18px;
+      font-weight: 800;
+      font-family: 'Noto Sans KR', sans-serif;
     }
 
-    .applyActive {
+    .applyBtnActive {
       width: 460px;
       height: 42px;
       margin: 15px 20px;
@@ -113,8 +116,9 @@
       color: #fff;
       border-radius: 4px;
       font-family: 'Noto Sans KR', sans-serif;
-      font-size: 18px;
       font-weight: 800;
+
+      font-size: 18px;
     }
   }
 }

@@ -1,23 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SliderContent from './components/SliderContent'
 import Arrows from '../Carousel/components/Arrows'
 import './Slider.scss'
 
-const Slider = ({ productData }) => {
+const Slider = ({ data }) => {
+  const [productData, setProductData] = useState([])
+
+  useEffect(() => {
+    fetch(`http://10.58.52.159:3000/products/category?id=${data}`)
+      .then(response => response.json())
+      .then(data => setProductData(data.data))
+  }, [])
+
   const lastIndex = productData.length - 1
   const [firstSlide, setFirstSlide] = useState(0)
   return (
-    <div className="sliderContainer">
-      <SliderContent firstSlide={firstSlide} productData={productData} />
-      <Arrows
-        prev={() =>
-          setFirstSlide(firstSlide < 1 ? lastIndex - 3 : firstSlide - 4)
-        }
-        next={() =>
-          setFirstSlide(firstSlide === lastIndex - 3 ? 0 : firstSlide + 4)
-        }
-      />
-    </div>
+    productData.length > 0 && (
+      <div className="sliderContainer">
+        <SliderContent firstSlide={firstSlide} productData={productData} />
+        <Arrows
+          prev={() =>
+            setFirstSlide(firstSlide < 1 ? lastIndex - 3 : firstSlide - 4)
+          }
+          next={() =>
+            setFirstSlide(firstSlide === lastIndex - 3 ? 0 : firstSlide + 4)
+          }
+        />
+      </div>
+    )
   )
 }
 

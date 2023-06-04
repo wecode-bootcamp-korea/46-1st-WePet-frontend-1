@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link, useState } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './sliderContent.scss'
 
 const SliderContent = ({ firstSlide, productData }) => {

@@ -11,14 +11,16 @@ const Main = () => {
   return (
     <div className="main">
       <Carousel />
-      <Banner src={Banner_Food} text={BANNER_DATA.food} />
-      <Slider data={SLIDER_TYPE.food} />
-      <h2 className="popularTitle">요즘 잘 나가요</h2>
-      <Product sort={RECOMMEND_TYPE.first} />
-      <Banner src={Banner_Toy} text={BANNER_DATA.toy} />
-      <Slider data={SLIDER_TYPE.toy} />
-      <h2 className="newTitle">새로 나왔어요</h2>
-      <Product sort={RECOMMEND_TYPE.first} />
+      <div className="mainSection">
+        <Banner src={Banner_Food} text={BANNER_DATA.food} />
+        <Slider data={SLIDER_TYPE.food} />
+        <h2 className="popularTitle">요즘 잘 나가요</h2>
+        <Product sort={RECOMMEND_TYPE.first} />
+        <Banner src={Banner_Toy} text={BANNER_DATA.toy} />
+        <Slider data={SLIDER_TYPE.toy} />
+        <h2 className="newTitle">새로 나왔어요</h2>
+        <Product sort={RECOMMEND_TYPE.first} />
+      </div>
     </div>
   )
 }

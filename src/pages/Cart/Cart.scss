@@ -68,6 +68,24 @@
       }
     }
 
+    .noCartItemAlert {
+      width: 100%;
+      height: 130px;
+      padding: 130px 0;
+      text-align: center;
+
+      .alertTitle {
+        font-size: 54px;
+        font-weight: 400;
+      }
+
+      .alertText {
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 27px;
+      }
+    }
+
     .cartProductItem {
       .cartProductItemImg {
         width: 50px;
@@ -141,6 +159,12 @@
       &:hover {
         border: #ffbb0f 0.5px solid;
         background-color: transparent;
+        color: #ffbb0f;
+      }
+
+      &.disabled {
+        border: #ffbb0f 0.5px solid;
+        background-color: white;
         color: #ffbb0f;
       }
     }

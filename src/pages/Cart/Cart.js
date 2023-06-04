@@ -45,7 +45,9 @@ const Cart = () => {
     0
   )
 
-  const deliveryPrice = totalPrice > 30000 ? 0 : 3000
+  const deliveryPrice = totalPrice > 30000 || totalPrice === 0 ? 0 : 3000
+
+  const isCartPriceValid = totalPrice + deliveryPrice > 0
 
   return (
     <div className="cart">
@@ -86,32 +88,39 @@ const Cart = () => {
             </div>
           )}
           <ul className="cartProductList">
-            {cartData.map((item, index) => {
-              return (
-                <li className="cartProductItem" key={index}>
-                  <input
-                    type="checkbox"
-                    onChange={e => handleCheck(e.target.checked, item.id)}
-                    checked={checkItems.includes(item.id)}
-                  />
-                  <img
-                    className="cartProductItemImg"
-                    src={item.url}
-                    alt={`${item.name}-product-img`}
-                  />
-                  <div className="cartProductName">{item.name}</div>
-                  <Count
-                    id={item.id}
-                    quantity={item.quantity}
-                    cartData={cartData}
-                    setCartData={setCartData}
-                  />
-                  <span className="cartProductPrice">
-                    {`${(item.price * item.quantity).toLocaleString()}원`}
-                  </span>
-                </li>
-              )
-            })}
+            {cartData.length > 0 ? (
+              cartData.map((item, index) => {
+                return (
+                  <li className="cartProductItem" key={index}>
+                    <input
+                      type="checkbox"
+                      onChange={e => handleCheck(e.target.checked, item.id)}
+                      checked={checkItems.includes(item.id)}
+                    />
+                    <img
+                      className="cartProductItemImg"
+                      src={item.url}
+                      alt={`${item.name}-product-img`}
+                    />
+                    <div className="cartProductName">{item.name}</div>
+                    <Count
+                      id={item.id}
+                      quantity={item.quantity}
+                      cartData={cartData}
+                      setCartData={setCartData}
+                    />
+                    <span className="cartProductPrice">
+                      {`${(item.price * item.quantity).toLocaleString()}원`}
+                    </span>
+                  </li>
+                )
+              })
+            ) : (
+              <div className="noCartItemAlert">
+                <h2 className="alertTitle">앗!</h2>
+                <div className="alertText">장바구니가 텅~</div>
+              </div>
+            )}
           </ul>
         </section>
         <section className="cartPurchase">
@@ -125,7 +134,7 @@ const Cart = () => {
               <span className="keyTitle">배송비</span>
               <span className="keyValue">{`${deliveryPrice.toLocaleString()}원`}</span>
             </li>
-            {totalPrice < 30000 && (
+            {totalPrice > 0 && totalPrice < 30000 && (
               <div className="deliveryAlert">
                 <div className="deliveryAlertMessage">{`${(
                   30000 - totalPrice
@@ -141,7 +150,10 @@ const Cart = () => {
             </li>
           </ul>
           <button
-            className="cartPurchaseBtn"
+            className={
+              isCartPriceValid ? 'cartPurchaseBtn' : 'cartPurchaseBtn disabled'
+            }
+            disabled={!isCartPriceValid}
             onClick={() => {
               navigate('/purchase')
             }}

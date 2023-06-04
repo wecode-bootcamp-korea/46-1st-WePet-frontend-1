@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
@@ -7,6 +8,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import Count from './Component/Count'
 import DetailInformation from './Component/DetailInformation'
 import ImgCarousel from './Component/ImgCarousel'
+import Review from './Component/Review'
 import './ProductDetail.scss'
 
 const ProductDetail = () => {
@@ -33,21 +35,6 @@ const ProductDetail = () => {
 
         <ImgCarousel />
 
-        {/* <div className="productMainImg">
-          <FontAwesomeIcon
-            icon={faChevronLeft}
-            size="xl"
-            className="arrowLeft"
-            onClick={() => {}}
-          />
-          <img className="mainImg" src={data.productImg[0]} />
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            size="xl"
-            className="arrowRight"
-          />
-        </div> */}
-
         <div className="productRight">
           <div className="line" />
           <p>배송정보</p>
@@ -66,15 +53,19 @@ const ProductDetail = () => {
             <span>{(quantity * data.price).toLocaleString()}원</span>
           </div>
           <div className="shoppingBtn">
-            <div className="cartBtn">
-              <FontAwesomeIcon
-                icon={faCartShopping}
-                size="lg"
-                style={{ color: '#ffbb0f' }}
-                className="cartIcon"
-              />
-            </div>
-            <button className="buy">바로 구매하기</button>
+            <Link to="/cart">
+              <div className="cartBtn">
+                <FontAwesomeIcon
+                  icon={faCartShopping}
+                  size="lg"
+                  style={{ color: '#ffbb0f' }}
+                  className="cartIcon"
+                />
+              </div>
+            </Link>
+            <Link to="/purchase">
+              <button className="buy">바로 구매하기</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -96,7 +87,18 @@ const ProductDetail = () => {
           기본정보
         </span>
         <div className="columnLine" />
-        <span className="greyTitle">상품후기</span>
+        <span
+          className="greyTitle"
+          onClick={() => {
+            const element = document.querySelector('.reviewBox')
+            if (element) {
+              const y = element.getBoundingClientRect().top + window.pageYOffset
+              window.scrollTo({ top: y, behavior: 'smooth' })
+            }
+          }}
+        >
+          상품후기
+        </span>
       </div>
       <div className="rowLine" />
 
@@ -107,6 +109,9 @@ const ProductDetail = () => {
       </div>
       <div className="detailInformationBox">
         <DetailInformation />
+      </div>
+      <div className="reviewBox">
+        <Review />
       </div>
     </div>
   )

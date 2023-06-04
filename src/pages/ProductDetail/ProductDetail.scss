@@ -32,46 +32,6 @@
         margin: 6px 0px;
       }
     }
-    .productMainImg {
-      position: relative;
-      display: flex;
-      align-items: center;
-      width: 500px;
-      height: 500px;
-      margin: 0px 26px;
-      overflow: hidden;
-
-      .flexBox {
-        display: flex;
-      }
-
-      .arrowLeft {
-        position: absolute;
-        left: 10px;
-        color: #bebebe;
-        &:hover {
-          cursor: pointer;
-          color: #ffbb0f;
-        }
-      }
-
-      .arrowRight {
-        position: absolute;
-        right: 10px;
-        color: #bebebe;
-
-        &:hover {
-          cursor: pointer;
-          color: #ffbb0f;
-        }
-      }
-    }
-
-    .mainImg {
-      width: 500px;
-      flex: none;
-      object-fit: contain;
-    }
 
     .productRight {
       width: 300px;

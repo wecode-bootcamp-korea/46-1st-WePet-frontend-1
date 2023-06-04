@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons'
-
 import './ImgCarousel.scss'
 
-// const ImgCarousel = () => {
-//   const [data, setData] = useState()
-//   const [Carousel, setCarousel] = useState(0)
-
-//   const activeCarousel = () => {
-//     productMainImg()
-//   }
+const ImgCarousel = () => {
+  const [data, setData] = useState(null)
+  const [carousel, setCarousel] = useState(false)
 
   useEffect(() => {
     fetch('/data/productData.json')
@@ -27,15 +22,26 @@ import './ImgCarousel.scss'
 
   return (
     <div className="productMainImg">
+      <div className={carousel ? 'imgBox' : 'imgBoxCarousel'}>
+        <img className="mainImg" src={data.productImg[0]} alt="productImage" />
+        <img className="mainImg" src={data.productImg[1]} alt="productImage" />
+      </div>
       <FontAwesomeIcon
         icon={faChevronLeft}
         size="xl"
         className="arrowLeft"
-        // onClick={() => {}}
+        onClick={() => {
+          setCarousel(!carousel)
+        }}
       />
-      <img className="mainImg" src={data.productImg[0]} alt="productImage" />
-      <img className="mainImg" src={data.productImg[1]} alt="productImage" />
-      <FontAwesomeIcon icon={faChevronRight} size="xl" className="arrowRight" />
+      <FontAwesomeIcon
+        icon={faChevronRight}
+        size="xl"
+        className="arrowRight"
+        onClick={() => {
+          setCarousel(!carousel)
+        }}
+      />
     </div>
   )
 }

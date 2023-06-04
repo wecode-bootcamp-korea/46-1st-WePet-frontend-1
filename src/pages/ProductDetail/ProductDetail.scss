@@ -155,4 +155,15 @@
       width: 900px;
     }
   }
+
+  .goToTopIcon {
+    position: sticky;
+    bottom: 6%;
+    margin-left: 1150px;
+    width: 28px;
+    height: 20px;
+    :hover {
+      cursor: pointer;
+    }
+  }
 }

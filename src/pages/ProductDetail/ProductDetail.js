@@ -10,6 +10,7 @@ import DetailInformation from './Component/DetailInformation'
 import ImgCarousel from './Component/ImgCarousel'
 import Review from './Component/Review'
 import './ProductDetail.scss'
+import GoToTop from './Component/GoToTop'
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(0)
@@ -70,7 +71,6 @@ const ProductDetail = () => {
         </div>
       </div>
       <div className="rowLine" />
-
       <div className="table">
         <span className="greyTitle">상품정보</span>
         <div className="columnLine" />
@@ -101,7 +101,6 @@ const ProductDetail = () => {
         </span>
       </div>
       <div className="rowLine" />
-
       <div className="productImgs">
         {detailImgArr.map((img, id) => {
           return <img key={id} src={img} alt="productImages" />
@@ -112,6 +111,14 @@ const ProductDetail = () => {
       </div>
       <div className="reviewBox">
         <Review />
+      </div>
+      <div
+        className="goToTopIcon"
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }}
+      >
+        <GoToTop />
       </div>
     </div>
   )

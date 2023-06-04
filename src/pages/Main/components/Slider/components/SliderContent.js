@@ -1,8 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useState } from 'react-router-dom'
 import './sliderContent.scss'
 
 const SliderContent = ({ firstSlide, productData }) => {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
     <div className="sliderContent">
       {productData
@@ -12,7 +14,13 @@ const SliderContent = ({ firstSlide, productData }) => {
               <div className="sliderItem">
                 <img
                   className="sliderImg"
-                  src={item.mainThumbnailImage}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  src={
+                    isHovered
+                      ? item.mainThumbnailImage
+                      : item.mainThumbnailImage2
+                  }
                   alt="productChoice"
                 />
                 <div className="sliderText">

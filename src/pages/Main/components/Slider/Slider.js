@@ -12,8 +12,9 @@ const Slider = ({ data }) => {
       .then(data => setProductData(data.data))
   }, [])
 
-  const lastIndex = productData.length - 1
   const [firstSlide, setFirstSlide] = useState(0)
+
+  const lastIndex = productData.length - 1
   return (
     productData.length > 0 && (
       <div className="sliderContainer">

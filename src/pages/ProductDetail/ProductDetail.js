@@ -20,7 +20,6 @@ const ProductDetail = () => {
     fetch('/data/productData.json')
       .then(response => response.json())
       .then(result => setData(result))
-      .catch(error => {})
   }, [])
 
   let detailImgArr = data.detailImg
@@ -41,7 +40,7 @@ const ProductDetail = () => {
             size="xl"
             className="arrowLeft"
           />
-          <img className="mainImg" src={data.productImg} alt="productImage" />
+          <img className="mainImg" src={data.productImg} />
           <FontAwesomeIcon
             icon={faChevronRight}
             size="xl"
@@ -84,7 +83,18 @@ const ProductDetail = () => {
       <div className="table">
         <span className="greyTitle">상품정보</span>
         <div className="columnLine" />
-        <span className="greyTitle">기본정보</span>
+        <span
+          className="greyTitle"
+          onClick={() => {
+            const element = document.querySelector('.detailInformationBox')
+            if (element) {
+              const y = element.getBoundingClientRect().top + window.pageYOffset
+              window.scrollTo({ top: y, behavior: 'smooth' })
+            }
+          }}
+        >
+          기본정보
+        </span>
         <div className="columnLine" />
         <span className="greyTitle">상품후기</span>
       </div>

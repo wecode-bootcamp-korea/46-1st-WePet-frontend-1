@@ -2,14 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faChevronLeft,
-  faChevronRight,
-  faCartShopping,
-} from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
 import Count from './Component/Count'
 import DetailInformation from './Component/DetailInformation'
+import ImgCarousel from './Component/ImgCarousel'
 import './ProductDetail.scss'
 
 const ProductDetail = () => {
@@ -34,19 +31,22 @@ const ProductDetail = () => {
           <p className="price">{data.price.toLocaleString()}원</p>
         </div>
 
-        <div className="productMainImg">
+        <ImgCarousel />
+
+        {/* <div className="productMainImg">
           <FontAwesomeIcon
             icon={faChevronLeft}
             size="xl"
             className="arrowLeft"
+            onClick={() => {}}
           />
-          <img className="mainImg" src={data.productImg} />
+          <img className="mainImg" src={data.productImg[0]} />
           <FontAwesomeIcon
             icon={faChevronRight}
             size="xl"
             className="arrowRight"
           />
-        </div>
+        </div> */}
 
         <div className="productRight">
           <div className="line" />

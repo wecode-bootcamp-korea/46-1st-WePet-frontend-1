@@ -2,7 +2,10 @@
   "id": 1,
   "title": "WePet Food",
   "price": 3500,
-  "productImg": "../images/강아지장난감1-1.avif",
+  "productImg": [
+    "../images/강아지장난감1-2.avif",
+    "../images/강아지장난감1-3.avif"
+  ],
 
   "detailImg": [
     "../images/강아지장난감1-1.avif",

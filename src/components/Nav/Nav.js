@@ -33,7 +33,7 @@ const Nav = () => {
         <div className="category">
           {MENU_DATA.map(data => {
             return (
-              <Link to={MENU_DATA.link}>
+              <Link to={data.link}>
                 <span className="categoryName">{data.name}</span>
               </Link>
             )

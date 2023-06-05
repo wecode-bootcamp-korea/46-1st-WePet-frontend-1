@@ -8,12 +8,13 @@ import './Purchase.scss'
 
 const Purchase = () => {
   const [isModal, setIsModal] = useState(false)
+  const [isSaved, setIsSaved] = useState(false)
+
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
-  const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(true)
+  const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(false)
 
   const [point, setPoint] = useState({})
   const [listData, setListData] = useState([])
-  const [saved, setSaved] = useState([])
 
   const [agreeList, setAgreeList] = useState({
     isInfoAgree: false,
@@ -24,11 +25,13 @@ const Purchase = () => {
 
   const isAllChecked = Object.values(agreeList).every(list => list === true)
 
-  const compareWithPoint = inputValue => {
-    if (totalPrice < point.point) {
+  const compareWithPoint = () => {
+    if (totalPrice <= point.point) {
       setIsPurchaseModalValue(true)
+      console.log(isPurchaseModalValue)
     } else {
       setIsPurchaseModalValue(false)
+      console.log(isPurchaseModalValue)
     }
   }
 
@@ -72,8 +75,9 @@ const Purchase = () => {
           <div className="orderListLeft">
             <p className="title">배송지</p>
             <div className="leftInnerBoxCenter">
-              <div className="saved">배송지가 등록되었습니다 ! </div>
-              {/* <div className="savedGrey">배송지 : {}</div> */}
+              {isSaved && (
+                <div className="saved">배송지가 등록되었습니다 ! </div>
+              )}
               <button
                 className="addressBtn"
                 onClick={() => {
@@ -101,7 +105,6 @@ const Purchase = () => {
                 <div>
                   <input className="radio" type="radio" />
                   <span>포인트결제</span>
-                  {/* <input className="point" type="number" /> */}
                 </div>
                 <span className="grey">
                   총 {point.point.toLocaleString()}포인트 사용 가능
@@ -196,9 +199,9 @@ const Purchase = () => {
             </div>
             <button
               className={`${
-                isAllChecked ? 'purchaseBtnActive' : 'purchaseBtn'
+                isAllChecked && isSaved ? 'purchaseBtnActive' : 'purchaseBtn'
               }`}
-              disabled={!isAllChecked}
+              disabled={!isAllChecked && isSaved}
               onClick={() => {
                 setIsPurchaseModal(prev => !prev)
                 compareWithPoint()
@@ -207,10 +210,17 @@ const Purchase = () => {
               {totalPrice > 30000
                 ? totalPrice.toLocaleString()
                 : (totalPrice + 3000).toLocaleString()}
-              원 원 결제하기
+              원 결제하기
             </button>
           </div>
-          {isModal && <Address isModal={isModal} setIsModal={setIsModal} />}
+          {isModal && (
+            <Address
+              isModal={isModal}
+              setIsModal={setIsModal}
+              isSaved={isSaved}
+              setIsSaved={setIsSaved}
+            />
+          )}
           {isPurchaseModal && (
             <PurchaseModal
               isPurchaseModal={isPurchaseModal}

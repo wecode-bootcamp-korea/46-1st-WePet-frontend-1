@@ -5,8 +5,7 @@ import './Address.scss'
 
 //1. input type 이 넘버 일 경우 부여할 함수 ?
 
-const Address = ({ isModal, setIsModal }) => {
-  const [isAddressSaved, setIsAddressSaved] = useState(false)
+const Address = ({ isModal, setIsModal, isSaved, setIsSaved }) => {
   const [inputValue, setInputValue] = useState({
     name: '',
     phone: '',
@@ -84,7 +83,7 @@ const Address = ({ isModal, setIsModal }) => {
               className={`applyBtn ${!isButtonActive ? '' : 'Active'}`}
               onClick={() => {
                 setIsModal(prev => !prev)
-                savedAddress.push()
+                setIsSaved(prev => !prev)
               }}
             >
               등록하기

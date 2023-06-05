@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import './Login.scss'
 
@@ -10,22 +10,18 @@ const Login = () => {
     password: false,
   })
 
-  const [isAllValidation, setIsAllValidation] = useState(false)
+  const isError = Object.values(isErrors).every(el => {
+    return el === false
+  })
 
-  useEffect(() => {
-    const isError = Object.values(isErrors).every(el => {
-      return el === false
-    })
+  const signValidation = Object.values(signInfo).every(el => {
+    return el !== ''
+  })
 
-    const signValidation = Object.values(signInfo).every(el => {
-      return el !== ''
-    })
-
-    if (isError && signValidation) setIsAllValidation(true)
-  }, [isErrors, signInfo])
+  const isAllValidation = isError && signValidation
 
   const signIn = () => {
-    fetch('', {
+    fetch('127.0.0.1:3000/users/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -37,7 +33,7 @@ const Login = () => {
         return response.json()
       })
       .then(response => {
-        if (response.success === true) {
+        if (response.messge === 'LOGIN_SUCCESS') {
           // localStorage.setItem('TOKEN', response.data.accessToken) 추가구현예정
           navigate('/main')
         } else {
@@ -59,7 +55,7 @@ const Login = () => {
   }
 
   return (
-    <div className="wePetContainer">
+    <div className="Login">
       <div className="signIn">
         <h1 className="loginTitle">로그인</h1>
         <ul className="loginInputContainer">

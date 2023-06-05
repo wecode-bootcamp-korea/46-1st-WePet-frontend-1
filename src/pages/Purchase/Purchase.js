@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
 
-import Address from './Address'
-import PurchaseModal from './PurchaseModal'
+import Address from './Component/Address'
+import PurchaseModal from './Component/PurchaseModal'
 import './Purchase.scss'
 
 const Purchase = () => {
   const [isModal, setIsModal] = useState(false)
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
+  const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(true)
   const [inputValue, setInputValue] = useState()
 
-  const [data, setData] = useState({})
+  const [point, setPoint] = useState({})
   const [listData, setListData] = useState([])
 
   const [agreeList, setAgreeList] = useState({
@@ -23,13 +24,11 @@ const Purchase = () => {
 
   const isAllChecked = Object.values(agreeList).every(list => list === true)
 
-  const handleUserInput = e => {
-    setInputValue(e.target.value)
-  }
-
-  const compareWithPoint = data => {
-    if (data.point < inputValue) {
-      return <PurchaseModal />
+  const compareWithPoint = inputValue => {
+    if (totalPrice < point.point) {
+      setIsPurchaseModalValue(true)
+    } else {
+      setIsPurchaseModalValue(false)
     }
   }
 
@@ -53,7 +52,7 @@ const Purchase = () => {
   useEffect(() => {
     fetch('/data/pointData.json')
       .then(response => response.json())
-      .then(result => setData(result))
+      .then(result => setPoint(result))
   }, [])
 
   useEffect(() => {
@@ -62,7 +61,7 @@ const Purchase = () => {
       .then(result => setListData(result))
   }, [])
 
-  if (!data.point) return null
+  if (!point.point) return null
   if (!listData) return null
 
   return (
@@ -100,10 +99,9 @@ const Purchase = () => {
                 <div>
                   <input className="radio" type="radio" />
                   <span>포인트결제</span>
-                  <input
+                  {/* <input
                     className="point"
                     type="number"
-                    onChange={handleUserInput}
                     onKeyDown={e => {
                       if (
                         (e.keyCode >= 96 && e.keyCode <= 105) ||
@@ -117,16 +115,16 @@ const Purchase = () => {
                         return false
                       }
                     }}
-                  />
+                  /> */}
                 </div>
                 <span className="grey">
-                  총 {data.point.toLocaleString()}포인트 사용 가능
+                  총 {point.point.toLocaleString()}포인트 사용 가능
                 </span>
               </p>
-              <p>
+              {/* <p>
                 <input type="checkbox" className="checkBox" />
                 <span className="supTitle">포인트 모두 적용</span>
-              </p>
+              </p> */}
             </div>
 
             <p className="title">약관동의</p>
@@ -219,7 +217,10 @@ const Purchase = () => {
                 isAllChecked ? 'purchaseBtnActive' : 'purchaseBtn'
               }`}
               disabled={!isAllChecked}
-              onClick={() => setIsPurchaseModal(prev => !prev)}
+              onClick={() => {
+                setIsPurchaseModal(prev => !prev)
+                compareWithPoint()
+              }}
             >
               {totalPrice > 30000
                 ? totalPrice.toLocaleString()
@@ -232,6 +233,7 @@ const Purchase = () => {
             <PurchaseModal
               isPurchaseModal={isPurchaseModal}
               setIsPurchaseModal={setIsPurchaseModal}
+              isPurchaseModalValue={isPurchaseModalValue}
             />
           )}
         </div>

@@ -1,8 +1,8 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Login = () => {
+const Purchase = () => {
   return <h1>hello</h1>
 }
 
-export default Login
+export default Purchase

@@ -9,8 +9,9 @@ import Count from './Component/Count'
 import DetailInformation from './Component/DetailInformation'
 import ImgCarousel from './Component/ImgCarousel'
 import Review from './Component/Review'
-import './ProductDetail.scss'
 import GoToTop from './Component/GoToTop'
+
+import './ProductDetail.scss'
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(0)

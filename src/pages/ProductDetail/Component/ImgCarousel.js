@@ -7,31 +7,43 @@ import {
 import './ImgCarousel.scss'
 
 const ImgCarousel = () => {
-  const [data, setData] = useState(null)
-  const [carousel, setCarousel] = useState(false)
+  const [productData, setProductData] = useState({})
+  const [isCarousel, setIsCarousel] = useState(false)
 
   useEffect(() => {
     fetch('/data/productData.json')
       .then(response => response.json())
-      .then(result => setData(result))
+      .then(result => setProductData(result))
   }, [])
 
-  if (!data || !data.productImg || data.productImg.length === 0) {
+  if (
+    !productData ||
+    !productData.productImg ||
+    productData.productImg.length === 0
+  ) {
     return null
   }
 
   return (
     <div className="productMainImg">
-      <div className={carousel ? 'imgBox' : 'imgBoxCarousel'}>
-        <img className="mainImg" src={data.productImg[0]} alt="productImage" />
-        <img className="mainImg" src={data.productImg[1]} alt="productImage" />
+      <div className={`imgBox ${isCarousel ? '' : 'carousel'}`}>
+        <img
+          className="mainImg"
+          src={productData.productImg[0]}
+          alt="productImage"
+        />
+        <img
+          className="mainImg"
+          src={productData.productImg[1]}
+          alt="productImage"
+        />
       </div>
       <FontAwesomeIcon
         icon={faChevronLeft}
         size="xl"
         className="arrowLeft"
         onClick={() => {
-          setCarousel(!carousel)
+          setIsCarousel(!isCarousel)
         }}
       />
       <FontAwesomeIcon
@@ -39,7 +51,7 @@ const ImgCarousel = () => {
         size="xl"
         className="arrowRight"
         onClick={() => {
-          setCarousel(!carousel)
+          setIsCarousel(!isCarousel)
         }}
       />
     </div>

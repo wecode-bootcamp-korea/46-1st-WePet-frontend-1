@@ -3,12 +3,12 @@ import DETAILINFORMATION_DATA from '../Data/detailInformationData'
 import './DetailInformation.scss'
 
 const DetailInformation = () => {
-  const [data, setData] = useState({})
+  const [product, setProduct] = useState({})
 
   useEffect(() => {
-    fetch('/data/productDetailData.json', { method: 'GET' })
+    fetch('/data/productDetailData.json')
       .then(response => response.json())
-      .then(result => setData(result))
+      .then(result => setProduct(result))
   }, [])
 
   return (
@@ -19,7 +19,7 @@ const DetailInformation = () => {
           return (
             <tr key={list.id}>
               <td className="titleTd">{list.title}</td>
-              <td className="contentTd">{data[list.name]}</td>
+              <td className="contentTd">{product[list.name]}</td>
             </tr>
           )
         })}

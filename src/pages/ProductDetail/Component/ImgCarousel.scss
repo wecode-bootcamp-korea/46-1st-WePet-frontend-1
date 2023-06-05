@@ -16,14 +16,9 @@
       width: 100%;
     }
   }
-  .imgBoxCarousel {
-    display: flex;
 
+  .carousel {
     transform: translate(-500px);
-    transition: 1s;
-    img {
-      width: 100%;
-    }
   }
 
   .arrowLeft {

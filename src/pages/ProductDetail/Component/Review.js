@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './Review.scss'
 
 const Review = () => {
-  const [data, setData] = useState([])
+  const [review, setReview] = useState([])
 
   useEffect(() => {
     fetch('/data/reviewData.json')
       .then(response => response.json())
       .then(result => {
-        setData(result)
+        setReview(result)
       })
   }, [])
 
@@ -17,17 +17,17 @@ const Review = () => {
   return (
     <div className="review">
       <div className="reviews">
-        <span className="title"> 상품후기({data.length})</span>
+        <span className="title"> 상품후기({review.length})</span>
         <div className="line" />
 
-        {data.map((data, index) => {
+        {review.map((review, index) => {
           return (
             <div className="realReview" key={index}>
               <div className="write">
-                <span className="name">{data.name}</span>
-                <span className="date">{data.date}</span>
+                <span className="name">{review.name}</span>
+                <span className="date">{review.date}</span>
               </div>
-              <span className="content">{data.content}</span>
+              <span className="content">{review.content}</span>
             </div>
           )
         })}

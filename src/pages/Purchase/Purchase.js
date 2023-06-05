@@ -161,7 +161,7 @@ const Purchase = () => {
               <span className="title">총 결제금액</span>
               <span>{totalPrice.toLocaleString()}원</span>
             </p>
-            <div className="line"></div>
+            <div className="line" />
             <p>
               <input
                 type="checkbox"

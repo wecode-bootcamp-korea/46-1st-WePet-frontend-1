@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
 
-import Address from './Component/Address'
-import PurchaseModal from './Component/PurchaseModal'
+import Address from './Address'
+import PurchaseModal from './PurchaseModal'
 import './Purchase.scss'
 
 const Purchase = () => {
   const [isModal, setIsModal] = useState(false)
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
+  const [inputValue, setInputValue] = useState()
 
   const [data, setData] = useState({})
   const [listData, setListData] = useState([])
@@ -21,6 +22,16 @@ const Purchase = () => {
   const { isInfoAgree, isUseAgree } = agreeList
 
   const isAllChecked = Object.values(agreeList).every(list => list === true)
+
+  const handleUserInput = e => {
+    setInputValue(e.target.value)
+  }
+
+  const compareWithPoint = data => {
+    if (data.point < inputValue) {
+      return <PurchaseModal />
+    }
+  }
 
   const handleAgree = name => {
     setAgreeList(prev => ({ ...prev, [name]: !prev[name] }))
@@ -92,6 +103,7 @@ const Purchase = () => {
                   <input
                     className="point"
                     type="number"
+                    onChange={handleUserInput}
                     onKeyDown={e => {
                       if (
                         (e.keyCode >= 96 && e.keyCode <= 105) ||

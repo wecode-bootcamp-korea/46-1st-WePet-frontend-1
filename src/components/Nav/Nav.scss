@@ -66,19 +66,11 @@
     color: #000;
     background-color: #fff;
     border: 2px solid #000;
-  }
 
-  .btnColorChange {
-    width: 80px;
-    height: 40px;
-    border-radius: 25px;
-    margin: 0px 5px;
-    font-size: 18px;
-    font-weight: 700;
-    text-align: center;
-    color: #ffbb0f;
-    background-color: #fff;
-    border: 2px solid #ffbb0f;
+    &:hover {
+      color: #ffbb0f;
+      border: 2px solid #ffbb0f;
+    }
   }
 
   .ham {

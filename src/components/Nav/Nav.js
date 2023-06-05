@@ -14,36 +14,21 @@ import './Nav.scss'
 
 const Nav = () => {
   const [isLogoHover, setIsLogoHover] = useState(false)
-  const [isHover, setIsHover] = useState(false)
   const [isModal, setIsModal] = useState(false)
   const [isSearchModal, setIsSearchModal] = useState(false)
 
-  const handleLogoMouseOver = () => {
-    setIsLogoHover(true)
-  }
-  const handleLogoMouseOut = () => {
-    setIsLogoHover(false)
-  }
-  const handleMouseOver = () => {
-    setIsHover(true)
-  }
-  const handleMouseOut = () => {
-    setIsHover(false)
+  const handleHoverLogo = () => {
+    setIsLogoHover(prev => !prev)
   }
 
   return (
     <>
       <div className="nav">
-        <Link
-          to="/"
-          onMouseOver={handleLogoMouseOver}
-          onMouseOut={handleLogoMouseOut}
-        >
-          {isLogoHover ? (
-            <img className="logo" src="/images/LogoYellow.png" />
-          ) : (
-            <img className="logo" src="/images/LogoBlack.png" />
-          )}
+        <Link to="/" onMouseOver={handleHoverLogo} onMouseOut={handleHoverLogo}>
+          <img
+            className="logo"
+            src={`/images/Logo${isLogoHover ? 'Yellow' : 'Black'}.png`}
+          />
         </Link>
         <div className="category">
           {MENU_DATA.map(data => {
@@ -70,13 +55,7 @@ const Nav = () => {
           </div>
         </Link>
         <Link to="/login">
-          <button
-            className={isHover ? 'btnColorChange' : 'loginBtn'}
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
-          >
-            로그인
-          </button>
+          <button className="loginBtn">로그인</button>
         </Link>
         {isSearchModal ? (
           ''

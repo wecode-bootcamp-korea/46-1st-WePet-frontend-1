@@ -158,13 +158,18 @@ const Purchase = () => {
 
             <p className="spaceBetween">
               <span className="title">배송비</span>
-              <span>{totalPrice > 30000 ? '-' : +3000}</span>
+              <span>{totalPrice > 30000 ? '-' : +3000 + '원'}</span>
             </p>
             <div className="line" />
 
             <p className="spaceBetween">
               <span className="title">총 결제금액</span>
-              <span>{totalPrice.toLocaleString()}원</span>
+              <span>
+                {totalPrice > 30000
+                  ? totalPrice.toLocaleString()
+                  : (totalPrice + 3000).toLocaleString()}
+                원
+              </span>
             </p>
             <div className="line" />
             <p>
@@ -204,7 +209,10 @@ const Purchase = () => {
               disabled={!isAllChecked}
               onClick={() => setIsPurchaseModal(prev => !prev)}
             >
-              {totalPrice.toLocaleString()} 원 결제하기
+              {totalPrice > 30000
+                ? totalPrice.toLocaleString()
+                : (totalPrice + 3000).toLocaleString()}
+              원 원 결제하기
             </button>
           </div>
           {isModal && <Address isModal={isModal} setIsModal={setIsModal} />}

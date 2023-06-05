@@ -10,7 +10,6 @@ const Purchase = () => {
   const [isModal, setIsModal] = useState(false)
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
   const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(true)
-  // const [inputValue, setInputValue] = useState()s
 
   const [point, setPoint] = useState({})
   const [listData, setListData] = useState([])
@@ -72,7 +71,8 @@ const Purchase = () => {
           <div className="orderListLeft">
             <p className="title">배송지</p>
             <div className="leftInnerBoxCenter">
-              <div className="saved">배송지가 등록되었습니다</div>
+              <div className="saved">배송지가 등록되었습니다 ! </div>
+              {/* <div className="savedGrey">배송지 : {}</div> */}
               <button
                 className="addressBtn"
                 onClick={() => {
@@ -100,32 +100,12 @@ const Purchase = () => {
                 <div>
                   <input className="radio" type="radio" />
                   <span>포인트결제</span>
-                  {/* <input
-                    className="point"
-                    type="number"
-                    onKeyDown={e => {
-                      if (
-                        (e.keyCode >= 96 && e.keyCode <= 105) ||
-                        (e.keyCode >= 48 && e.keyCode <= 57) ||
-                        e.keyCode === 8 ||
-                        e.keyCode === 9
-                      ) {
-                        return true
-                      } else {
-                        e.preventDefault()
-                        return false
-                      }
-                    }}
-                  /> */}
+                  {/* <input className="point" type="number" /> */}
                 </div>
                 <span className="grey">
                   총 {point.point.toLocaleString()}포인트 사용 가능
                 </span>
               </p>
-              {/* <p>
-                <input type="checkbox" className="checkBox" />
-                <span className="supTitle">포인트 모두 적용</span>
-              </p> */}
             </div>
 
             <p className="title">약관동의</p>

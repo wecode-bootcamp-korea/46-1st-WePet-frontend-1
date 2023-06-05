@@ -41,6 +41,13 @@
       padding-top: 18px;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
+
+      .saved {
+        width: 800px;
+        margin-left: 10px;
+        margin-bottom: 20px;
+      }
     }
 
     .leftInnerBox {

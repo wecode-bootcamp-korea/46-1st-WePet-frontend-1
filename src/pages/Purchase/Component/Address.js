@@ -13,6 +13,23 @@ const Address = ({ isModal, setIsModal }) => {
   })
 
   const { name, phone, address } = inputValue
+  const none = () => {
+    return
+  }
+
+  const keyDownFunction = e => {
+    if (
+      (e.keyCode >= 96 && e.keyCode <= 105) ||
+      (e.keyCode >= 48 && e.keyCode <= 57) ||
+      e.keyCode === 8 ||
+      e.keyCode === 9
+    ) {
+      return true
+    } else {
+      e.preventDefault()
+      return false
+    }
+  }
 
   const isButtonActive = name && phone && address
 
@@ -39,7 +56,7 @@ const Address = ({ isModal, setIsModal }) => {
         <div className="addressInnerBox">
           <div className="greyLine">
             <div className="addressMapBox">
-              {ADDRESS_DATA.map((data, i) => {
+              {ADDRESS_DATA.map((data, i, keyDownFunction, none) => {
                 return (
                   <div className="addressInput">
                     <p className="title">
@@ -49,10 +66,12 @@ const Address = ({ isModal, setIsModal }) => {
 
                     <input
                       className="inputBox"
-                      type="text"
+                      type={data.type}
                       name={data.name}
+                      onKeyDown={
+                        data.type === 'number' ? keyDownFunction : null
+                      }
                       placeholder={data.titleHolder}
-                      onChange={handleUserInput}
                     />
                   </div>
                 )

@@ -10,7 +10,7 @@ const Purchase = () => {
   const [isModal, setIsModal] = useState(false)
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
   const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(true)
-  const [inputValue, setInputValue] = useState()
+  // const [inputValue, setInputValue] = useState()s
 
   const [point, setPoint] = useState({})
   const [listData, setListData] = useState([])
@@ -72,6 +72,7 @@ const Purchase = () => {
           <div className="orderListLeft">
             <p className="title">배송지</p>
             <div className="leftInnerBoxCenter">
+              <div className="saved">배송지가 등록되었습니다</div>
               <button
                 className="addressBtn"
                 onClick={() => {

@@ -3,8 +3,8 @@ import ADDRESS_DATA from '../Data/addressData'
 
 import './Address.scss'
 
-const [isAddressSaved, setIsAddressSaved] = useState(false)
 const Address = ({ isModal, setIsModal }) => {
+  const [isAddressSaved, setIsAddressSaved] = useState(false)
   const [inputValue, setInputValue] = useState({
     name: '',
     phone: '',
@@ -61,7 +61,7 @@ const Address = ({ isModal, setIsModal }) => {
             <div className="LowergreyLine" />
 
             <button
-              className={!isButtonActive ? 'applyBtn' : 'applyBtnActive'}
+              className={`applyBtn ${!isButtonActive ? '' : 'Active'}`}
               onClick={setIsAddressSaved}
             >
               등록하기

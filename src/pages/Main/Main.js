@@ -34,7 +34,7 @@ const BANNER_DATA = {
 
 const RECOMMEND_TYPE = {
   first: 'popular',
-  second: 'new',
+  second: 'newest',
 }
 
 const SLIDER_TYPE = {

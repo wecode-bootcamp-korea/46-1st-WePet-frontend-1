@@ -9,20 +9,20 @@ const ProductList = () => {
 
   const [dropBox, isOpenDropBox] = useState(false)
   const [products, setProducts] = useState([])
+  const [orderBy, setOrderBy] = useState('newest')
 
   useEffect(() => {
-    let url = 'http://10.58.52.246:8001/products'
-    if (id !== 0) {
-      url += `/category?id=${id}`
-    }
-    fetch(url, {
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
-    })
+    fetch(
+      `http://10.58.52.246:8001/products/filter?offset=0&limit=11&orderBy=${orderBy}&categoryId=${id}`,
+      {
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      }
+    )
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)
       })
-  }, [])
+  }, [orderBy])
 
   return (
     <>
@@ -54,8 +54,17 @@ const ProductList = () => {
             {dropBox && (
               <div className="dropBoxListContainer">
                 <div className="dropBoxList">
-                  {DROP_BOX.map(title => {
-                    return <span className="dropBoxContent">{title}</span>
+                  {DROP_BOX.map(({ title, key }) => {
+                    return (
+                      <span
+                        className="dropBoxContent"
+                        onClick={() => {
+                          setOrderBy(key)
+                        }}
+                      >
+                        {title}
+                      </span>
+                    )
                   })}
                 </div>
               </div>
@@ -66,19 +75,19 @@ const ProductList = () => {
         <div className="productListMain">
           {products.map(
             ({
-              productId,
-              mainThumbnailImage,
-              productName,
-              productQuantity,
+              product_category_id,
+              main_image_thumbnail,
+              product_name,
+              product_price,
             }) => {
               return (
-                <Link to={`/products/${productId}`}>
+                <Link to={`/products/${product_category_id}`}>
                   <div className="productItem">
-                    <img className="productImg" src={mainThumbnailImage} />
+                    <img className="productImg" src={main_image_thumbnail} />
                     <div className="productText">
                       <p className="itemIcon" />
-                      <p className="itemName">{productName}</p>
-                      <p className="itemPrice">{productQuantity}</p>
+                      <p className="itemName">{product_name}</p>
+                      <p className="itemPrice">{product_price}</p>
                     </div>
                   </div>
                 </Link>
@@ -112,4 +121,9 @@ const HEADER_DATA = {
   },
 }
 
-const DROP_BOX = ['추천순', '최신순', '높은가격순', '낮은가격순']
+const DROP_BOX = [
+  { title: '추천순', key: 'newest' },
+  { title: '최신순', key: 'newest' },
+  { title: '높은가격순', key: 'priceDESC' },
+  { title: '낮은가격순', key: 'priceASC' },
+]

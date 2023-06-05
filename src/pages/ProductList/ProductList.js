@@ -11,11 +11,10 @@ const ProductList = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    let url = 'http://10.58.52.159:3000/products'
+    let url = 'http://10.58.52.246:8001/products'
     if (id !== 0) {
       url += `/category?id=${id}`
     }
-
     fetch(url, {
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })

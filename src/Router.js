@@ -7,6 +7,7 @@ import ProductDetail from './pages/ProductDetail/ProductDetail'
 import ProductList from './pages/ProductList/ProductList'
 import Purchase from './pages/Purchase/Purchase'
 import SignUp from './pages/SignUp/SignUp'
+import MyPage from './pages/MyPage/MyPage'
 import Nav from './components/Nav/Nav'
 import Footer from './components/Footer/Footer'
 
@@ -22,6 +23,7 @@ function Router() {
         <Route path="/productdetail" element={<ProductDetail />} />
         <Route path="/purchase" element={<Purchase />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

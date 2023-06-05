@@ -11,24 +11,6 @@
   background-color: #00000054;
 
   .purchaseModalContent {
-    position: fixed;
-    left: 50%;
-    top: 190px;
-    margin-left: -250px;
-    width: 500px;
-    height: 150px;
-    border-radius: 10px;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    font-weight: 400;
-
-    .text {
-      margin-top: 30px;
-    }
-
     .icon {
       color: #ffbb0f;
       margin-right: 15px;
@@ -36,9 +18,30 @@
   }
 
   .title {
-    padding-top: 25px;
-    border-top: 1px solid #dadada;
+    position: fixed;
     width: 500px;
-    text-align: center;
+    height: 150px;
+    left: 50%;
+    top: 190px;
+    margin-left: -250px;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .ham {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    margin: 0px 5px;
+    z-index: 3;
+    &:hover {
+      cursor: pointer;
+    }
+    background-color: #000;
   }
 }

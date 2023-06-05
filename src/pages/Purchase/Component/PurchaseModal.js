@@ -7,12 +7,13 @@ const PurchaseModal = () => {
   return (
     <div className="purchaseModal">
       <div className="purchaseModalContent">
-        <div className="title">
-          <FontAwesomeIcon icon={faCashRegister} className="icon" size="lg" />
-          결제가 완료되었습니다 !
-        </div>
         <div className="ham lineLeft"></div>
         <div className="ham lineRight"></div>
+
+        <div className="title">
+          <FontAwesomeIcon icon={faCashRegister} className="icon" size="lg" />
+          <span className="text">결제가 완료되었습니다 !</span>
+        </div>
       </div>
     </div>
   )

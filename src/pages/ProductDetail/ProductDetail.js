@@ -59,7 +59,6 @@ const ProductDetail = () => {
                 <FontAwesomeIcon
                   icon={faCartShopping}
                   size="lg"
-                  style={{ color: '#ffbb0f' }}
                   className="cartIcon"
                 />
               </div>

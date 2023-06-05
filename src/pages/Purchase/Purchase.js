@@ -13,6 +13,7 @@ const Purchase = () => {
 
   const [point, setPoint] = useState({})
   const [listData, setListData] = useState([])
+  const [saved, setSaved] = useState([])
 
   const [agreeList, setAgreeList] = useState({
     isInfoAgree: false,
@@ -96,7 +97,7 @@ const Purchase = () => {
             </div>
             <p className="title">포인트결제</p>
             <div className="leftInnerBox">
-              <p className="spaceBetween">
+              <div className="spaceBetween">
                 <div>
                   <input className="radio" type="radio" />
                   <span>포인트결제</span>
@@ -105,7 +106,7 @@ const Purchase = () => {
                 <span className="grey">
                   총 {point.point.toLocaleString()}포인트 사용 가능
                 </span>
-              </p>
+              </div>
             </div>
 
             <p className="title">약관동의</p>
@@ -163,7 +164,7 @@ const Purchase = () => {
               </span>
             </p>
             <div className="line" />
-            <p>
+            <div>
               <input
                 type="checkbox"
                 className="checkBox"
@@ -192,7 +193,7 @@ const Purchase = () => {
                 />
                 &#40;필수&#41; 개인정보 수집 및 이용에 동의합니다.
               </div>
-            </p>
+            </div>
             <button
               className={`${
                 isAllChecked ? 'purchaseBtnActive' : 'purchaseBtn'

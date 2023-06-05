@@ -82,6 +82,17 @@
       border-radius: 4px;
       margin-top: 6px;
 
+      &:focus {
+        outline: none;
+        border: 2px solid #ffbb0f;
+      }
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
       &::placeholder {
         color: #c3c3c3;
         padding-left: 10px;
@@ -110,6 +121,7 @@
     .Active {
       background-color: #ffbb0f;
       color: #fff;
+      cursor: pointer;
     }
   }
 }

@@ -3,6 +3,8 @@ import ADDRESS_DATA from '../Data/addressData'
 
 import './Address.scss'
 
+//1. input type 이 넘버 일 경우 부여할 함수 ?
+
 const Address = ({ isModal, setIsModal }) => {
   const [isAddressSaved, setIsAddressSaved] = useState(false)
   const [inputValue, setInputValue] = useState({
@@ -12,12 +14,14 @@ const Address = ({ isModal, setIsModal }) => {
     memo: '',
   })
 
+  let savedAddress = []
   const { name, phone, address } = inputValue
   const none = () => {
     return
   }
 
-  const keyDownFunction = e => {
+  const keyDownFunction = (e, type) => {
+    if (type !== 'number') return
     if (
       (e.keyCode >= 96 && e.keyCode <= 105) ||
       (e.keyCode >= 48 && e.keyCode <= 57) ||
@@ -38,8 +42,6 @@ const Address = ({ isModal, setIsModal }) => {
     setInputValue({ ...inputValue, [name]: value })
   }
 
-  const handleAddress = () => {}
-
   return (
     <div className="address">
       <div className="addressBox">
@@ -56,7 +58,7 @@ const Address = ({ isModal, setIsModal }) => {
         <div className="addressInnerBox">
           <div className="greyLine">
             <div className="addressMapBox">
-              {ADDRESS_DATA.map((data, i, keyDownFunction, none) => {
+              {ADDRESS_DATA.map(data => {
                 return (
                   <div className="addressInput">
                     <p className="title">
@@ -68,10 +70,9 @@ const Address = ({ isModal, setIsModal }) => {
                       className="inputBox"
                       type={data.type}
                       name={data.name}
-                      onKeyDown={
-                        data.type === 'number' ? keyDownFunction : null
-                      }
+                      onKeyDown={e => keyDownFunction(e, data.type)}
                       placeholder={data.titleHolder}
+                      onChange={handleUserInput}
                     />
                   </div>
                 )
@@ -81,7 +82,10 @@ const Address = ({ isModal, setIsModal }) => {
 
             <button
               className={`applyBtn ${!isButtonActive ? '' : 'Active'}`}
-              onClick={setIsAddressSaved}
+              onClick={() => {
+                setIsModal(prev => !prev)
+                savedAddress.push()
+              }}
             >
               등록하기
             </button>

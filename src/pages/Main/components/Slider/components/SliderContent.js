@@ -1,26 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import './sliderContent.scss'
 
 const SliderContent = ({ firstSlide, productData }) => {
-  const [isHovered, setIsHovered] = useState(false)
-
   return (
     <div className="sliderContent">
       {productData
-        .map((item, index) => {
+        .map(item => {
           return (
             <Link to={`products/${item.productId}`} key={item.id}>
               <div className="sliderItem">
                 <img
                   className="sliderImg"
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  src={
-                    isHovered
-                      ? item.mainThumbnailImage
-                      : item.mainThumbnailImage2
-                  }
+                  src={item.mainThumbnailImage}
                   alt="productChoice"
                 />
                 <div className="sliderText">

@@ -8,7 +8,6 @@ const ProductList = () => {
   let { id } = useParams()
 
   const [dropBox, isOpenDropBox] = useState(false)
-  // const [products, setProducts] = useState(EXAMPLE) test용
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -67,7 +66,6 @@ const ProductList = () => {
 
         <div className="productListMain">
           {products.map(
-            // {EXAMPLE.map(   test용
             ({
               productId,
               mainThumbnailImage,
@@ -116,46 +114,3 @@ const HEADER_DATA = {
 }
 
 const DROP_BOX = ['추천순', '최신순', '높은가격순', '낮은가격순']
-
-// const EXAMPLE = [     test용
-//   {
-//     productId: 3,
-//     productName: 'Chewy Chimken',
-//     productPrice: '6000.00',
-//     productDescription: 'Bite sized snack that taste like KFC ',
-//     productCategory: 2,
-//     productQuantity: 50,
-//     productImage:
-//       'https://newmansown.com/wp-content/uploads/2022/04/NO-5oz-_SnackSticks_Chicken_FRNT@2x-1.png',
-//   },
-//   {
-//     productId: 3,
-//     productName: 'Chewy Chimken',
-//     productPrice: '6000.00',
-//     productDescription: 'Bite sized snack that taste like KFC ',
-//     productCategory: 2,
-//     productQuantity: 50,
-//     productImage:
-//       'https://newmansown.com/wp-content/uploads/2022/04/NO-5oz-_SnackSticks_Chicken_FRNT@2x-1.png',
-//   },
-//   {
-//     productId: 3,
-//     productName: 'Chewy Chimken',
-//     productPrice: '6000.00',
-//     productDescription: 'Bite sized snack that taste like KFC ',
-//     productCategory: 2,
-//     productQuantity: 50,
-//     productImage:
-//       'https://newmansown.com/wp-content/uploads/2022/04/NO-5oz-_SnackSticks_Chicken_FRNT@2x-1.png',
-//   },
-//   {
-//     productId: 3,
-//     productName: 'Chewy Chimken',
-//     productPrice: '6000.00',
-//     productDescription: 'Bite sized snack that taste like KFC ',
-//     productCategory: 2,
-//     productQuantity: 50,
-//     productImage:
-//       'https://newmansown.com/wp-content/uploads/2022/04/NO-5oz-_SnackSticks_Chicken_FRNT@2x-1.png',
-//   },
-// ]

@@ -12,12 +12,12 @@ const ProductList = () => {
   const [orderBy, setOrderBy] = useState('newest')
 
   useEffect(() => {
-    fetch(
-      `http://10.58.52.246:8001/products/filter?offset=0&limit=11&orderBy=${orderBy}&categoryId=${id}`,
-      {
-        headers: { 'Content-Type': 'application/json;charset=utf-8' },
-      }
-    )
+    let url = `http://10.58.52.246:8001/products/filter?offset=0&limit=11&orderBy=${orderBy}`
+    if (id !== '0') url += `&categoryId=${id}`
+    console.log(url)
+    fetch(url, {
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+    })
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)

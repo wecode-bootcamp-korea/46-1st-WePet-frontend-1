@@ -4,6 +4,7 @@ import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import Address from './Component/Address'
 import PurchaseModal from './Component/PurchaseModal'
+
 import './Purchase.scss'
 
 const Purchase = () => {

@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCashRegister } from '@fortawesome/free-solid-svg-icons'
+
 import './PurchaseModal.scss'
 
 const PurchaseModal = ({ setIsPurchaseModal, isPurchaseModalValue }) => {

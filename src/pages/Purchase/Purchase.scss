@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-// font-family: 'Roboto', sans-serif;
-// font-family: 'Noto Sans KR', sans-serif;
 .purchase {
   width: 1200px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -128,7 +126,7 @@
   }
 
   .orderListRight {
-    position: sticky; // ?
+    position: sticky;
     top: 80px;
     background-color: #f1f1f1b8;
     border: 1px solid #e6e6e6;

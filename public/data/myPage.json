@@ -1,0 +1,40 @@
+[
+  {
+    "menuParam": "order",
+    "title": "주문/배송조회",
+    "content": "주문내역이 없습니다."
+  },
+  {
+    "menuParam": "claim",
+    "title": "취소/반품/교환 내역",
+    "content": "취소/반품/교환 내역이 없습니다."
+  },
+  {
+    "menuParam": "review",
+    "title": "나의 상품 후기",
+    "content": "후기내역이 없습니다."
+  },
+  {
+    "menuParam": "coupon",
+    "title": "쿠폰함",
+    "content": "발급 내역이 없습니다."
+  },
+
+  {
+    "menuParam": "member",
+    "title": "회원정보 변경",
+    "content": "변동 가능한 정보가 없습니다."
+  },
+  {
+    "menuParam": "address",
+    "title": "배송지 관리",
+    "content": "등록 배송지가 없습니다.",
+    "button": "새 배송지 추가"
+  },
+  {
+    "menuParam": "qna",
+    "title": "1:1 문의 내역",
+    "content": "문의내역이 없습니다.",
+    "button": "1:1 문의하기"
+  }
+]

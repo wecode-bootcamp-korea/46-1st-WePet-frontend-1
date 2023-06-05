@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import PageContent from './component/PageContent'
 import './MyPage.scss'
 
 const MyPage = () => {
+  const params = useParams()
+  const id = params.id
+  const [myPageData, setMyPageData] = useState([])
+
+  useEffect(() => {
+    fetch('/data/myPage.json')
+      .then(res => res.json())
+      .then(data => {
+        setMyPageData(data)
+      })
+  }, [])
+
+  const pageContent = myPageData.find(item => item.menuParam === id)
+
   return (
     <div className="myPage">
       <div className="myPageHeader">
@@ -14,7 +30,7 @@ const MyPage = () => {
             {SHOPPING_DATA.map((menu, index) => {
               return (
                 <li key={index} className="menuText">
-                  <a href="/">{menu}</a>
+                  <Link to={`/mypage/${ENG_TITLE[menu]}`}>{menu}</Link>
                 </li>
               )
             })}
@@ -24,30 +40,37 @@ const MyPage = () => {
             {USER_DATA.map((menu, index) => {
               return (
                 <li key={index} className="menuText">
-                  <a href="/">{menu}</a>
+                  <Link to={`/mypage/${ENG_TITLE[menu]}`}>{menu}</Link>
                 </li>
               )
             })}
           </ul>
           <ul className="menuBox">
             <div className="menuTitle">고객 센터</div>
-            {QNA_DATA.map((menu, index) => {
-              return (
-                <li key={index} className="menuText">
-                  <a href="/">{menu}</a>
-                </li>
-              )
-            })}
+            <li className="menuText">
+              <Link to={`/mypage/qna`}>1:1 문의 내역</Link>
+            </li>
+            <li className="menuText">
+              <a href="mailto:@">이메일 문의</a>
+            </li>
           </ul>
         </aside>
         <section className="myPageContainer">
           <div className="userContainer">
-            <h4 className="welcome">
-              반가워요,
-              <p>
-                <b>WePet</b>님
-              </p>
-            </h4>
+            {pageContent ? (
+              <PageContent
+                title={pageContent.title}
+                content={pageContent.content}
+                button={pageContent.button}
+              />
+            ) : (
+              <h4 className="welcome">
+                반가워요,
+                <p>
+                  <b>WePet</b>님
+                </p>
+              </h4>
+            )}
           </div>
         </section>
       </main>
@@ -65,4 +88,12 @@ const SHOPPING_DATA = [
 ]
 
 const USER_DATA = ['회원정보 변경', '배송지 관리']
-const QNA_DATA = ['1:1 문의 내역', '이메일 문의']
+const ENG_TITLE = {
+  '주문/배송조회': 'order',
+  '취소/반품/교환 내역': 'claim',
+  '나의 상품 후기': 'review',
+  쿠폰함: 'coupon',
+  '회원정보 변경': 'member',
+  '배송지 관리': 'address',
+  '1:1 문의 내역': 'qna',
+}

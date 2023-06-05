@@ -1,0 +1,37 @@
+.review {
+  margin: 0 auto;
+  width: 900px;
+  margin-bottom: 100px;
+
+  .title {
+    height: 50px;
+    line-height: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .line {
+    width: 900px;
+    height: 1px;
+    background-color: #dadada;
+    margin-bottom: 20px;
+  }
+
+  .realReview {
+    margin-bottom: 10px;
+    .write {
+      margin-bottom: 6px;
+      margin-top: 20px;
+      .name {
+        margin-right: 15px;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .date {
+        color: #b2b2b2;
+      }
+    }
+  }
+}

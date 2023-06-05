@@ -1,0 +1,50 @@
+.imgCarousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 500px;
+  height: 500px;
+  margin: 0px 26px;
+  overflow: hidden;
+
+  .imgBox {
+    display: flex;
+
+    transform: translate(0px);
+    transition: 1s;
+    img {
+      width: 100%;
+    }
+  }
+
+  .carousel {
+    transform: translate(-500px);
+  }
+
+  .arrowLeft {
+    position: absolute;
+    left: 10px;
+    color: #bebebe;
+    &:hover {
+      cursor: pointer;
+      color: #ffbb0f;
+    }
+  }
+
+  .arrowRight {
+    position: absolute;
+    right: 10px;
+    color: #bebebe;
+
+    &:hover {
+      cursor: pointer;
+      color: #ffbb0f;
+    }
+  }
+}
+
+.mainImg {
+  width: 500px;
+  flex: none;
+  object-fit: contain;
+}

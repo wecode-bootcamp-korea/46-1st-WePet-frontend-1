@@ -1,0 +1,22 @@
+.count {
+  display: flex;
+  line-height: 16px;
+
+  .countBtn {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    border-radius: 3px;
+    border: none;
+    background-color: #ffbb0f;
+    color: white;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .totalQuantity {
+    width: 20px;
+    text-align: center;
+  }
+}

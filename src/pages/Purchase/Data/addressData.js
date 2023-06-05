@@ -1,22 +1,26 @@
 const ADDRESS_DATA = [
   {
-    name: '이름',
-    nameHolder: '받으실 분 이름을 입력해주세요.',
+    title: '이름',
+    titleHolder: '받으실 분 이름을 입력해주세요.',
+    name: 'name',
     must: '*',
   },
   {
-    name: '연락처',
-    nameHolder: '예) 00000000000',
+    title: '연락처',
+    titleHolder: '예) 00000000000',
+    name: 'phone',
     must: '*',
   },
   {
-    name: '주소',
-    nameHolder: '주소를 검색해주세요.',
+    title: '주소',
+    name: 'address',
+    titleHolder: '주소를 검색해주세요.',
     must: '*',
   },
   {
-    name: '배송 메모 (선택)',
-    nameHolder: '예) 문 앞에 놔주세요. 감사합니다.',
+    title: '배송 메모 (선택)',
+    name: 'memo',
+    titleHolder: '예) 문 앞에 놔주세요. 감사합니다.',
     must: null,
   },
 ]

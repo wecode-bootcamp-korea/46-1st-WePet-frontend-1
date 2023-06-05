@@ -13,7 +13,7 @@ import './Purchase.scss'
 
 const Purchase = () => {
   const [isModal, setIsModal] = useState(false)
-  const [data, setData] = useState()
+  const [data, setData] = useState({})
 
   const [agreeList, setAgreeList] = useState({
     isInfoAgree: false,
@@ -47,7 +47,7 @@ const Purchase = () => {
       .then(result => setData(result))
   }, [])
 
-  // if (!data.point) return null
+  if (!data.point) return null
 
   return (
     <>
@@ -103,7 +103,7 @@ const Purchase = () => {
                   />
                 </div>
                 <span className="grey">
-                  {/* 총 {data.point.toLocaleString()}포인트 사용 가능 */}
+                  총 {data.point.toLocaleString()}포인트 사용 가능
                 </span>
               </p>
               <p>
@@ -201,7 +201,7 @@ const Purchase = () => {
               {totalPrice.toLocaleString()} 원 결제하기
             </button>
           </div>
-          {isModal && <Address />}
+          {isModal && <Address isModal={isModal} setIsModal={setIsModal} />}
         </div>
       </div>
     </>

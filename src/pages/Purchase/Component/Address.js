@@ -4,13 +4,24 @@ import ADDRESS_DATA from '../Data/addressData'
 
 import './Address.scss'
 
-const Address = (isModal, setIsModal) => {
-  const [inputValue, setInputValue] = useState()
+const Address = ({ isModal, setIsModal }) => {
+  const [inputValue, setInputValue] = useState({
+    name: '',
+    phone: '',
+    address: '', //post
+    memo: '',
+  })
 
-  const isButtonActive =
-    ADDRESS_DATA[0].value === '' &&
-    ADDRESS_DATA[1].value === '' &&
-    ADDRESS_DATA[2].value === ''
+  const { name, phone, address } = inputValue
+
+  const isButtonActive = name && phone && address
+
+  const handleUserInput = e => {
+    const { name, value } = e.target
+    setInputValue({ ...inputValue, [name]: value })
+  }
+
+  console.log(inputValue)
 
   return (
     <div className="address">
@@ -32,14 +43,16 @@ const Address = (isModal, setIsModal) => {
                 return (
                   <div className="addressInput">
                     <p className="title">
-                      {ADDRESS_DATA[i].name}
-                      <span className="must"> {ADDRESS_DATA[i].must}</span>
+                      {data.title}
+                      <span className="must"> {data.must}</span>
                     </p>
 
                     <input
                       className="inputBox"
                       type="text"
-                      placeholder={ADDRESS_DATA[i].nameHolder}
+                      name={data.name}
+                      placeholder={data.titleHolder}
+                      onChange={handleUserInput}
                     />
                   </div>
                 )

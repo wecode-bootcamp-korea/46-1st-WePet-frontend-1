@@ -33,7 +33,7 @@ const SignUp = () => {
   })
 
   const signupHandler = () => {
-    fetch('http://10.58.52.150:3000/users/signup', {
+    fetch('http://10.58.52.245:3000/users/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -46,8 +46,11 @@ const SignUp = () => {
         return response.json()
       })
       .then(response => {
+        console.log(response)
         if (response.messge === 'SIGNUP_SUCCESS') {
           navigate('/main')
+        } else if (response.messge === 'DUPLICATE EMAIL') {
+          alert('중복된 이메일을 가진 사용자가 존재합니다.')
         } else {
           alert('회원가입에 실패했습니다.')
         }

@@ -21,7 +21,7 @@ const Login = () => {
   const isAllValidation = isError && signValidation
 
   const signIn = () => {
-    fetch('127.0.0.1:3000/users/signup', {
+    fetch('http://10.58.52.245:3000/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({

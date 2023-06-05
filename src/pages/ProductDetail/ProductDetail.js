@@ -15,24 +15,24 @@ import './ProductDetail.scss'
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(0)
-  const [data, setData] = useState({})
+  const [productData, setProductData] = useState({})
 
   useEffect(() => {
     fetch('/data/productData.json')
       .then(response => response.json())
-      .then(result => setData(result))
+      .then(result => setProductData(result))
   }, [])
 
-  let detailImgArr = data.detailImg
+  let detailImgArr = productData.detailImg
 
-  if (!data.price) return null
+  if (!productData.price) return null
 
   return (
     <div className="productDetail">
       <div className="product">
         <div className="productLeft">
-          <p className="productName">{data.title}</p>
-          <p className="price">{data.price.toLocaleString()}원</p>
+          <p className="productName">{productData.title}</p>
+          <p className="price">{productData.price.toLocaleString()}원</p>
         </div>
 
         <ImgCarousel />
@@ -44,15 +44,15 @@ const ProductDetail = () => {
           <p className="grey">오후 1시 당일배송마감</p>
           <div className="line" />
           <div className="greyBox">
-            <p className="title">{data.title}</p>
+            <p className="title">{productData.title}</p>
             <div className="countPrice">
               <Count quantity={quantity} setQuantity={setQuantity} />
-              <p>{(quantity * data.price).toLocaleString()}원</p>
+              <p>{(quantity * productData.price).toLocaleString()}원</p>
             </div>
           </div>
           <div className="totalPrice">
             <span>총 금액</span>
-            <span>{(quantity * data.price).toLocaleString()}원</span>
+            <span>{(quantity * productData.price).toLocaleString()}원</span>
           </div>
           <div className="shoppingBtn">
             <Link to="/cart">

@@ -5,7 +5,7 @@ import './GoToTop.scss'
 
 const GoToTop = () => {
   return (
-    <div className="GoToTop">
+    <div className="goToTop">
       <FontAwesomeIcon icon={faChevronUp} size="2xl" className="icon" />
     </div>
   )

@@ -25,7 +25,7 @@ const ImgCarousel = () => {
   }
 
   return (
-    <div className="productMainImg">
+    <div className="imgCarousel">
       <div className={`imgBox ${isCarousel ? '' : 'carousel'}`}>
         <img
           className="mainImg"

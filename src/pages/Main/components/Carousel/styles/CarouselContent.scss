@@ -1,0 +1,39 @@
+.active {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 50vh;
+}
+
+.inactive {
+  display: none;
+}
+
+.slideImage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slideTitle,
+.slideText {
+  position: absolute;
+  z-index: 10;
+  top: 40%;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
+.slideTitle {
+  top: 40%;
+  font-size: 3rem;
+}
+
+.slideText {
+  top: 65%;
+  font-size: 1.5rem;
+}

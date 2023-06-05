@@ -1,0 +1,30 @@
+.termsList {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+
+  .termsBtn {
+    border: none;
+    background-color: white;
+
+    .arrow {
+      color: '#060709';
+    }
+  }
+}
+
+.termsText {
+  width: 394px;
+  height: 211px;
+  padding: 20px;
+  resize: none;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  color: gray;
+  background-color: #f9f9f9;
+  font-size: 13px;
+
+  &:focus {
+    outline: none;
+  }
+}

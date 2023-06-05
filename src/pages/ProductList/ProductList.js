@@ -1,28 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useSearchParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import './ProductList.scss'
 
 const ProductList = () => {
-  let { id } = useParams()
+  const { id } = useParams()
 
   const [dropBox, isOpenDropBox] = useState(false)
   const [products, setProducts] = useState([])
   const [orderBy, setOrderBy] = useState('newest')
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const query = searchParams.toString()
 
   useEffect(() => {
-    let url = `http://10.58.52.246:8001/products/filter?offset=0&limit=11&orderBy=${orderBy}`
-    if (id !== '0') url += `&categoryId=${id}`
-    console.log(url)
-    fetch(url, {
+    id === '0'
+      ? searchParams.delete('categoryId')
+      : searchParams.set('categoryId', id)
+    setSearchParams(searchParams)
+    fetch(`http://10.58.52.246:8001/products/filter?${query}`, {
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)
       })
-  }, [orderBy])
+  }, [query])
+
+  const handleQueryString = key => {
+    searchParams.set('orderBy', key)
+    setSearchParams(searchParams)
+  }
 
   return (
     <>
@@ -59,7 +68,7 @@ const ProductList = () => {
                       <span
                         className="dropBoxContent"
                         onClick={() => {
-                          setOrderBy(key)
+                          handleQueryString(key)
                         }}
                       >
                         {title}

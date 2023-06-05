@@ -122,7 +122,7 @@ const HEADER_DATA = {
 }
 
 const DROP_BOX = [
-  { title: '추천순', key: 'newest' },
+  { title: '추천순', key: 'recommended' },
   { title: '최신순', key: 'newest' },
   { title: '높은가격순', key: 'priceDESC' },
   { title: '낮은가격순', key: 'priceASC' },

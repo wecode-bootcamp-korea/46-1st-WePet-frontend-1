@@ -1,10 +1,10 @@
 import React from 'react'
-import './Modal.scss'
+import './CartModal.scss'
 
-const Modal = ({ isModalOpen, setIsModalOpen, deleteCartItem }) => {
+const CartModal = ({ isModalOpen, setIsModalOpen, deleteCartItem }) => {
   return (
     <>
-      <div className="modal">
+      <div className="cartModal">
         <div className="modalText">
           <p>선택된 상품을 삭제하시겠습니까?</p>
         </div>
@@ -33,4 +33,4 @@ const Modal = ({ isModalOpen, setIsModalOpen, deleteCartItem }) => {
   )
 }
 
-export default Modal
+export default CartModal

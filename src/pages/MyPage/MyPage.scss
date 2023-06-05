@@ -1,0 +1,76 @@
+.myPage {
+  width: 1200px;
+  height: 100%;
+  margin: auto;
+
+  .myPageHeader {
+    margin: 20px auto;
+    padding: 20px 0 70px 0;
+    text-align: center;
+
+    .headerTitle {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+}
+
+.myPageSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+  list-style: none;
+
+  .menuTitle {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0;
+  }
+
+  .menuText {
+    margin: 10px 0;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+.myPageMenu {
+  width: 30%;
+  height: 600px;
+  margin: 20px;
+  border-right: 1px solid #ddd;
+
+  .menuBox {
+    margin: 30px;
+  }
+}
+
+.myPageContainer {
+  width: 80%;
+  height: 600px;
+  margin: 20px;
+
+  .welcome {
+    padding: 40px;
+    font-size: 30px;
+    color: #444;
+    font-weight: 400;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    b {
+      color: #ffbb0f;
+      padding-right: 6px;
+      font-family: inherit;
+      font-weight: inherit;
+      display: inline-block;
+    }
+  }
+}

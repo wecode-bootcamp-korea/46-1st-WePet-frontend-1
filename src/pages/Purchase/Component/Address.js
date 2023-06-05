@@ -3,6 +3,7 @@ import ADDRESS_DATA from '../Data/addressData'
 
 import './Address.scss'
 
+const [isAddressSaved, setIsAddressSaved] = useState(false)
 const Address = ({ isModal, setIsModal }) => {
   const [inputValue, setInputValue] = useState({
     name: '',
@@ -19,6 +20,8 @@ const Address = ({ isModal, setIsModal }) => {
     const { name, value } = e.target
     setInputValue({ ...inputValue, [name]: value })
   }
+
+  const handleAddress = () => {}
 
   return (
     <div className="address">
@@ -57,7 +60,10 @@ const Address = ({ isModal, setIsModal }) => {
             </div>
             <div className="LowergreyLine" />
 
-            <button className={!isButtonActive ? 'applyBtn' : 'applyBtnActive'}>
+            <button
+              className={!isButtonActive ? 'applyBtn' : 'applyBtnActive'}
+              onClick={setIsAddressSaved}
+            >
               등록하기
             </button>
           </div>

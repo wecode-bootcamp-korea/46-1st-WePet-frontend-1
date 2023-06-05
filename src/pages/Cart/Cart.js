@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Count from './Count/Count'
-import Modal from './Modal/Modal'
+import CartModal from './CartModal/CartModal'
 import './Cart.scss'
 
 const Cart = () => {
@@ -80,7 +80,7 @@ const Cart = () => {
           {isModalOpen && (
             <div className="modalLayout">
               <div className="modalLayer" />
-              <Modal
+              <CartModal
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
                 deleteCartItem={deleteCartItem}

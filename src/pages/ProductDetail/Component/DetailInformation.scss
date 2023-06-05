@@ -1,0 +1,33 @@
+.detailInformation {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+
+  thead {
+    height: 50px;
+    line-height: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .titleTd {
+    width: 150px;
+    height: 50px;
+    padding: 5px;
+    border: 1px solid #cbcbcb;
+    background-color: #ededed61;
+    text-align: center;
+    line-height: 50px;
+    font-size: 13px;
+  }
+
+  .contentTd {
+    width: 750px;
+    height: 50px;
+    border: 1px solid #d4d4d4;
+    padding: 20px;
+    color: #a8a8a8;
+    font-size: 13px;
+  }
+}

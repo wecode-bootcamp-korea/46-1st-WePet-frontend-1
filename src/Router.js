@@ -24,6 +24,7 @@ function Router() {
         <Route path="/purchase" element={<Purchase />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage:id" element={<MyPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

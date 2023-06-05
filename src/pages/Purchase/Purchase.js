@@ -2,18 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
 
-import PURCHASE_LIST from './Data/purchaseListData'
 import Address from './Component/Address'
+import PurchaseModal from './Component/PurchaseModal'
 import './Purchase.scss'
-
-//1. Address Modal 끄기
-//2. 포인트 fetch 빈객체............... => .point 못읽음
-//3. map 으로 만든 list 내 input.value 각각 관리하기
-//   => 위의 3개의 input.value 가 true 이면 버튼 활성화하기
 
 const Purchase = () => {
   const [isModal, setIsModal] = useState(false)
+  const [isPurchaseModal, setIsPurchaseModal] = useState(false)
+
   const [data, setData] = useState({})
+  const [listData, setListData] = useState([])
 
   const [agreeList, setAgreeList] = useState({
     isInfoAgree: false,
@@ -36,7 +34,7 @@ const Purchase = () => {
     }
   }
 
-  const totalPrice = PURCHASE_LIST.reduce(
+  const totalPrice = listData.reduce(
     (acc, cur) => acc + cur.quantity * cur.price,
     0
   )
@@ -47,7 +45,14 @@ const Purchase = () => {
       .then(result => setData(result))
   }, [])
 
+  useEffect(() => {
+    fetch('/data/purchaseListData.json')
+      .then(response => response.json())
+      .then(result => setListData(result))
+  }, [])
+
   if (!data.point) return null
+  if (!listData) return null
 
   return (
     <>
@@ -69,7 +74,7 @@ const Purchase = () => {
             </div>
             <p className="title">주문상품</p>
             <div className="leftInnerBox">
-              {PURCHASE_LIST.map(data => {
+              {listData.map(data => {
                 return (
                   <p className="spaceBetween" key={data.id}>
                     {data.name}
@@ -197,11 +202,18 @@ const Purchase = () => {
                 isAllChecked ? 'purchaseBtnActive' : 'purchaseBtn'
               }`}
               disabled={!isAllChecked}
+              onClick={() => setIsPurchaseModal(prev => !prev)}
             >
               {totalPrice.toLocaleString()} 원 결제하기
             </button>
           </div>
           {isModal && <Address isModal={isModal} setIsModal={setIsModal} />}
+          {isPurchaseModal && (
+            <PurchaseModal
+              isPurchaseModal={isPurchaseModal}
+              setIsPurchaseModal={setIsPurchaseModal}
+            />
+          )}
         </div>
       </div>
     </>

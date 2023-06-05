@@ -8,7 +8,7 @@ const Address = ({ isModal, setIsModal }) => {
   const [inputValue, setInputValue] = useState({
     name: '',
     phone: '',
-    address: '', //post
+    address: '',
     memo: '',
   })
 
@@ -20,8 +20,6 @@ const Address = ({ isModal, setIsModal }) => {
     const { name, value } = e.target
     setInputValue({ ...inputValue, [name]: value })
   }
-
-  console.log(inputValue)
 
   return (
     <div className="address">

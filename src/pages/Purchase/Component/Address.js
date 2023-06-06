@@ -5,7 +5,7 @@ import './Address.scss'
 
 const Address = ({ setIsModal, setIsSaved, inputValue, setInputValue }) => {
   let savedAddress = []
-  const { name, phone, address } = inputValue
+  const { name, phone, address1, address2 } = inputValue
 
   const keyDownFunction = (e, type) => {
     if (type !== 'number') return
@@ -22,7 +22,7 @@ const Address = ({ setIsModal, setIsSaved, inputValue, setInputValue }) => {
     }
   }
 
-  const isButtonActive = name && phone && address
+  const isButtonActive = name && phone && address1 && address2
 
   const handleUserInput = e => {
     const { name, value } = e.target

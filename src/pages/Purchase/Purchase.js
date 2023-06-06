@@ -30,7 +30,8 @@ const Purchase = () => {
   const [inputValue, setInputValue] = useState({
     name: '',
     phone: '',
-    address: '',
+    address1: '',
+    address2: '',
     memo: '',
   })
 
@@ -86,9 +87,12 @@ const Purchase = () => {
             <div className="leftInnerBoxCenter">
               {isSaved && (
                 <div className="savedAddress">
-                  <div className="saved">{inputValue.name}</div>
+                  <div className="savedName">{inputValue.name}</div>
                   <div className="saved grey">{inputValue.phone}</div>
-                  <div className="saved">{inputValue.address}</div>
+                  <div className="saved">
+                    {inputValue.address1} {inputValue.address2}
+                  </div>
+                  <div className="saved grey">{inputValue.memo}</div>
                 </div>
               )}
               <button

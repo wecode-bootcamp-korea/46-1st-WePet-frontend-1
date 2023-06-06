@@ -44,7 +44,7 @@ const Modal = () => {
               </Link>
             </div>
             <Link to={'/mypage'}>
-              <span>1:1 문의</span>
+              <span className="personal">1:1 문의</span>
             </Link>
           </div>
           <div className="bottomLine"></div>

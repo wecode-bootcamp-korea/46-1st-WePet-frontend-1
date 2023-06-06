@@ -41,14 +41,23 @@
       justify-content: center;
       flex-wrap: wrap;
 
-      .saved {
-        width: 800px;
-        margin-left: 10px;
-        margin-bottom: 8px;
-      }
+      .savedAddress {
+        .saved {
+          width: 800px;
+          margin-left: 10px;
+          margin-bottom: 8px;
+        }
 
-      .grey {
-        color: #818181;
+        .savedName {
+          width: 800px;
+          margin-left: 10px;
+          margin-bottom: 8px;
+          font-weight: 900;
+        }
+
+        .grey {
+          color: #818181;
+        }
       }
     }
 

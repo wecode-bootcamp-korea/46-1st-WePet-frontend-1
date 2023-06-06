@@ -23,12 +23,12 @@ function Product({ sort }) {
                 <img
                   className="productImg"
                   src={item.main_image_thumbnail}
-                  alt={`${item.product_name} productImg`}
+                  alt={`${item.productName} productImg`}
                 />
                 <div className="productText">
                   <p className="itemIcon">{item.icon}</p>
-                  <p className="itemName">{item.product_name}</p>
-                  <p className="itemPrice">{item.product_price}</p>
+                  <p className="itemName">{item.productName}</p>
+                  <p className="itemPrice">{item.productPrice}</p>
                 </div>
               </div>
             </Link>

@@ -127,7 +127,6 @@ const Cart = () => {
           <ul className="cartPurchaseContainer">
             <li className="cartPurchaseKeyAmount">
               <span className="keyTitle">총 상품금액</span>
-              {/*     <span className="keyValue"></span>*/}
               <span className="keyValue">{`${totalPrice.toLocaleString()}원`}</span>
             </li>
             <li className="cartPurchaseKeyAmount">

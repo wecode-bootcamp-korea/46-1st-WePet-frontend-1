@@ -3,19 +3,9 @@ import ADDRESS_DATA from '../Data/addressData'
 
 import './Address.scss'
 
-const Address = ({ isModal, setIsModal, isSaved, setIsSaved }) => {
-  const [inputValue, setInputValue] = useState({
-    name: '',
-    phone: '',
-    address: '',
-    memo: '',
-  })
-
+const Address = ({ setIsModal, setIsSaved, inputValue, setInputValue }) => {
   let savedAddress = []
   const { name, phone, address } = inputValue
-  const none = () => {
-    return
-  }
 
   const keyDownFunction = (e, type) => {
     if (type !== 'number') return

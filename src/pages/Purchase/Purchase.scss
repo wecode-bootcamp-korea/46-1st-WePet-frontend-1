@@ -19,15 +19,15 @@
   .orderListTitle {
     margin: 50px 0px;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
+    // font-family: 'Roboto', sans-serif;
     font-size: 26px;
-    font-weight: 800;
+    font-weight: 900;
   }
 
   .orderListLeft {
     .title {
       margin-top: 80px;
-      font-family: 'Roboto', sans-serif;
+      // font-family: 'Roboto', sans-serif;
       font-size: 19px;
       font-weight: 600;
     }
@@ -44,7 +44,11 @@
       .saved {
         width: 800px;
         margin-left: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 8px;
+      }
+
+      .grey {
+        color: #818181;
       }
     }
 

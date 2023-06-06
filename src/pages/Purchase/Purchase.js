@@ -4,6 +4,7 @@ import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import Address from './Component/Address'
 import PurchaseModal from './Component/PurchaseModal'
+import ADDRESS_DATA from './Data/addressData'
 
 import './Purchase.scss'
 
@@ -25,6 +26,13 @@ const Purchase = () => {
   const { isInfoAgree, isUseAgree } = agreeList
 
   const isAllChecked = Object.values(agreeList).every(list => list === true)
+
+  const [inputValue, setInputValue] = useState({
+    name: '',
+    phone: '',
+    address: '',
+    memo: '',
+  })
 
   const compareWithPoint = () => {
     if (totalPrice <= point.point) {
@@ -77,7 +85,11 @@ const Purchase = () => {
             <p className="title">배송지</p>
             <div className="leftInnerBoxCenter">
               {isSaved && (
-                <div className="saved">배송지가 등록되었습니다 ! </div>
+                <div className="savedAddress">
+                  <div className="saved">{inputValue.name}</div>
+                  <div className="saved grey">{inputValue.phone}</div>
+                  <div className="saved">{inputValue.address}</div>
+                </div>
               )}
               <button
                 className="addressBtn"
@@ -220,6 +232,8 @@ const Purchase = () => {
               setIsModal={setIsModal}
               isSaved={isSaved}
               setIsSaved={setIsSaved}
+              inputValue={inputValue}
+              setInputValue={setInputValue}
             />
           )}
           {isPurchaseModal && (

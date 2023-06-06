@@ -9,7 +9,6 @@ const ProductList = () => {
 
   const [dropBox, isOpenDropBox] = useState(false)
   const [products, setProducts] = useState([])
-  const [orderBy, setOrderBy] = useState('newest')
   const [searchParams, setSearchParams] = useSearchParams()
 
   const query = searchParams.toString()
@@ -19,14 +18,12 @@ const ProductList = () => {
       ? searchParams.delete('categoryId')
       : searchParams.set('categoryId', id)
     setSearchParams(searchParams)
-    fetch(`http://10.58.52.246:8001/products/filter?${query}`, {
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
-    })
+    fetch(`http://10.58.52.246:8001/products/filter?${query}`)
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)
       })
-  }, [query])
+  }, [query, id])
 
   const handleQueryString = key => {
     searchParams.set('orderBy', key)
@@ -63,9 +60,10 @@ const ProductList = () => {
             {dropBox && (
               <div className="dropBoxListContainer">
                 <div className="dropBoxList">
-                  {DROP_BOX.map(({ title, key }) => {
+                  {DROP_BOX.map(({ title, key }, index) => {
                     return (
                       <span
+                        key={index}
                         className="dropBoxContent"
                         onClick={() => {
                           handleQueryString(key)
@@ -88,10 +86,11 @@ const ProductList = () => {
               main_image_thumbnail,
               product_name,
               product_price,
+              index,
             }) => {
               return (
                 <Link to={`/products/${product_category_id}`}>
-                  <div className="productItem">
+                  <div className="productItem" key={index}>
                     <img className="productImg" src={main_image_thumbnail} />
                     <div className="productText">
                       <p className="itemIcon" />

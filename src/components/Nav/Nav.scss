@@ -10,11 +10,11 @@
   height: 90px;
   line-height: 90px;
   padding: 7px;
-  margin-bottom: 90px;
+
   display: flex;
   align-items: center;
   background-color: #fff;
-  z-index: 70;
+  z-index: 300;
   font-family: 'Noto Sans KR', sans-serif;
 
   .logo {
@@ -79,6 +79,7 @@
   .ham {
     margin-right: 10px;
     margin-left: 15px;
+    z-index: 300;
     &:hover {
       cursor: pointer;
     }
@@ -97,7 +98,6 @@
   .hamTopLine {
     transform-origin: center;
     transform: translateY(10px) rotate(45deg);
-    z-index: 300;
   }
 
   .hamMidLine {
@@ -107,6 +107,5 @@
   .hamBtmLine {
     transform-origin: center;
     transform: translateY(-10px) rotate(-45deg);
-    z-index: 300;
   }
 }

@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+.purchase {
+  width: 1200px;
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0 auto;
+  .checkBox {
+    margin-bottom: 14px;
+    accent-color: #ffbb0f;
+  }
+  .radio {
+    accent-color: #ffbb0f;
+  }
+
+  .purchaseBox {
+    display: flex;
+  }
+  .orderListTitle {
+    margin: 50px 0px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+  }
+
+  .orderListLeft {
+    .title {
+      margin-top: 80px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 19px;
+      font-weight: 600;
+    }
+
+    .leftInnerBoxCenter {
+      width: 800px;
+      border-top: 1px solid #000;
+      margin-top: 10px;
+      padding-top: 18px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .saved {
+        width: 800px;
+        margin-left: 10px;
+        margin-bottom: 20px;
+      }
+    }
+
+    .leftInnerBox {
+      width: 800px;
+      margin-top: 10px;
+      padding: 10px 0px;
+      border-top: 1px solid #000;
+      font-size: 15px;
+
+      .subTitle {
+        font-weight: 900;
+        margin: 8px 0px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .spaceBetween {
+        display: flex;
+        justify-content: space-between;
+        margin: 6px 0px;
+
+        .grey {
+          color: #a0a0a0;
+        }
+      }
+    }
+
+    .leftInnerBoxBottom {
+      width: 800px;
+      margin-top: 10px;
+      padding: 10px 0px;
+      border-top: 1px solid #000;
+
+      .subTitle {
+        font-weight: 900;
+        margin-bottom: 14px;
+      }
+
+      .subTitleGrey {
+        color: #a0a0a0;
+        font-size: 14px;
+        margin-bottom: 7px;
+
+        .checkIcon {
+          margin-right: 7px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .checkIconYellow {
+          margin-right: 7px;
+          color: #ffbb0f;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .addressBtn {
+      width: 400px;
+      height: 50px;
+      border-radius: 4px;
+      background-color: #ffbb0f;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      .icon {
+        margin-left: 4px;
+        margin-right: 10px;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .orderListRight {
+    position: sticky;
+    top: 80px;
+    background-color: #f1f1f1b8;
+    border: 1px solid #e6e6e6;
+    margin-left: 30px;
+    margin-top: 108px;
+    padding: 24px;
+    width: 300px;
+    height: 400px;
+
+    .line {
+      margin: 0 auto;
+      width: 250px;
+      height: 1px;
+      background-color: #d2d2d2;
+      margin: 16px 0px;
+    }
+    .title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .spaceBetween {
+      display: flex;
+      justify-content: space-between;
+      margin: 6px 0px;
+      .grey {
+        color: #afafaf;
+      }
+    }
+
+    .purchaseBtnActive {
+      width: 264px;
+      height: 50px;
+      border-radius: 4px;
+      margin-top: 46px;
+      background-color: #ffbb0f;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .purchaseBtn {
+      width: 264px;
+      height: 50px;
+      border-radius: 4px;
+      margin-top: 46px;
+      background-color: #d2d2d2;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .check {
+      margin-top: 10px;
+      font-size: 14px;
+      margin-bottom: 7px;
+
+      .checkIcon {
+        margin-right: 7px;
+        color: #a0a0a0;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .checkIconYellow {
+        margin-right: 7px;
+        color: #ffbb0f;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

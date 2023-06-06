@@ -11,10 +11,10 @@ const Cart = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
-    fetch('/data/product.json')
+    fetch('http://10.58.52.176:8001/shopping-carts?userId=1')
       .then(res => res.json())
       .then(data => {
-        setCartData(data)
+        setCartData(data.data[0].items)
       })
   }, [])
 
@@ -28,7 +28,7 @@ const Cart = () => {
 
   const handleAllCheck = checked => {
     if (checked) {
-      setCheckItems(cartData.map(item => item.id))
+      setCheckItems(cartData.items.map(item => item.id))
     } else {
       setCheckItems([])
     }
@@ -41,7 +41,7 @@ const Cart = () => {
   }
 
   const totalPrice = cartData.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) => sum + item.productPrice * item.productQuantity,
     0
   )
 
@@ -102,15 +102,17 @@ const Cart = () => {
                       src={item.url}
                       alt={`${item.name}-product-img`}
                     />
-                    <div className="cartProductName">{item.name}</div>
+                    <div className="cartProductName">{item.productName}</div>
                     <Count
                       id={item.id}
-                      quantity={item.quantity}
+                      quantity={item.productQuantity}
                       cartData={cartData}
                       setCartData={setCartData}
                     />
                     <span className="cartProductPrice">
-                      {`${(item.price * item.quantity).toLocaleString()}원`}
+                      {`${(
+                        item.productPrice * item.productQuantity
+                      ).toLocaleString()}원`}
                     </span>
                   </li>
                 )

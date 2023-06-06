@@ -2,7 +2,7 @@
   {
     "menuParam": "order",
     "title": "주문/배송조회",
-    "content": "주문내역이 없습니다."
+    "content": "아직 주문내역이 없습니다."
   },
   {
     "menuParam": "claim",
@@ -12,12 +12,13 @@
   {
     "menuParam": "review",
     "title": "나의 상품 후기",
-    "content": "후기내역이 없습니다."
+    "content": "첫 번째 후기를 남겨주세요."
   },
   {
     "menuParam": "coupon",
-    "title": "쿠폰함",
-    "content": "발급 내역이 없습니다."
+    "title": "포인트",
+    "content": "쿠폰 발급 내역이 없습니다.",
+    "button": "포인트 추가"
   },
 
   {
@@ -28,13 +29,12 @@
   {
     "menuParam": "address",
     "title": "배송지 관리",
-    "content": "등록 배송지가 없습니다.",
-    "button": "새 배송지 추가"
+    "content": "등록 배송지가 없습니다."
   },
   {
     "menuParam": "qna",
     "title": "1:1 문의 내역",
-    "content": "문의내역이 없습니다.",
+    "content": "문의 내역이 없습니다.",
     "button": "1:1 문의하기"
   }
 ]

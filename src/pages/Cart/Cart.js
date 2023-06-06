@@ -36,7 +36,6 @@ const Cart = () => {
 
   const deleteCartItem = () => {
     const productId = checkItems[0]
-    console.log('check', productId)
     fetch(`http://10.58.52.176:8001/shopping-carts?productId=${productId}`, {
       method: 'DELETE',
       headers: {

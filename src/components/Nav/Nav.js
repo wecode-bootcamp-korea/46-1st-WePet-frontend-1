@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCartShopping,
   faMagnifyingGlass,
+  faFaceSmile,
 } from '@fortawesome/free-solid-svg-icons'
 
 import Modal from './Component/Modal'
@@ -20,6 +21,8 @@ const Nav = () => {
   const handleHoverLogo = () => {
     setIsLogoHover(prev => !prev)
   }
+
+  const [isLogin, setIsLogin] = useState(false)
 
   return (
     <>
@@ -54,8 +57,17 @@ const Nav = () => {
             <FontAwesomeIcon icon={faCartShopping} size="xl" className="icon" />
           </div>
         </Link>
+        <Link to="/mypage">
+          <div className="navIcon">
+            <FontAwesomeIcon icon={faFaceSmile} size="xl" className="icon" />
+          </div>
+        </Link>
         <Link to="/login">
-          <button className="loginBtn">로그인</button>
+          {isLogin ? (
+            <button className="loginBtn">로그아웃</button>
+          ) : (
+            <button className="loginBtn">로그인</button>
+          )}
         </Link>
         {isSearchModal ? (
           ''

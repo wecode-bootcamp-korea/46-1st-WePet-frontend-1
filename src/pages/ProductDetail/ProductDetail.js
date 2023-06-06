@@ -10,12 +10,14 @@ import DetailInformation from './Component/DetailInformation'
 import ImgCarousel from './Component/ImgCarousel'
 import Review from './Component/Review'
 import GoToTop from './Component/GoToTop'
+import Cart from './Component/Cart'
 
 import './ProductDetail.scss'
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(0)
   const [productData, setProductData] = useState({})
+  const [isCartBtn, setIsCartBtn] = useState(false)
 
   useEffect(() => {
     fetch('/data/productData.json')
@@ -55,15 +57,18 @@ const ProductDetail = () => {
             <span>{(quantity * productData.price).toLocaleString()}원</span>
           </div>
           <div className="shoppingBtn">
-            <Link to="/cart">
-              <div className="cartBtn">
-                <FontAwesomeIcon
-                  icon={faCartShopping}
-                  size="lg"
-                  className="cartIcon"
-                />
-              </div>
-            </Link>
+            <div
+              className="cartBtn"
+              onClick={() => {
+                setIsCartBtn(prev => !prev)
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faCartShopping}
+                size="lg"
+                className="cartIcon"
+              />
+            </div>
             <Link to="/purchase">
               <button className="buy">바로 구매하기</button>
             </Link>
@@ -130,6 +135,9 @@ const ProductDetail = () => {
         }}
       >
         <GoToTop />
+        {isCartBtn && (
+          <Cart isCartBtn={isCartBtn} setIsCartBtn={setIsCartBtn} />
+        )}
       </div>
     </div>
   )

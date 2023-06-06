@@ -39,9 +39,13 @@ const Modal = () => {
         <div className="modalBottom">
           <div className="inquire">
             <div className="inquireIcon">
-              <FontAwesomeIcon icon={faHeadset} size="lg" className="icon" />
+              <Link to={'/mypage'}>
+                <FontAwesomeIcon icon={faHeadset} size="lg" className="icon" />
+              </Link>
             </div>
-            <span>1:1 문의</span>
+            <Link to={'/mypage'}>
+              <span>1:1 문의</span>
+            </Link>
           </div>
           <div className="bottomLine"></div>
           <div className="emailInquire">

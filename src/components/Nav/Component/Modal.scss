@@ -4,96 +4,97 @@
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 50;
   background-color: #00000054;
-}
 
-.ham {
-  float: right;
-  margin: 5px 5px;
-  z-index: 4;
-}
-
-.modalContent {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 300px;
-  background-color: #fff;
-  padding: 20px;
-  padding-top: 60px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 20px;
-  font-weight: 900;
-  animation: modalShowRight 0.3s;
-
-  .modalPtag {
-    margin-bottom: 20px;
+  .ham {
+    float: right;
+    margin: 5px 5px;
+    z-index: 100;
   }
 
-  .ulTitle {
-    font-weight: 900;
-    font-size: 18px;
-    color: #bebebe;
-  }
-
-  .ulBox {
-    margin-bottom: 30px;
-    .list {
-      margin-bottom: 10px;
-      margin: 9px 0px;
-      font-size: 16px;
-      color: #000;
-    }
-  }
-
-  .modalBottom {
+  .modalContent {
     position: fixed;
-    width: 300px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    top: 0;
     bottom: 0;
     right: 0;
-  }
-  .inquire {
-    width: 130px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    padding-top: 60px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    animation: modalShowRight 0.3s;
 
-    &:hover {
-      cursor: pointer;
+    .modalPtag {
+      margin-bottom: 20px;
     }
-  }
-  .inquireIcon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    background-color: #000;
-    margin-right: 7px;
-    .icon {
-      color: #fff;
+
+    .ulTitle {
+      font-weight: 900;
+      font-size: 18px;
+      color: #bebebe;
     }
-  }
 
-  .bottomLine {
-    height: 20px;
-    width: 1px;
-    background-color: #bebebe;
-  }
+    .ulBox {
+      margin-bottom: 30px;
+      .list {
+        margin-bottom: 10px;
+        margin: 9px 0px;
+        font-size: 16px;
+        color: #000;
+      }
+    }
 
-  .emailInquire {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 130px;
-    &:hover {
-      cursor: pointer;
+    .modalBottom {
+      position: fixed;
+      width: 300px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: 0;
+      right: 0;
+    }
+    .inquire {
+      width: 130px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .inquireIcon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: #000;
+      margin-right: 7px;
+      .icon {
+        color: #fff;
+      }
+    }
+
+    .bottomLine {
+      height: 20px;
+      width: 1px;
+      background-color: #bebebe;
+    }
+
+    .emailInquire {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 130px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

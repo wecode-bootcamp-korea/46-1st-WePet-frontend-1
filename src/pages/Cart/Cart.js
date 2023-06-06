@@ -18,6 +18,7 @@ const Cart = () => {
       })
   }, [])
 
+  console.log(cartData)
   const handleCheck = (checked, id) => {
     if (checked) {
       setCheckItems(prev => [...prev, id])
@@ -28,7 +29,7 @@ const Cart = () => {
 
   const handleAllCheck = checked => {
     if (checked) {
-      setCheckItems(cartData.items.map(item => item.id))
+      setCheckItems(cartData.items.map(item => item.productId))
     } else {
       setCheckItems([])
     }
@@ -94,17 +95,19 @@ const Cart = () => {
                   <li className="cartProductItem" key={index}>
                     <input
                       type="checkbox"
-                      onChange={e => handleCheck(e.target.checked, item.id)}
-                      checked={checkItems.includes(item.id)}
+                      onChange={e =>
+                        handleCheck(e.target.checked, item.productId)
+                      }
+                      checked={checkItems.includes(item.productId)}
                     />
                     <img
                       className="cartProductItemImg"
-                      src={item.url}
-                      alt={`${item.name}-product-img`}
+                      src={item.productImage}
+                      alt={`${item.productName}-product-img`}
                     />
                     <div className="cartProductName">{item.productName}</div>
                     <Count
-                      id={item.id}
+                      id={item.productId}
                       quantity={item.productQuantity}
                       cartData={cartData}
                       setCartData={setCartData}

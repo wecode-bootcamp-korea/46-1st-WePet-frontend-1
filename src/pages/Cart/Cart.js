@@ -29,7 +29,7 @@ const Cart = () => {
 
   const handleAllCheck = checked => {
     if (checked) {
-      setCheckItems(cartData.items.map(item => item.productId))
+      setCheckItems(cartData.map(item => item.productId))
     } else {
       setCheckItems([])
     }

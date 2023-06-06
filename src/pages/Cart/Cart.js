@@ -18,7 +18,6 @@ const Cart = () => {
       })
   }, [])
 
-  console.log(cartData)
   const handleCheck = (checked, id) => {
     if (checked) {
       setCheckItems(prev => [...prev, id])
@@ -36,9 +35,19 @@ const Cart = () => {
   }
 
   const deleteCartItem = () => {
-    const newCartItem = cartData.filter(item => !checkItems.includes(item.id))
-    setCartData(newCartItem)
-    setCheckItems([])
+    const productId = checkItems[0]
+    console.log('check', productId)
+    fetch(`http://10.58.52.176:8001/shopping-carts?productId=${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        userId: '1',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
   }
 
   const totalPrice = cartData.reduce(

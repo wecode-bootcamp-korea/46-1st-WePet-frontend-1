@@ -6,6 +6,8 @@ import './SignUp.scss'
 
 const SignUp = () => {
   const navigate = useNavigate()
+  const passwordRegex =
+    /^(?=.*[!@#$%^&*])(?=.*[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣])(?=.*\d).{8,}$/
   const [isOpenTerms, setIsOpenTerms] = useState([false, false, false])
   const [checkItems, setCheckItems] = useState([])
   const [userInfo, setUserInfo] = useState({
@@ -23,7 +25,7 @@ const SignUp = () => {
   const infoValids = {
     email: userInfo.email.includes('@'),
     name: userInfo.name.length >= 2,
-    password: userInfo.password.length >= 8,
+    password: passwordRegex.test(userInfo.password),
     passwordConfirm: userInfo.password === userInfo.passwordConfirm,
     terms: checkItems.includes(1) && checkItems.includes(2),
   }

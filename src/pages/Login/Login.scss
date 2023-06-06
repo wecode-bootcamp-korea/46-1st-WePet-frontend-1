@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
 .Login {
+  display: flex;
+  flex-direction: column;
   width: 1200px;
   height: 100%;
   margin: 0 auto;
   padding: 80px 0 200px 0;
-  display: flex;
-  flex-direction: column;
   flex: 1;
 }
 
@@ -15,9 +17,10 @@
 
   .loginTitle {
     padding-bottom: 40px;
-    font-size: 32px;
-    font-weight: 700;
     text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
   }
 
   .loginInputContainer {
@@ -33,12 +36,12 @@
       }
 
       .input {
-        padding: 22px 20px;
-        margin-top: 10px;
-        width: 400px;
         height: 62px;
+        width: 400px;
+        padding: 22px 20px;
+        margin: 10px 0 10px 0;
         border-radius: 6px;
-        border: 1px solid lightgray;
+        border: 1px solid #dadada;
 
         &:focus {
           outline: none;
@@ -46,10 +49,10 @@
       }
 
       .inputError {
-        margin-top: 10px;
-        padding: 22px 20px;
         width: 400px;
         height: 62px;
+        margin-top: 10px;
+        padding: 22px 20px;
         border-radius: 6px;
         border: 1px solid red;
 
@@ -61,14 +64,19 @@
   }
 
   .errorMsg {
-    color: red;
-    font-size: 12px;
     padding: 10px 0 10px 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: red;
   }
 
   .saveEmail {
     width: 400px;
     margin: 20px 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
     color: gray;
   }
 
@@ -79,11 +87,14 @@
     margin-bottom: 30px;
     border: none;
     border-radius: 5px;
-    color: lightgray;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
+    background-color: rgba(241, 241, 241, 0.7215686275);
+    color: #bebebe;
   }
   .valid {
+    cursor: pointer;
     background-color: #ffbb0f;
     color: white;
   }
@@ -94,7 +105,9 @@
 
     .toSignUp {
       text-align: center;
-      font-size: 14px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
       color: gray;
 
       &:hover {

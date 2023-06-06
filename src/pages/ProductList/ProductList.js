@@ -18,7 +18,7 @@ const ProductList = () => {
       ? searchParams.delete('categoryId')
       : searchParams.set('categoryId', id)
     setSearchParams(searchParams)
-    fetch(`http://10.58.52.246:8001/products/filter?${query}`)
+    fetch(`http://10.58.52.176:8001/products/filter?offset=0&limit=40${query}`)
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)
@@ -81,21 +81,14 @@ const ProductList = () => {
 
         <div className="productListMain">
           {products.map(
-            ({
-              product_category_id,
-              main_image_thumbnail,
-              product_name,
-              product_price,
-              index,
-            }) => {
+            ({ productId, productImage, productName, productPrice, index }) => {
               return (
-                <Link to={`/products/${product_category_id}`}>
+                <Link to={`/products/${productId}`}>
                   <div className="productItem" key={index}>
-                    <img className="productImg" src={main_image_thumbnail} />
+                    <img className="productImg" src={productImage} />
                     <div className="productText">
-                      <p className="itemIcon" />
-                      <p className="itemName">{product_name}</p>
-                      <p className="itemPrice">{product_price}</p>
+                      <p className="itemName">{productName}</p>
+                      <p className="itemPrice">{productPrice}</p>
                     </div>
                   </div>
                 </Link>

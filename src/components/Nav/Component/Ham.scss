@@ -1,7 +1,9 @@
 .ham {
+  position: relative;
   margin-right: 10px;
   margin-left: 15px;
-  z-index: 1000;
+  z-index: 600;
+
   &:hover {
     cursor: pointer;
   }

@@ -12,8 +12,8 @@ const Modal = () => {
     <div className="modal">
       <div className="modalContent">
         <div className="modalPtag">
-          <p>앗!</p>
-          <p>로그인이 필요해요</p>
+          <p className="description">앗!</p>
+          <p className="description">로그인이 필요해요</p>
         </div>
         <span className="ulTitle">테마</span>
         <ul className="ulBox">

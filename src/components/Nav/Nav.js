@@ -25,6 +25,8 @@ const Nav = () => {
 
   const [isLogin, setIsLogin] = useState(false)
 
+  console.log(isSearchModal)
+
   return (
     <>
       <div className="nav">
@@ -79,6 +81,7 @@ const Nav = () => {
             // style={{ z-index:1000 }}
           />
         )}
+        {isModal && <Modal />}
       </div>
       {isSearchModal && (
         <SearchModal
@@ -86,7 +89,6 @@ const Nav = () => {
           setSearchModal={setIsSearchModal}
         />
       )}
-      {isModal && <Modal />}
     </>
   )
 }

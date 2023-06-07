@@ -28,6 +28,7 @@ const ProductDetail = () => {
     fetch(`http://10.58.52.81:8001/products/details/${productId}`)
       .then(response => response.json())
       .then(result => {
+        console.log(result)
         setProductData(result.data)
       })
   }, [productId])
@@ -52,7 +53,7 @@ const ProductDetail = () => {
 
         <div className="productRight">
           <div className="line" />
-          <p>배송정보</p>
+          <p className="delivery">배송정보</p>
           <p className="grey">3,000원 &#40; 30,000원 이상 구매 시 무료&#41;</p>
           <p className="grey">오후 1시 당일배송마감</p>
           <div className="line" />

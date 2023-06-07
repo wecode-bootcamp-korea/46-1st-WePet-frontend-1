@@ -11,6 +11,7 @@ const PageContent = ({ title, content, button }) => {
           <h1 className="pageContentTitle">{title}</h1>
           {button && (
             <button
+              className="modalBtn"
               onClick={() => {
                 setIsModalOpen(!isModalOpen)
               }}
@@ -38,10 +39,7 @@ const PageContent = ({ title, content, button }) => {
         {isModalOpen && (
           <div className="modalLayout">
             <div className="modalLayer" />
-            <MyPageModal
-              isModalOpen={isModalOpen}
-              setIsModalOpen={setIsModalOpen}
-            />
+            <MyPageModal setIsModalOpen={setIsModalOpen} />
           </div>
         )}
         <h1 className="pageContentTitle">{title}</h1>
@@ -56,7 +54,7 @@ const PageContent = ({ title, content, button }) => {
         )}
       </div>
       <div className="pageContentText">
-        <h3>앗!</h3>
+        <h3 className="exclamation">앗!</h3>
         <div className="text">{content}</div>
       </div>
     </div>

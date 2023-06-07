@@ -67,7 +67,7 @@ const MyPage = () => {
               <h4 className="welcome">
                 반가워요,
                 <p>
-                  <b>WePet</b>님
+                  <b className="userName">WePet</b>님
                 </p>
               </h4>
             )}

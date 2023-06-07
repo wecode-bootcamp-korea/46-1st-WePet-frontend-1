@@ -1,16 +1,20 @@
 import React from 'react'
 import './MyPageModal.scss'
 
-const MyPageModal = ({ isModalOpen, setIsModalOpen }) => {
+const MyPageModal = ({ setIsModalOpen }) => {
   return (
     <>
       <div className="myPageModal">
         <form className="modalText">
           <h1 className="modalTitle">1:1 문의 작성</h1>
-          <input type="text" placeholder="항목을 선택해주세요" />
+          <input
+            type="text"
+            placeholder="항목을 선택해주세요"
+            className="categoryOption"
+          />
           <div className="orderInfo">
-            <input type="text" placeholder="주문번호" />
-            <button>주문번호 선택</button>
+            <input type="text" classNumber="orderNo" placeholder="주문번호" />
+            <button className="selectBtn">주문번호 선택</button>
           </div>
           <input type="text" placeholder="문의제목" />
           <textarea
@@ -24,7 +28,7 @@ const MyPageModal = ({ isModalOpen, setIsModalOpen }) => {
           <button
             className="submitBtn"
             onClick={() => {
-              setIsModalOpen(!isModalOpen)
+              setIsModalOpen(prev => !prev)
             }}
           >
             문의하기

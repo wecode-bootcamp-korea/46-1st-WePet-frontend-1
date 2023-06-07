@@ -11,15 +11,15 @@ const ImgCarousel = () => {
   const [isCarousel, setIsCarousel] = useState(false)
 
   useEffect(() => {
-    fetch('/data/productData.json')
+    fetch('http://10.58.52.81:8001/products/details/1')
       .then(response => response.json())
-      .then(result => setProductData(result))
+      .then(result => setProductData(result.data))
   }, [])
 
   if (
     !productData ||
-    !productData.productImg ||
-    productData.productImg.length === 0
+    !productData?.mainThumbnailImage ||
+    productData?.extraImages.length === 0
   ) {
     return null
   }
@@ -29,12 +29,12 @@ const ImgCarousel = () => {
       <div className={`imgBox ${isCarousel ? '' : 'carousel'}`}>
         <img
           className="mainImg"
-          src={productData.productImg[0]}
+          src={productData.extraImages[0]}
           alt="productImage"
         />
         <img
           className="mainImg"
-          src={productData.productImg[1]}
+          src={productData.extraImages[1]}
           alt="productImage"
         />
       </div>

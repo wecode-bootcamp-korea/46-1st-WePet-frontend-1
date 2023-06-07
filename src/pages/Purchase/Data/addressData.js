@@ -15,9 +15,16 @@ const ADDRESS_DATA = [
   },
   {
     title: '주소',
-    titleHolder: '주소를 검색해주세요.',
+    titleHolder: '주소를 입력해주세요.',
     type: 'text',
-    name: 'address',
+    name: 'address1',
+    must: '*',
+  },
+  {
+    title: '상세주소',
+    titleHolder: '주소를 입력해주세요.',
+    type: 'text',
+    name: 'address2',
     must: '*',
   },
   {

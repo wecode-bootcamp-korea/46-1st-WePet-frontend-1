@@ -8,14 +8,30 @@ import PurchaseModal from './Component/PurchaseModal'
 import './Purchase.scss'
 
 const Purchase = () => {
+  useEffect(() => {
+    fetch('/data/pointData.json')
+      .then(response => response.json())
+      .then(result => setPoint(result))
+  }, [])
+
+  useEffect(() => {
+    fetch('/data/purchaseCartData.json')
+      .then(response => response.json())
+      .then(result => setCartData(result))
+    console.log(cartData)
+  }, [])
+
+  const [pointData, setPointData] = useState({})
+
   const [isModal, setIsModal] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
+  const [isCheckedRadio, setIsCheckedRadio] = useState(false)
 
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
-  const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(false)
+  // const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(false)
 
   const [point, setPoint] = useState({})
-  const [listData, setListData] = useState([])
+  const [cartData, setCartData] = useState()
 
   const [agreeList, setAgreeList] = useState({
     isInfoAgree: false,
@@ -26,15 +42,30 @@ const Purchase = () => {
 
   const isAllChecked = Object.values(agreeList).every(list => list === true)
 
-  const compareWithPoint = () => {
-    if (totalPrice <= point.point) {
-      setIsPurchaseModalValue(true)
-      console.log(isPurchaseModalValue)
-    } else {
-      setIsPurchaseModalValue(false)
-      console.log(isPurchaseModalValue)
-    }
-  }
+  const [inputValue, setInputValue] = useState({
+    name: '',
+    phone: '',
+    address1: '',
+    address2: '',
+    memo: '',
+  })
+
+  if (!cartData) return null
+
+  const totalPrice = cartData.reduce(
+    (acc, cur) => acc + cur.quantity * cur.price,
+    0
+  )
+
+  const isPurchaseModalValue = totalPrice <= point.points
+
+  // const compareWithPoint = () => {
+  //   if (totalPrice <= point.points) {
+  //     setIsPurchaseModalValue(true)
+  //   } else {
+  //     setIsPurchaseModalValue(false)
+  //   }
+  // }
 
   const handleAgree = name => {
     setAgreeList(prev => ({ ...prev, [name]: !prev[name] }))
@@ -48,25 +79,8 @@ const Purchase = () => {
     }
   }
 
-  const totalPrice = listData.reduce(
-    (acc, cur) => acc + cur.quantity * cur.price,
-    0
-  )
-
-  useEffect(() => {
-    fetch('/data/pointData.json')
-      .then(response => response.json())
-      .then(result => setPoint(result))
-  }, [])
-
-  useEffect(() => {
-    fetch('/data/purchaseListData.json')
-      .then(response => response.json())
-      .then(result => setListData(result))
-  }, [])
-
-  if (!point.point) return null
-  if (!listData) return null
+  if (!point.points) return null
+  if (!cartData) return null
 
   return (
     <>
@@ -77,7 +91,14 @@ const Purchase = () => {
             <p className="title">배송지</p>
             <div className="leftInnerBoxCenter">
               {isSaved && (
-                <div className="saved">배송지가 등록되었습니다 ! </div>
+                <div className="savedAddress">
+                  <div className="savedName">{inputValue.name}</div>
+                  <div className="saved grey">{inputValue.phone}</div>
+                  <div className="saved">
+                    {inputValue.address1} {inputValue.address2}
+                  </div>
+                  <div className="saved grey">{inputValue.memo}</div>
+                </div>
               )}
               <button
                 className="addressBtn"
@@ -91,7 +112,7 @@ const Purchase = () => {
             </div>
             <p className="title">주문상품</p>
             <div className="leftInnerBox">
-              {listData.map(data => {
+              {cartData.map(data => {
                 return (
                   <p className="spaceBetween" key={data.id}>
                     {data.name}
@@ -104,11 +125,17 @@ const Purchase = () => {
             <div className="leftInnerBox">
               <div className="spaceBetween">
                 <div>
-                  <input className="radio" type="radio" />
+                  <input
+                    className="radio"
+                    type="radio"
+                    onClick={() => {
+                      setIsCheckedRadio(prev => !prev)
+                    }}
+                  />
                   <span>포인트결제</span>
                 </div>
                 <span className="grey">
-                  총 {point.point.toLocaleString()}포인트 사용 가능
+                  총 {point.points.toLocaleString()}포인트 사용 가능
                 </span>
               </div>
             </div>
@@ -200,12 +227,14 @@ const Purchase = () => {
             </div>
             <button
               className={`${
-                isAllChecked && isSaved ? 'purchaseBtnActive' : 'purchaseBtn'
+                isAllChecked && isSaved && isCheckedRadio
+                  ? 'purchaseBtnActive'
+                  : 'purchaseBtn'
               }`}
-              disabled={!isAllChecked && isSaved}
+              disabled={!isAllChecked && isSaved && isCheckedRadio}
               onClick={() => {
                 setIsPurchaseModal(prev => !prev)
-                compareWithPoint()
+                // compareWithPoint()
               }}
             >
               {totalPrice > 30000
@@ -220,6 +249,8 @@ const Purchase = () => {
               setIsModal={setIsModal}
               isSaved={isSaved}
               setIsSaved={setIsSaved}
+              inputValue={inputValue}
+              setInputValue={setInputValue}
             />
           )}
           {isPurchaseModal && (

@@ -9,7 +9,7 @@ const Slider = ({ data }) => {
 
   useEffect(() => {
     fetch(`${APIS.product}/category?id=${data}`)
-      .then(response => response.json())
+     .then(response => response.json())
       .then(data => setProductData(data.data))
   }, [])
 

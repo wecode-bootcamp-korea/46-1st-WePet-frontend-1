@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCartShopping,
   faMagnifyingGlass,
+  faFaceSmile,
 } from '@fortawesome/free-solid-svg-icons'
 
 import Modal from './Component/Modal'
 import SearchModal from './Component/SearchModal'
 import MENU_DATA from './data/navData'
+import Ham from './Component/Ham'
 
 import './Nav.scss'
 
@@ -21,6 +23,10 @@ const Nav = () => {
     setIsLogoHover(prev => !prev)
   }
 
+  const [isLogin, setIsLogin] = useState(false)
+
+  console.log(isSearchModal)
+
   return (
     <>
       <div className="nav">
@@ -31,9 +37,9 @@ const Nav = () => {
           />
         </Link>
         <div className="category">
-          {MENU_DATA.map(data => {
+          {MENU_DATA.map((data, key, index) => {
             return (
-              <Link to={data.link}>
+              <Link to={data.link} key={key} index={index}>
                 <span className="categoryName">{data.name}</span>
               </Link>
             )
@@ -54,23 +60,26 @@ const Nav = () => {
             <FontAwesomeIcon icon={faCartShopping} size="xl" className="icon" />
           </div>
         </Link>
+        <Link to="/mypage">
+          <div className="navIcon">
+            <FontAwesomeIcon icon={faFaceSmile} size="xl" className="icon" />
+          </div>
+        </Link>
         <Link to="/login">
-          <button className="loginBtn">로그인</button>
+          <button className="loginBtn">
+            {isLogin ? '로그아웃' : '로그인'}
+          </button>
         </Link>
         {isSearchModal ? (
           ''
         ) : (
-          <div
-            className="ham"
-            onClick={() => {
-              setIsModal(prev => !prev)
-            }}
-          >
-            <div className={`line ${isModal && 'hamTopLine'}`}></div>
-            <div className={`line ${isModal && 'hamMidLine'}`}></div>
-            <div className={`line ${isModal && 'hamBtmLine'}`}></div>
-          </div>
+          <Ham
+            setIsModal={setIsModal}
+            isModal={isModal}
+            // style={{ z-index:1000 }}
+          />
         )}
+        {isModal && <Modal />}
       </div>
       {isSearchModal && (
         <SearchModal
@@ -78,7 +87,6 @@ const Nav = () => {
           setSearchModal={setIsSearchModal}
         />
       )}
-      {isModal && <Modal />}
     </>
   )
 }

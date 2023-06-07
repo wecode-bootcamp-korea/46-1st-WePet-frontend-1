@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { APIS } from '../../config'
 import './Login.scss'
 
 const Login = () => {
@@ -21,7 +22,7 @@ const Login = () => {
   const isAllValidation = isError && signValidation
 
   const signIn = () => {
-    fetch('http://10.58.52.245:3000/users/login', {
+    fetch(APIS.login, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({

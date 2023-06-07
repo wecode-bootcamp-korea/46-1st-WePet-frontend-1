@@ -9,12 +9,12 @@ const Cart = () => {
   const [cartData, setCartData] = useState([])
   const [checkItems, setCheckItems] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const TOKEN = localStorage.getItem('TOKEN')
 
   const getCartItem = () => {
     fetch('http://10.58.52.81:8001/shopping-carts?userId=4', {
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
+        Authorization: TOKEN,
       },
     })
       .then(res => res.json())
@@ -52,8 +52,7 @@ const Cart = () => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
+        Authorization: TOKEN,
       },
     })
       .then(res => {
@@ -74,8 +73,7 @@ const Cart = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          Authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
+          Authorization: TOKEN,
         },
         body: JSON.stringify({ userId: 4 }),
       }

@@ -2,13 +2,14 @@ import React from 'react'
 import './Count.scss'
 
 const Count = ({ id, quantity, getCartItem }) => {
+  const TOKEN = localStorage.getItem('TOKEN')
+
   const handleAdd = () => {
     fetch('http://10.58.52.81:8001/shopping-carts/add/single-item', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
+        Authorization: TOKEN,
       },
       body: JSON.stringify({ productId: id }),
     })
@@ -23,8 +24,7 @@ const Count = ({ id, quantity, getCartItem }) => {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
+        Authorization: TOKEN,
       },
       body: JSON.stringify({ productId: id }),
     })

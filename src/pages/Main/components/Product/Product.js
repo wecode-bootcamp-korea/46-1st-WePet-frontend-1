@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { APIS } from '../../../../config'
 import './Product.scss'
 
 function Product({ sort }) {
   const [recommendData, setRecommendData] = useState([])
 
   useEffect(() => {
-    fetch(
-      `http://10.58.52.81:8001/products/filter?orderBy=${sort}&offset=0&limit=10`
-    )
-      .then(response => {
-        console.log(response)
-        return response.json()
-      })
+    fetch(`${APIS.product}/filter?orderBy=${sort}&offset=0&limit=10`)
+      .then(response => response.json())
       .then(data => setRecommendData(data.data))
   }, [])
 

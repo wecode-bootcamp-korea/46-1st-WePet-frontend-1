@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link, useSearchParams } from 'react-router-dom'
+import { APIS } from '../../config'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import './ProductList.scss'
@@ -18,7 +19,7 @@ const ProductList = () => {
       ? searchParams.delete('categoryId')
       : searchParams.set('categoryId', id)
     setSearchParams(searchParams)
-    fetch(`http://10.58.52.81:8001/products/filter?offset=0&limit=40${query}`)
+    fetch(`${APIS.product}/filter?offset=0&limit=40${query}`)
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)
@@ -31,75 +32,73 @@ const ProductList = () => {
   }
 
   return (
-    <>
-      <div className="productList">
-        <header className="productListHeader">
-          <h1 className="productListTitle">
-            {HEADER_DATA[id].title}
-            <sup className="totalQuantity">총 {products.length} 개</sup>
-          </h1>
+    <div className="productList">
+      <header className="productListHeader">
+        <h1 className="productListTitle">
+          {HEADER_DATA[id].title}
+          <sup className="totalQuantity">총 {products.length} 개</sup>
+        </h1>
 
-          <div className="headerContentBox">
-            <p
-              className="headerContent"
-              dangerouslySetInnerHTML={{ __html: HEADER_DATA[id].descripion }}
-            ></p>
-          </div>
-        </header>
-        <div className="filterBox">
-          <div className="dropBoxWrapper">
-            <button
-              className="dropBox"
-              onClick={() => {
-                isOpenDropBox(prev => !prev)
-              }}
-            >
-              추천순
-              <FontAwesomeIcon className="dropBoxArrow" icon={faChevronDown} />
-            </button>
-            {dropBox && (
-              <div className="dropBoxListContainer">
-                <div className="dropBoxList">
-                  {DROP_BOX.map(({ title, key }, index) => {
-                    return (
-                      <span
-                        key={index}
-                        className="dropBoxContent"
-                        onClick={() => {
-                          handleQueryString(key)
-                        }}
-                      >
-                        {title}
-                      </span>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
+        <div className="headerContentBox">
+          <p
+            className="headerContent"
+            dangerouslySetInnerHTML={{ __html: HEADER_DATA[id].descripion }}
+          ></p>
         </div>
-
-        <div className="productListMain">
-          {products.map(
-            ({ productId, productImage, productName, productPrice, index }) => {
-              return (
-                <Link to={`/products/details/${productId}`}>
-                  <div className="productItem" key={index}>
-                    <img className="productImg" src={productImage} />
-                    <div className="productText">
-                      <p className="itemName">{productName}</p>
-                      <p className="itemPrice">{`${parseFloat(
-                        productPrice
-                      ).toLocaleString()}원`}</p>
-                    </div>
-                  </div>
-                </Link>
-              )
-            }
+      </header>
+      <div className="filterBox">
+        <div className="dropBoxWrapper">
+          <button
+            className="dropBox"
+            onClick={() => {
+              isOpenDropBox(prev => !prev)
+            }}
+          >
+            추천순
+            <FontAwesomeIcon className="dropBoxArrow" icon={faChevronDown} />
+          </button>
+          {dropBox && (
+            <div className="dropBoxListContainer">
+              <div className="dropBoxList">
+                {DROP_BOX.map(({ title, key }, index) => {
+                  return (
+                    <span
+                      key={index}
+                      className="dropBoxContent"
+                      onClick={() => {
+                        handleQueryString(key)
+                      }}
+                    >
+                      {title}
+                    </span>
+                  )
+                })}
+              </div>
+            </div>
           )}
         </div>
       </div>
-    </>
+
+      <div className="productListMain">
+        {products.map(
+          ({ productId, productImage, productName, productPrice, index }) => {
+            return (
+              <Link to={`/products/details/${productId}`}>
+                <div className="productItem" key={index}>
+                  <img className="productImg" src={productImage} />
+                  <div className="productText">
+                    <p className="itemName">{productName}</p>
+                    <p className="itemPrice">{`${parseFloat(
+                      productPrice
+                    ).toLocaleString()}원`}</p>
+                  </div>
+                </div>
+              </Link>
+            )
+          }
+        )}
+      </div>
+    </div>
   )
 }
 

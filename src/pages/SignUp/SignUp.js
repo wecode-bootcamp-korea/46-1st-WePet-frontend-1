@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import UserModal from '../Login/component/UserModal'
+import { APIS } from '../../config'
 import TermsList from './TermsList'
 import { TERMS_BOX } from './termsBox'
 import './SignUp.scss'
-import '../Login/component/UserModal'
+import '../Login/component/UserModal.scss'
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -38,7 +39,7 @@ const SignUp = () => {
   })
 
   const signupHandler = () => {
-    fetch('http://10.58.52.92:3000/users/signup', {
+    fetch(APIS.signup, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({

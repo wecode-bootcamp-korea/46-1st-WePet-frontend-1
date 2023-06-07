@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import UserModal from './component/UserModal'
-import './component/UserModal.scss'
+import { APIS } from '../../config'
 import './Login.scss'
+import './component/UserModal.scss'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -24,7 +25,7 @@ const Login = () => {
   const isAllValidation = isError && signValidation
 
   const signIn = () => {
-    fetch('http://10.58.52.92:3000/users/login', {
+    fetch(APIS.login, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({

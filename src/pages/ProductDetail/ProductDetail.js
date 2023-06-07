@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
@@ -15,17 +15,22 @@ import Cart from './Component/Cart'
 import './ProductDetail.scss'
 
 const ProductDetail = () => {
+  const params = useParams()
+  const productId = params.id
+
+  const [products, setProducts] = useState()
+
   const [quantity, setQuantity] = useState(0)
   const [productData, setProductData] = useState({})
   const [isCartBtn, setIsCartBtn] = useState(false)
 
   useEffect(() => {
-    fetch('http://10.58.52.81:8001/products/details/1')
+    fetch(`http://10.58.52.81:8001/products/details/${productId}`)
       .then(response => response.json())
       .then(result => {
         setProductData(result.data)
       })
-  }, [])
+  }, [productId])
 
   console.log(productData)
 

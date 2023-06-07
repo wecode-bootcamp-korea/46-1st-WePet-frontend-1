@@ -49,11 +49,6 @@ const Purchase = () => {
     memo: '',
   })
 
-  const [savedPoint, setSavedPoint] = useState({
-    currentPoint: '',
-    usedPoint: '',
-  })
-
   const totalPrice = cartData.reduce(
     (acc, cur) => acc + cur.quantity * cur.price,
     0

@@ -77,25 +77,14 @@ const ProductDetail = () => {
       </div>
       <div className="rowLine" />
       <div className="table">
-        <span
-          className="greyTitle"
-          onClick={() => {
-            const element = document.querySelector('.detailInformationBox')
-            if (element) {
-              const y = element.getBoundingClientRect().top + window.pageYOffset
-              window.scrollTo({ top: y, behavior: 'smooth' })
-            }
-          }}
-        >
-          상품정보
-        </span>
+        <span className="greyTitle">상품정보</span>
         <div className="columnLine" />
         <span
           className="greyTitle"
           onClick={() => {
             const element = document.querySelector('.detailInformationBox')
             if (element) {
-              const y = element.getBoundingClientRect().top + window.pageYOffset
+              const y = element.getBoundingClientRect().top - 100
               window.scrollTo({ top: y, behavior: 'smooth' })
             }
           }}
@@ -108,7 +97,7 @@ const ProductDetail = () => {
           onClick={() => {
             const element = document.querySelector('.reviewBox')
             if (element) {
-              const y = element.getBoundingClientRect().top + window.pageYOffset
+              const y = element.getBoundingClientRect().top
               window.scrollTo({ top: y, behavior: 'smooth' })
             }
           }}

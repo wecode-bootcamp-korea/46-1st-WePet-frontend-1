@@ -21,7 +21,7 @@ const Login = () => {
   const isAllValidation = isError && signValidation
 
   const signIn = () => {
-    fetch('http://10.58.52.245:3000/users/login', {
+    fetch('http://10.58.52.92:3000/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -34,7 +34,7 @@ const Login = () => {
       })
       .then(response => {
         if (response.messge === 'LOGIN_SUCCESS') {
-          // localStorage.setItem('TOKEN', response.data.accessToken) 추가구현예정
+          localStorage.setItem('TOKEN', response.result)
           navigate('/main')
         } else {
           alert('로그인에 실패하셨습니다.')

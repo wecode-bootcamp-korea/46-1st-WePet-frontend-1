@@ -19,8 +19,8 @@ const CartModal = ({ isModalOpen, setIsModalOpen, deleteCartItem }) => {
           </button>
           <button
             className="deleteBtn"
-            onClick={() => {
-              deleteCartItem()
+            onClick={e => {
+              deleteCartItem(e)
               setIsModalOpen(!isModalOpen)
             }}
           >

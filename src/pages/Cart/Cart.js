@@ -19,8 +19,7 @@ const Cart = () => {
     })
       .then(res => res.json())
       .then(data => {
-        //  setCartData(data.data[0].items)
-        console.log(data.data)
+        setCartData(data.data[0].items)
       })
   }, [])
 
@@ -40,18 +39,24 @@ const Cart = () => {
     }
   }
 
-  const deleteCartItem = () => {
-    const productId = checkItems[0]
-    fetch(`http://10.58.52.176:8001/shopping-carts?productId=${productId}`, {
+  const deleteCartItem = e => {
+    console.log(e.target)
+    fetch(`http://10.58.52.81:8001/shopping-carts/remove/single-item/`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        userId: '1',
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
       },
+      body: JSON.stringify({ userId: 4 }),
+      // redirect: 'follow',
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        setCartData(data.data[0].items)
+      })
+      .catch(error => {
+        console.error('Error:', error)
       })
   }
 

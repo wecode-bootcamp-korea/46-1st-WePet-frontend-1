@@ -1,27 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
 .productList {
+  display: flex;
+  flex-direction: column;
   width: 1200px;
   margin: auto;
 
   .productListHeader {
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid #dadada;
     padding: 80px 0 40px 0;
 
     .productListTitle {
-      font-size: 55px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 700;
+      font-size: 50px;
       display: flex;
 
       .totalQuantity {
+        font-family: 'Noto Sans KR', sans-serif;
         font-size: 12px;
         margin: 5px 0px 0px 14px;
       }
     }
     .headerContentBox {
-      margin-top: 15px;
-      font-size: 15px;
+      margin-top: 30px;
       text-align: left;
 
       .headerContent {
-        height: 25px;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 300;
       }
     }
   }
@@ -35,6 +42,8 @@
     }
     .dropBox {
       height: 33px;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 16px;
       border: none;
       background-color: white;
@@ -49,20 +58,25 @@
     position: absolute;
     top: 100%;
     transform: translateX(-40px);
+    background-color: white;
 
     .dropBoxList {
       min-width: 120px;
-      border: 1px solid lightgray;
+      border: 1px solid #dadada;
 
       .dropBoxContent {
         min-height: 49px;
         padding: 10px 16px;
         display: flex;
         align-items: center;
+        cursor: pointer;
         background-color: white;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 300;
 
         &:hover {
-          background-color: #ebebeb;
+          background-color: rgba(241, 241, 241, 0.7215686275);
+          color: #ffbb0f;
         }
       }
     }
@@ -77,30 +91,35 @@
     .productItem {
       width: 282px;
       height: 377px;
-      border: none;
       margin-top: 60px;
+      border: none;
 
       .productImg {
         width: 282px;
         height: 282px;
+        &:hover {
+          transform: scale(1.05);
+        }
       }
       .productText {
-        margin-top: 20px;
         height: 53px;
+        margin-top: 20px;
         text-align: center;
-
-        .itemIcon {
-          font-size: 12px;
-        }
 
         .itemName {
           height: 24px;
           margin: 0;
+          padding-top: 5px;
+          font-family: 'Noto Sans KR', sans-serif;
+          font-weight: 300;
         }
 
         .itemPrice {
-          margin-top: 10px;
           height: 19px;
+          margin-top: 10px;
+          margin-bottom: 0;
+          font-family: 'Noto Sans KR', sans-serif;
+          font-weight: 300;
         }
       }
     }

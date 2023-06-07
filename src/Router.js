@@ -20,10 +20,11 @@ function Router() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/productlist/:id" element={<ProductList />} />
-        <Route path="/productdetail" element={<ProductDetail />} />
+        <Route path="/products/details/:id" element={<ProductDetail />} />
         <Route path="/purchase" element={<Purchase />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage/:id" element={<MyPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

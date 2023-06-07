@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
 .cart {
   width: 1200px;
   height: 100%;
@@ -9,8 +11,9 @@
     text-align: center;
 
     .headerTitle {
-      font-size: 2rem;
-      font-weight: bold;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
     }
   }
 
@@ -19,7 +22,7 @@
     align-items: center;
     justify-content: space-around;
     padding: 10px 0;
-    border-top: 1px solid #ddd;
+    border-top: 1px #bebebe solid;
 
     input[type='checkbox'] {
       accent-color: #ffbb0f;
@@ -32,7 +35,7 @@
     height: 600px;
     margin: 20px;
     overflow-y: scroll;
-    border-right: 1px solid #ddd;
+    border-right: 1px #bebebe solid;
 
     .cartProductOption {
       display: flex;
@@ -40,11 +43,15 @@
       width: 95%;
       padding-bottom: 1rem;
       color: #777;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
 
       .cartProductDeleteBtn {
         border: none;
-        color: #777;
+        background-color: rgba(241, 241, 241, 0.7215686275);
+        font-family: 'Noto Sans KR', sans-serif;
         font-size: 1rem;
+        font-weight: 300;
       }
     }
 
@@ -60,11 +67,13 @@
         justify-content: space-between;
         width: 681px;
         padding: 24px 0;
-        border-top: 1px solid #ddd;
+        border-top: 1px #bebebe solid;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 300;
       }
 
       .cartProductItem:last-child {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px #bebebe solid;
       }
     }
 
@@ -75,13 +84,16 @@
       text-align: center;
 
       .alertTitle {
+        font-family: 'Noto Sans KR', sans-serif;
         font-size: 54px;
-        font-weight: 400;
+        font-weight: 500;
       }
 
       .alertText {
         margin-top: 20px;
+        font-family: 'Noto Sans KR', sans-serif;
         font-size: 18px;
+        font-weight: 300;
         line-height: 27px;
       }
     }
@@ -94,11 +106,15 @@
 
       .cartProductName {
         width: 300px;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 300;
         white-space: normal;
       }
 
       .cartProductPrice {
         width: 61px;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 500;
         text-align: center;
         white-space: nowrap;
       }
@@ -121,18 +137,20 @@
       &:first-child {
         margin-top: 20px;
         padding-top: 25px;
-        border-top: 1px solid #ddd;
+        border-top: 1px #bebebe solid;
       }
 
       &:nth-child(2) {
         margin-top: 10px;
         margin-bottom: 20px;
         padding-bottom: 25px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px #bebebe solid;
       }
 
       .keyTitle {
         color: #777777;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: 300;
       }
     }
 
@@ -142,7 +160,9 @@
       width: 90%;
       margin: 30px 0 15px 12px;
       color: #ffbb0f;
+      font-family: 'Noto Sans KR', sans-serif;
       font-weight: bold;
+      font-weight: 500;
     }
 
     .cartPurchaseBtn {
@@ -153,7 +173,8 @@
       border-radius: 5px;
       background-color: #ffbb0f;
       color: white;
-      font-weight: bold;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 500;
       letter-spacing: 1px;
 
       &:hover {
@@ -182,7 +203,9 @@
         border-radius: 10px;
         background-color: #ffbb0f;
         color: white;
+        font-family: 'Noto Sans KR', sans-serif;
         font-size: 14px;
+        font-weight: 300;
         line-height: 10px;
         text-align: center;
       }

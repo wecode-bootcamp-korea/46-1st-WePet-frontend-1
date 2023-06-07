@@ -12,7 +12,7 @@ const SliderContent = ({ firstSlide, productData }) => {
               <div className="sliderItem">
                 <img
                   className="sliderImg"
-                  src={item.mainThumbnailImage}
+                  src={item.productImage}
                   alt="productChoice"
                 />
                 <div className="sliderText">

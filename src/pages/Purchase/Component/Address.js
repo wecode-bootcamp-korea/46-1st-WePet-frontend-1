@@ -3,19 +3,8 @@ import ADDRESS_DATA from '../Data/addressData'
 
 import './Address.scss'
 
-const Address = ({ isModal, setIsModal, isSaved, setIsSaved }) => {
-  const [inputValue, setInputValue] = useState({
-    name: '',
-    phone: '',
-    address: '',
-    memo: '',
-  })
-
-  let savedAddress = []
-  const { name, phone, address } = inputValue
-  const none = () => {
-    return
-  }
+const Address = ({ setIsModal, setIsSaved, inputValue, setInputValue }) => {
+  const { name, phone, address1, address2 } = inputValue
 
   const keyDownFunction = (e, type) => {
     if (type !== 'number') return
@@ -32,7 +21,7 @@ const Address = ({ isModal, setIsModal, isSaved, setIsSaved }) => {
     }
   }
 
-  const isButtonActive = name && phone && address
+  const isButtonActive = name && phone && address1 && address2
 
   const handleUserInput = e => {
     const { name, value } = e.target
@@ -55,9 +44,9 @@ const Address = ({ isModal, setIsModal, isSaved, setIsSaved }) => {
         <div className="addressInnerBox">
           <div className="greyLine">
             <div className="addressMapBox">
-              {ADDRESS_DATA.map(data => {
+              {ADDRESS_DATA.map((data, key, index) => {
                 return (
-                  <div className="addressInput">
+                  <div className="addressInput" key={key} index={index}>
                     <p className="title">
                       {data.title}
                       <span className="must"> {data.must}</span>

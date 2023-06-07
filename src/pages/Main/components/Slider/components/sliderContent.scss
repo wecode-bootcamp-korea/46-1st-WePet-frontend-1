@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
 .sliderContent {
   display: flex;
   position: absolute;
@@ -38,12 +40,16 @@
     .sliderName {
       height: 24px;
       margin: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
       white-space: nowrap;
     }
 
     .sliderPrice {
       height: 19px;
       margin-bottom: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
     }
   }
 }

@@ -26,7 +26,7 @@ const SearchModal = ({ searchModal, setSearchModal }) => {
           />
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
-            size="lg"
+            size="xl"
             className="icon"
           />
         </div>

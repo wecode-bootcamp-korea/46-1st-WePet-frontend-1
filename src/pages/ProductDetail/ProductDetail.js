@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
@@ -10,60 +10,77 @@ import DetailInformation from './Component/DetailInformation'
 import ImgCarousel from './Component/ImgCarousel'
 import Review from './Component/Review'
 import GoToTop from './Component/GoToTop'
+import Cart from './Component/Cart'
 
 import './ProductDetail.scss'
 
 const ProductDetail = () => {
+  const params = useParams()
+  const productId = params.id
+
+  const [products, setProducts] = useState()
+
   const [quantity, setQuantity] = useState(0)
   const [productData, setProductData] = useState({})
+  const [isCartBtn, setIsCartBtn] = useState(false)
 
   useEffect(() => {
-    fetch('/data/productData.json')
+    fetch(`http://10.58.52.81:8001/products/details/${productId}`)
       .then(response => response.json())
-      .then(result => setProductData(result))
-  }, [])
+      .then(result => {
+        console.log(result)
+        setProductData(result.data)
+      })
+  }, [productId])
 
-  let detailImgArr = productData.detailImg
+  console.log(productData)
 
-  if (!productData.price) return null
+  if (!productData?.productPrice) return null
+  if (!productData?.extraImages) return null
+
+  const productPriceNum = Number(productData.productPrice)
+  const detailImages = productData.extraImages
 
   return (
     <div className="productDetail">
       <div className="product">
         <div className="productLeft">
-          <p className="productName">{productData.title}</p>
-          <p className="price">{productData.price.toLocaleString()}원</p>
+          <p className="productName">{productData.productName}</p>
+          <p className="price">{productPriceNum.toLocaleString()}원</p>
         </div>
 
         <ImgCarousel />
 
         <div className="productRight">
           <div className="line" />
-          <p>배송정보</p>
+          <p className="delivery">배송정보</p>
           <p className="grey">3,000원 &#40; 30,000원 이상 구매 시 무료&#41;</p>
           <p className="grey">오후 1시 당일배송마감</p>
           <div className="line" />
           <div className="greyBox">
-            <p className="title">{productData.title}</p>
+            <p className="title">{productData.productName}</p>
             <div className="countPrice">
               <Count quantity={quantity} setQuantity={setQuantity} />
-              <p>{(quantity * productData.price).toLocaleString()}원</p>
+              <p>{(quantity * productPriceNum).toLocaleString()}원</p>
             </div>
           </div>
           <div className="totalPrice">
             <span>총 금액</span>
-            <span>{(quantity * productData.price).toLocaleString()}원</span>
+            <span>{(quantity * productPriceNum).toLocaleString()}원</span>
           </div>
           <div className="shoppingBtn">
-            <Link to="/cart">
-              <div className="cartBtn">
-                <FontAwesomeIcon
-                  icon={faCartShopping}
-                  size="lg"
-                  className="cartIcon"
-                />
-              </div>
-            </Link>
+            <div
+              className="cartBtn"
+              onClick={() => {
+                setIsCartBtn(prev => !prev)
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faCartShopping}
+                size="lg"
+                className="cartIcon"
+              />
+            </div>
             <Link to="/purchase">
               <button className="buy">바로 구매하기</button>
             </Link>
@@ -72,25 +89,14 @@ const ProductDetail = () => {
       </div>
       <div className="rowLine" />
       <div className="table">
-        <span
-          className="greyTitle"
-          onClick={() => {
-            const element = document.querySelector('.detailInformationBox')
-            if (element) {
-              const y = element.getBoundingClientRect().top + window.pageYOffset
-              window.scrollTo({ top: y, behavior: 'smooth' })
-            }
-          }}
-        >
-          상품정보
-        </span>
+        <span className="greyTitle">상품정보</span>
         <div className="columnLine" />
         <span
           className="greyTitle"
           onClick={() => {
             const element = document.querySelector('.detailInformationBox')
             if (element) {
-              const y = element.getBoundingClientRect().top + window.pageYOffset
+              const y = element.getBoundingClientRect().top - 100
               window.scrollTo({ top: y, behavior: 'smooth' })
             }
           }}
@@ -103,7 +109,7 @@ const ProductDetail = () => {
           onClick={() => {
             const element = document.querySelector('.reviewBox')
             if (element) {
-              const y = element.getBoundingClientRect().top + window.pageYOffset
+              const y = element.getBoundingClientRect().top
               window.scrollTo({ top: y, behavior: 'smooth' })
             }
           }}
@@ -113,8 +119,15 @@ const ProductDetail = () => {
       </div>
       <div className="rowLine" />
       <div className="productImgs">
-        {detailImgArr.map((img, id) => {
-          return <img key={id} src={img} alt="productImages" />
+        {detailImages.map((key, index) => {
+          return (
+            <img
+              key={key}
+              index={index}
+              src={productData.extraImages[index]}
+              alt="productImages"
+            />
+          )
         })}
       </div>
       <div className="detailInformationBox">
@@ -130,6 +143,9 @@ const ProductDetail = () => {
         }}
       >
         <GoToTop />
+        {isCartBtn && (
+          <Cart isCartBtn={isCartBtn} setIsCartBtn={setIsCartBtn} />
+        )}
       </div>
     </div>
   )

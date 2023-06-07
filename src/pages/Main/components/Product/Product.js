@@ -7,7 +7,7 @@ function Product({ sort }) {
 
   useEffect(() => {
     fetch(
-      `http://10.58.52.246:8001/products/filter?orderBy=${sort}&offset=0&limit=10`
+      `http://10.58.52.176:8001/products/filter?orderBy=${sort}&offset=0&limit=10`
     )
       .then(response => response.json())
       .then(data => setRecommendData(data.data))

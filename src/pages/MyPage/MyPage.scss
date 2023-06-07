@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
+.myPage {
+  width: 1200px;
+  height: 100%;
+  margin: auto;
+
+  .myPageHeader {
+    margin: 20px auto;
+    padding: 20px 0 60px 0;
+    text-align: center;
+
+    .headerTitle {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+  }
+}
+
+.myPageSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 1px #bebebe solid;
+  list-style: none;
+
+  .menuTitle {
+    margin: 20px 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .menuText {
+    margin: 10px 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+
+    a {
+      color: black;
+    }
+  }
+}
+
+.myPageMenu {
+  width: 30%;
+  height: 600px;
+  margin: 20px;
+  border-right: 1px #bebebe solid;
+
+  .menuBox {
+    margin: 30px;
+  }
+}
+
+.myPageContainer {
+  width: 80%;
+  height: 600px;
+  margin: 20px;
+
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 200px;
+    padding: 40px;
+    border-radius: 6px;
+    background-color: rgba(241, 241, 241, 0.7215686275);
+    color: #444;
+    font-size: 30px;
+    font-weight: 500;
+
+    .userName {
+      display: inline-block;
+      padding-top: 6px;
+      padding-right: 6px;
+      color: #ffbb0f;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
 .cartModal {
   display: flex;
   position: absolute;
@@ -14,12 +16,14 @@
 
   .modalText {
     padding: 60px 30px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
   }
 
   .modalBtn {
     display: flex;
     width: 100%;
-    border-top: 1px #777 solid;
+    border-top: 1px #bebebe solid;
   }
 
   .cancelBtn,
@@ -30,11 +34,13 @@
     border: none;
     border-radius: 8px;
     background-color: white;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
     text-decoration: none;
   }
 
   .cancelBtn {
-    border-right: 1px solid #777;
+    border-right: 1px #bebebe solid;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;

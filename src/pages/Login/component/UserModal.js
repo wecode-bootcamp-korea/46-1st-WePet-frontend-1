@@ -1,9 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import './PurchaseModal.scss'
+import './UserModal.scss'
 
-const PurchaseModal = ({ text, isOpenModal, setIsOpenModal }) => {
+const UserModal = ({ text, isOpenModal, setIsOpenModal }) => {
   const navigate = useNavigate()
 
   const goToMain = () => {
@@ -12,8 +12,8 @@ const PurchaseModal = ({ text, isOpenModal, setIsOpenModal }) => {
     }
   }
   return (
-    <div className="purchaseModal">
-      <div className="purchaseModalContent">
+    <div className="userModal">
+      <div className="userModalContent">
         <div className="title">
           <div
             className="ham"
@@ -33,4 +33,4 @@ const PurchaseModal = ({ text, isOpenModal, setIsOpenModal }) => {
   )
 }
 
-export default PurchaseModal
+export default UserModal

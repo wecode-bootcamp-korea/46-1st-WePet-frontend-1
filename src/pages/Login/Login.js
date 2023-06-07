@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import PurchaseModal from './component/PurchaseModal'
-import './component/PurchaseModal.scss'
+import UserModal from './component/userModal'
+import './component/UserModal.scss'
 import './Login.scss'
 
 const Login = () => {
@@ -41,7 +41,6 @@ const Login = () => {
           navigate('/main')
         } else {
           setIsOpenModal(true)
-          // alert('회원가입에 실패하셨습니다.')
         }
       })
   }
@@ -104,7 +103,7 @@ const Login = () => {
         </div>
       </div>
       {isOpenModal === true && (
-        <PurchaseModal
+        <UserModal
           text={'회원정보를 찾을 수 없습니다.'}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}

@@ -56,10 +56,12 @@ const Cart = () => {
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
       },
     })
-      .then(res => res.json())
-      .then(data => {
-        setCartData([])
+      .then(res => {
+        if (res.status === 204) {
+          setCartData([])
+        }
       })
+
       .catch(error => {
         console.error('Error:', error)
       })
@@ -78,11 +80,11 @@ const Cart = () => {
         },
         body: JSON.stringify({ userId: 4 }),
       }
-    )
-      .then(res => res.json())
-      .then(data => {
-        if (data.statusCode === 204) getCartItem()
-      })
+    ).then(res => {
+      if (res.status === 204) {
+        getCartItem()
+      }
+    })
   }
 
   const totalPrice = cartData.reduce(

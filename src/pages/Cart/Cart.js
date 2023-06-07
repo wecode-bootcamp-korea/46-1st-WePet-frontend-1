@@ -47,45 +47,42 @@ const Cart = () => {
     }
   }
 
+  const deleteAllCartItem = () => {
+    fetch(`http://10.58.52.81:8001/shopping-carts/remove/all-items`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        setCartData([])
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      })
+  }
+
   const deleteCartItem = () => {
-    if (cartData.length > 0 && checkItems.length === cartData.length) {
-      fetch(`http://10.58.52.81:8001/shopping-carts/remove/all-items`, {
+    const selectItem = checkItems[0]
+    fetch(
+      `http://10.58.52.81:8001/shopping-carts/remove/single-item/${selectItem}`,
+      {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           Authorization:
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
         },
+        body: JSON.stringify({ userId: 4 }),
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        if (data.statusCode === 204) getCartItem()
       })
-        .then(res => res.json())
-        .then(data => {
-          setCartData([])
-        })
-        .catch(error => {
-          console.error('Error:', error)
-        })
-    } else {
-      const selectItem = checkItems[0]
-      fetch(
-        `http://10.58.52.81:8001/shopping-carts/remove/single-item/${selectItem}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            Authorization:
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
-          },
-          body: JSON.stringify({ userId: 4 }),
-        }
-      )
-        .then(res => res.json())
-        .then(data => {
-          if (data.message === 'ITEM_REMOVED_SUCCESSFUL') getCartItem()
-        })
-        .catch(error => {
-          console.error('Error:', error)
-        })
-    }
   }
 
   const totalPrice = cartData.reduce(
@@ -132,6 +129,9 @@ const Cart = () => {
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
                 deleteCartItem={deleteCartItem}
+                deleteAllCartItem={deleteAllCartItem}
+                checkItems={checkItems}
+                cartData={cartData}
               />
             </div>
           )}

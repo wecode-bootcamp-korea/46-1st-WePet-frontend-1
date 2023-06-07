@@ -1,7 +1,14 @@
 import React from 'react'
 import './CartModal.scss'
 
-const CartModal = ({ isModalOpen, setIsModalOpen, deleteCartItem }) => {
+const CartModal = ({
+  isModalOpen,
+  setIsModalOpen,
+  deleteCartItem,
+  deleteAllCartItem,
+  checkItems,
+  cartData,
+}) => {
   return (
     <>
       <div className="cartModal">
@@ -20,7 +27,11 @@ const CartModal = ({ isModalOpen, setIsModalOpen, deleteCartItem }) => {
           <button
             className="deleteBtn"
             onClick={() => {
-              deleteCartItem()
+              if (checkItems.length === cartData.length) {
+                deleteAllCartItem()
+              } else {
+                deleteCartItem()
+              }
               setIsModalOpen(!isModalOpen)
             }}
           >

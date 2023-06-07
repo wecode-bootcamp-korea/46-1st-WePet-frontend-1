@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import UserModal from './component/userModal'
+import UserModal from './component/UserModal'
 import './component/UserModal.scss'
 import './Login.scss'
 
@@ -57,7 +57,7 @@ const Login = () => {
     })
   }
   return (
-    <div className="Login">
+    <div className="login">
       <div className="signIn">
         <h1 className="loginTitle">로그인</h1>
         <ul className="loginInputContainer">

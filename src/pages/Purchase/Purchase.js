@@ -21,11 +21,28 @@ const Purchase = () => {
     console.log(cartData)
   }, [])
 
-  const [pointData, setPointData] = useState({})
+  const handleSaveAddress = () => {
+    const TOKEN =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQ2LCJlbWFpbCI6Im1peGVyMDMyNkBnbWFpbC5jb20iLCJpYXQiOjE2ODYxNDE1NzR9.aphnpU0CZTJuvlXpwVK97UhKNpzEBd6CwVdUjKFHfi0'
+    fetch('http://10.58.52.92:3000/users/address', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: TOKEN,
+      },
+      body: JSON.stringify({
+        address1: inputValue.address1,
+        address2: inputValue.address2,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => setAddressData(result.data))
+  }
 
   const [isModal, setIsModal] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
   const [isCheckedRadio, setIsCheckedRadio] = useState(false)
+  const [addressData, setAddressData] = useState({})
 
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
   // const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(false)
@@ -251,6 +268,7 @@ const Purchase = () => {
               setIsSaved={setIsSaved}
               inputValue={inputValue}
               setInputValue={setInputValue}
+              handleSaveAddress={handleSaveAddress}
             />
           )}
           {isPurchaseModal && (

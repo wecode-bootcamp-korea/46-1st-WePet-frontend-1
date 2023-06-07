@@ -7,7 +7,7 @@ const Slider = ({ data }) => {
   const [productData, setProductData] = useState([])
 
   useEffect(() => {
-    fetch(`http://10.58.52.246:8001/products/category?id=${data}`)
+    fetch(`http://10.58.52.81:8001/products/category?id=${data}`)
       .then(response => response.json())
       .then(data => setProductData(data.data))
   }, [])

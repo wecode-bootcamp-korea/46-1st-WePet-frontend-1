@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import UserModal from '../Login/component/UserModal'
 import { APIS } from '../../config'
 import TermsList from './TermsList'
 import { TERMS_BOX } from './termsBox'
 import './SignUp.scss'
+import '../Login/component/UserModal.scss'
 
 const SignUp = () => {
   const navigate = useNavigate()
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const passwordRegex =
+    /^(?=.*[!@#$%^&*])(?=.*[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣])(?=.*\d).{8,}$/
   const [isOpenTerms, setIsOpenTerms] = useState([false, false, false])
   const [checkItems, setCheckItems] = useState([])
   const [userInfo, setUserInfo] = useState({
@@ -24,7 +29,7 @@ const SignUp = () => {
   const infoValids = {
     email: userInfo.email.includes('@'),
     name: userInfo.name.length >= 2,
-    password: userInfo.password.length >= 8,
+    password: passwordRegex.test(userInfo.password),
     passwordConfirm: userInfo.password === userInfo.passwordConfirm,
     terms: checkItems.includes(1) && checkItems.includes(2),
   }
@@ -47,13 +52,12 @@ const SignUp = () => {
         return response.json()
       })
       .then(response => {
-        console.log(response)
-        if (response.messge === 'SIGNUP_SUCCESS') {
-          navigate('/main')
-        } else if (response.messge === 'DUPLICATE EMAIL') {
-          alert('중복된 이메일을 가진 사용자가 존재합니다.')
+        if (response.message === 'Signup_Success') {
+          navigate('/login')
+        } else if (response.message === 'Duplicate Email') {
+          setIsOpenModal(true)
         } else {
-          alert('회원가입에 실패했습니다.')
+          setIsOpenModal(true)
         }
       })
   }
@@ -148,6 +152,13 @@ const SignUp = () => {
           가입하기
         </button>
       </footer>
+      {isOpenModal === true && (
+        <UserModal
+          text={'중복된 이메일을 가진 사용자가 존재합니다.'}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
+        />
+      )}
     </div>
   )
 }

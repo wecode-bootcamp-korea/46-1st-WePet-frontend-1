@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
 .termsList {
   display: flex;
   justify-content: space-between;
   margin: 15px 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
 
   .termsBtn {
+    cursor: pointer;
     border: none;
     background-color: white;
 
@@ -18,11 +23,13 @@
   height: 211px;
   padding: 20px;
   resize: none;
-  border: 1px solid lightgray;
+  border: 1px solid #dadada;
   border-radius: 5px;
-  color: gray;
-  background-color: #f9f9f9;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
   font-size: 13px;
+  color: gray;
+  background-color: rgba(241, 241, 241, 0.7215686275);
 
   &:focus {
     outline: none;

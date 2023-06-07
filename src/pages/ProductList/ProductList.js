@@ -10,7 +10,6 @@ const ProductList = () => {
 
   const [dropBox, isOpenDropBox] = useState(false)
   const [products, setProducts] = useState([])
-  const [orderBy, setOrderBy] = useState('newest')
   const [searchParams, setSearchParams] = useSearchParams()
 
   const query = searchParams.toString()
@@ -25,7 +24,7 @@ const ProductList = () => {
       .then(response => {
         setProducts(response.data)
       })
-  }, [query])
+  }, [query, id])
 
   const handleQueryString = key => {
     searchParams.set('orderBy', key)
@@ -44,7 +43,7 @@ const ProductList = () => {
           <p
             className="headerContent"
             dangerouslySetInnerHTML={{ __html: HEADER_DATA[id].descripion }}
-          />
+          ></p>
         </div>
       </header>
       <div className="filterBox">
@@ -61,9 +60,10 @@ const ProductList = () => {
           {dropBox && (
             <div className="dropBoxListContainer">
               <div className="dropBoxList">
-                {DROP_BOX.map(({ title, key }) => {
+                {DROP_BOX.map(({ title, key }, index) => {
                   return (
                     <span
+                      key={index}
                       className="dropBoxContent"
                       onClick={() => {
                         handleQueryString(key)
@@ -81,20 +81,16 @@ const ProductList = () => {
 
       <div className="productListMain">
         {products.map(
-          ({
-            product_category_id,
-            main_image_thumbnail,
-            product_name,
-            product_price,
-          }) => {
+          ({ productId, productImage, productName, productPrice, index }) => {
             return (
-              <Link to={`/products/${product_category_id}`}>
-                <div className="productItem">
-                  <img className="productImg" src={main_image_thumbnail} />
+              <Link to={`/products/details/${productId}`}>
+                <div className="productItem" key={index}>
+                  <img className="productImg" src={productImage} />
                   <div className="productText">
-                    <p className="itemIcon" />
-                    <p className="itemName">{product_name}</p>
-                    <p className="itemPrice">{product_price}</p>
+                    <p className="itemName">{productName}</p>
+                    <p className="itemPrice">{`${parseFloat(
+                      productPrice
+                    ).toLocaleString()}원`}</p>
                   </div>
                 </div>
               </Link>
@@ -123,7 +119,7 @@ const HEADER_DATA = {
   3: {
     title: '용품',
     descripion:
-      '가장 신선하고, 차별화된 유기농 제품으로<br><br>  우리 아이들의 건강까지 생각합니다',
+      '편리하고, 안전한 제품들로<br><br> 우리 아이들의 행복한 라이프까지 생각합니다 ',
   },
 }
 

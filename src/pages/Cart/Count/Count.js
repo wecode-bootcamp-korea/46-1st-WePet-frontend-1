@@ -1,11 +1,12 @@
 import React from 'react'
+import { APIS } from '../../../config'
 import './Count.scss'
 
 const Count = ({ id, quantity, getCartItem }) => {
   const TOKEN = localStorage.getItem('TOKEN')
 
   const handleAdd = () => {
-    fetch('http://10.58.52.81:8001/shopping-carts/add/single-item', {
+    fetch(`${APIS.cart}/add/single-item`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -20,7 +21,7 @@ const Count = ({ id, quantity, getCartItem }) => {
   }
 
   const handleSubtract = () => {
-    fetch('http://10.58.52.81:8001/shopping-carts/subtract/single-item', {
+    fetch(`${APIS.cart}/subtract/single-item`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

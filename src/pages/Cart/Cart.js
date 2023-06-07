@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Count from './Count/Count'
 import CartModal from './CartModal/CartModal'
+import { APIS } from '../../config'
 import './Cart.scss'
 
 const Cart = () => {
@@ -10,9 +11,10 @@ const Cart = () => {
   const [checkItems, setCheckItems] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const TOKEN = localStorage.getItem('TOKEN')
+  const USER_ID = 4
 
   const getCartItem = () => {
-    fetch('http://10.58.52.81:8001/shopping-carts?userId=4', {
+    fetch(`${APIS.cart}?userId=${USER_ID}`, {
       headers: {
         Authorization: TOKEN,
       },
@@ -48,7 +50,7 @@ const Cart = () => {
   }
 
   const deleteAllCartItem = () => {
-    fetch(`http://10.58.52.81:8001/shopping-carts/remove/all-items`, {
+    fetch(`${APIS.cart}/remove/all-items`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -67,17 +69,14 @@ const Cart = () => {
 
   const deleteCartItem = () => {
     const selectItem = checkItems[0]
-    fetch(
-      `http://10.58.52.81:8001/shopping-carts/remove/single-item/${selectItem}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          Authorization: TOKEN,
-        },
-        body: JSON.stringify({ userId: 4 }),
-      }
-    ).then(res => {
+    fetch(`${APIS.cart}/remove/single-item/${selectItem}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: TOKEN,
+      },
+      body: JSON.stringify({ userId: 4 }),
+    }).then(res => {
       if (res.status === 204) {
         getCartItem()
       }

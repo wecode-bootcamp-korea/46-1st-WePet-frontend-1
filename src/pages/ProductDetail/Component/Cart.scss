@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-.CartModal {
+.cart {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -10,7 +10,7 @@
   font-weight: 900;
   background-color: #00000054;
 
-  .CartModalContent {
+  .cartModalContent {
     .icon {
       color: #ffbb0f;
       margin-right: 15px;

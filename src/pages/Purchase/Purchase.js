@@ -15,9 +15,22 @@ const Purchase = () => {
   }, [])
 
   useEffect(() => {
-    fetch('/data/purchaseCartData.json')
+    fetch('http://10.58.52.81:8001/shopping-carts', {
+      method: 'POST',
+      body: JSON.stringify({
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
+        },
+        body: JSON.stringify({
+          userId: 4,
+        }),
+      }),
+    })
       .then(response => response.json())
-      .then(result => setCartData(result))
+      .then(result => setCartData(result.data))
+    console.log(cartData)
   }, [])
 
   const [pointData, setPointData] = useState({})
@@ -30,7 +43,7 @@ const Purchase = () => {
   // const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(false)
 
   const [point, setPoint] = useState({})
-  const [cartData, setCartData] = useState([])
+  const [cartData, setCartData] = useState()
 
   const [agreeList, setAgreeList] = useState({
     isInfoAgree: false,
@@ -48,6 +61,8 @@ const Purchase = () => {
     address2: '',
     memo: '',
   })
+
+  if (!cartData) return null
 
   const totalPrice = cartData.reduce(
     (acc, cur) => acc + cur.quantity * cur.price,

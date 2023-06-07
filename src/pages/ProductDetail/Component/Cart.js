@@ -7,8 +7,8 @@ import './Cart.scss'
 
 const Cart = ({ isCartBtn, setIsCartBtn }) => {
   return (
-    <div className="CartModal">
-      <div className="CartModalContent">
+    <div className="cart">
+      <div className="cartModalContent">
         <div className="title">
           <div
             className="ham"

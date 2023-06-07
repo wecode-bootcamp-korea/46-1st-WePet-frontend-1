@@ -66,11 +66,9 @@ const Nav = () => {
           </div>
         </Link>
         <Link to="/login">
-          {isLogin ? (
-            <button className="loginBtn">로그아웃</button>
-          ) : (
-            <button className="loginBtn">로그인</button>
-          )}
+          <button className="loginBtn">
+            {isLogin ? '로그아웃' : '로그인'}
+          </button>
         </Link>
         {isSearchModal ? (
           ''

@@ -36,10 +36,10 @@ const ProductDetail = () => {
   console.log(productData)
 
   if (!productData?.productPrice) return null
-  if (!productData?.extraImages) return null
+  if (!productData?.productImage) return null
 
   const productPriceNum = Number(productData.productPrice)
-  const detailImages = productData.extraImages
+  const detailImages = productData.productImage
 
   return (
     <div className="productDetail">

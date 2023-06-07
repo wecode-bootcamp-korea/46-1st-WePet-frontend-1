@@ -10,7 +10,7 @@ const Cart = () => {
   const [checkItems, setCheckItems] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  useEffect(() => {
+  const getCartItem = () => {
     fetch('http://10.58.52.81:8001/shopping-carts?userId=4', {
       headers: {
         Authorization:
@@ -19,8 +19,16 @@ const Cart = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setCartData(data.data[0].items)
+        if (data.data.length > 0) {
+          setCartData(data.data[0].items)
+        } else {
+          setCartData([])
+        }
       })
+  }
+
+  useEffect(() => {
+    getCartItem()
   }, [])
 
   const handleCheck = (checked, id) => {
@@ -40,7 +48,7 @@ const Cart = () => {
   }
 
   const deleteCartItem = () => {
-    if (checkItems.length === cartData.length) {
+    if (cartData.length > 0 && checkItems.length === cartData.length) {
       fetch(`http://10.58.52.81:8001/shopping-carts/remove/all-items`, {
         method: 'DELETE',
         headers: {
@@ -72,7 +80,7 @@ const Cart = () => {
       )
         .then(res => res.json())
         .then(data => {
-          setCartData(data.data[0].items)
+          if (data.message === 'ITEM_REMOVED_SUCCESSFUL') getCartItem()
         })
         .catch(error => {
           console.error('Error:', error)
@@ -150,6 +158,7 @@ const Cart = () => {
                       quantity={item.productQuantity}
                       cartData={cartData}
                       setCartData={setCartData}
+                      getCartItem={getCartItem}
                     />
                     <span className="cartProductPrice">
                       {`${(

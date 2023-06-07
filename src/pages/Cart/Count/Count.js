@@ -1,7 +1,7 @@
 import React from 'react'
 import './Count.scss'
 
-const Count = ({ id, quantity, cartData, setCartData }) => {
+const Count = ({ id, quantity, getCartItem }) => {
   const handleAdd = () => {
     fetch('http://10.58.52.81:8001/shopping-carts/add/single-item', {
       method: 'PATCH',
@@ -14,7 +14,7 @@ const Count = ({ id, quantity, cartData, setCartData }) => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        if (data.message === 'ITEM_QUANTITY_ADD_SUCCESSFUL') getCartItem()
       })
   }
 
@@ -30,9 +30,10 @@ const Count = ({ id, quantity, cartData, setCartData }) => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
+        if (data.message === 'ITEM_QUANTITY_SUBTRACT_SUCCESSFUL') getCartItem()
       })
   }
+
   return (
     <div className="count">
       <button

@@ -161,11 +161,13 @@ const SignUp = () => {
           가입하기
         </button>
       </footer>
-      {messageNum !== 0 && (
+      {/* {messageNum !== 0 && ( */}
+      {isOpenModal && (
         <UserModal
           text={alertMessageList[messageNum]}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
+          messageNum={messageNum}
         />
       )}
     </div>

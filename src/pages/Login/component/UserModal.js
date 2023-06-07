@@ -2,12 +2,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './UserModal.scss'
 
-const UserModal = ({ text, isOpenModal, setIsOpenModal }) => {
+const UserModal = ({ text, isOpenModal, setIsOpenModal, messageNum }) => {
   const navigate = useNavigate()
 
   const goToMain = () => {
     setIsOpenModal(prev => !prev)
-    if (isOpenModal) return navigate('/login')
+    if (isOpenModal) return setIsOpenModal(false)
   }
 
   return (

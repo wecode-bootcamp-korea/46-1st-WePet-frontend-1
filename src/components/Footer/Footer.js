@@ -12,9 +12,9 @@ const Footer = () => {
         <img src="/images/LogoBlack.png" className="logo" />{' '}
       </Link>
       <ul className="footerList">
-        {FOOTER_LINK_LIST.map(data => {
+        {FOOTER_LINK_LIST.map((data, key, index) => {
           return (
-            <Link to={data.link}>
+            <Link to={data.link} key={key} index={index}>
               <li className="list">
                 {data.icon && (
                   <FontAwesomeIcon
@@ -30,8 +30,12 @@ const Footer = () => {
         })}
       </ul>
       <ul className="footerDetails">
-        {FOOTER_INFO.map(data => {
-          return <li className="info">{data.name}</li>
+        {FOOTER_INFO.map((data, key, index) => {
+          return (
+            <li className="info" key={key} index={index}>
+              {data.name}
+            </li>
+          )
         })}
       </ul>
     </div>

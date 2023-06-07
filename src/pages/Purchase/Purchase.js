@@ -4,19 +4,33 @@ import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import Address from './Component/Address'
 import PurchaseModal from './Component/PurchaseModal'
-import ADDRESS_DATA from './Data/addressData'
 
 import './Purchase.scss'
 
 const Purchase = () => {
+  useEffect(() => {
+    fetch('/data/pointData.json')
+      .then(response => response.json())
+      .then(result => setPoint(result))
+  }, [])
+
+  useEffect(() => {
+    fetch('/data/purchaseCartData.json')
+      .then(response => response.json())
+      .then(result => setCartData(result))
+  }, [])
+
+  const [pointData, setPointData] = useState({})
+
   const [isModal, setIsModal] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
+  const [isCheckedRadio, setIsCheckedRadio] = useState(false)
 
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
-  const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(false)
+  // const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(false)
 
   const [point, setPoint] = useState({})
-  const [listData, setListData] = useState([])
+  const [cartData, setCartData] = useState([])
 
   const [agreeList, setAgreeList] = useState({
     isInfoAgree: false,
@@ -35,15 +49,25 @@ const Purchase = () => {
     memo: '',
   })
 
-  const compareWithPoint = () => {
-    if (totalPrice <= point.point) {
-      setIsPurchaseModalValue(true)
-      console.log(isPurchaseModalValue)
-    } else {
-      setIsPurchaseModalValue(false)
-      console.log(isPurchaseModalValue)
-    }
-  }
+  const [savedPoint, setSavedPoint] = useState({
+    currentPoint: '',
+    usedPoint: '',
+  })
+
+  const totalPrice = cartData.reduce(
+    (acc, cur) => acc + cur.quantity * cur.price,
+    0
+  )
+
+  const isPurchaseModalValue = totalPrice <= point.points
+
+  // const compareWithPoint = () => {
+  //   if (totalPrice <= point.points) {
+  //     setIsPurchaseModalValue(true)
+  //   } else {
+  //     setIsPurchaseModalValue(false)
+  //   }
+  // }
 
   const handleAgree = name => {
     setAgreeList(prev => ({ ...prev, [name]: !prev[name] }))
@@ -57,25 +81,8 @@ const Purchase = () => {
     }
   }
 
-  const totalPrice = listData.reduce(
-    (acc, cur) => acc + cur.quantity * cur.price,
-    0
-  )
-
-  useEffect(() => {
-    fetch('/data/pointData.json')
-      .then(response => response.json())
-      .then(result => setPoint(result))
-  }, [])
-
-  useEffect(() => {
-    fetch('/data/purchaseListData.json')
-      .then(response => response.json())
-      .then(result => setListData(result))
-  }, [])
-
-  if (!point.point) return null
-  if (!listData) return null
+  if (!point.points) return null
+  if (!cartData) return null
 
   return (
     <>
@@ -107,7 +114,7 @@ const Purchase = () => {
             </div>
             <p className="title">주문상품</p>
             <div className="leftInnerBox">
-              {listData.map(data => {
+              {cartData.map(data => {
                 return (
                   <p className="spaceBetween" key={data.id}>
                     {data.name}
@@ -120,11 +127,17 @@ const Purchase = () => {
             <div className="leftInnerBox">
               <div className="spaceBetween">
                 <div>
-                  <input className="radio" type="radio" />
+                  <input
+                    className="radio"
+                    type="radio"
+                    onClick={() => {
+                      setIsCheckedRadio(prev => !prev)
+                    }}
+                  />
                   <span>포인트결제</span>
                 </div>
                 <span className="grey">
-                  총 {point.point.toLocaleString()}포인트 사용 가능
+                  총 {point.points.toLocaleString()}포인트 사용 가능
                 </span>
               </div>
             </div>
@@ -216,12 +229,14 @@ const Purchase = () => {
             </div>
             <button
               className={`${
-                isAllChecked && isSaved ? 'purchaseBtnActive' : 'purchaseBtn'
+                isAllChecked && isSaved && isCheckedRadio
+                  ? 'purchaseBtnActive'
+                  : 'purchaseBtn'
               }`}
-              disabled={!isAllChecked && isSaved}
+              disabled={!isAllChecked && isSaved && isCheckedRadio}
               onClick={() => {
                 setIsPurchaseModal(prev => !prev)
-                compareWithPoint()
+                // compareWithPoint()
               }}
             >
               {totalPrice > 30000

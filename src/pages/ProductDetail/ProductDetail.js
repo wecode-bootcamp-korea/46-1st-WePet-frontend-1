@@ -20,21 +20,27 @@ const ProductDetail = () => {
   const [isCartBtn, setIsCartBtn] = useState(false)
 
   useEffect(() => {
-    fetch('/data/productData.json')
+    fetch('http://10.58.52.81:8001/products/details/1')
       .then(response => response.json())
-      .then(result => setProductData(result))
+      .then(result => {
+        setProductData(result.data)
+      })
   }, [])
 
-  let detailImgArr = productData.detailImg
+  console.log(productData)
 
-  if (!productData.price) return null
+  if (!productData?.productPrice) return null
+  if (!productData?.extraImages) return null
+
+  const productPriceNum = Number(productData.productPrice)
+  const detailImages = productData.extraImages
 
   return (
     <div className="productDetail">
       <div className="product">
         <div className="productLeft">
-          <p className="productName">{productData.title}</p>
-          <p className="price">{productData.price.toLocaleString()}원</p>
+          <p className="productName">{productData.productName}</p>
+          <p className="price">{productPriceNum.toLocaleString()}원</p>
         </div>
 
         <ImgCarousel />
@@ -46,15 +52,15 @@ const ProductDetail = () => {
           <p className="grey">오후 1시 당일배송마감</p>
           <div className="line" />
           <div className="greyBox">
-            <p className="title">{productData.title}</p>
+            <p className="title">{productData.productName}</p>
             <div className="countPrice">
               <Count quantity={quantity} setQuantity={setQuantity} />
-              <p>{(quantity * productData.price).toLocaleString()}원</p>
+              <p>{(quantity * productPriceNum).toLocaleString()}원</p>
             </div>
           </div>
           <div className="totalPrice">
             <span>총 금액</span>
-            <span>{(quantity * productData.price).toLocaleString()}원</span>
+            <span>{(quantity * productPriceNum).toLocaleString()}원</span>
           </div>
           <div className="shoppingBtn">
             <div
@@ -107,8 +113,15 @@ const ProductDetail = () => {
       </div>
       <div className="rowLine" />
       <div className="productImgs">
-        {detailImgArr.map((img, id) => {
-          return <img key={id} src={img} alt="productImages" />
+        {detailImages.map((key, index) => {
+          return (
+            <img
+              key={key}
+              index={index}
+              src={productData.extraImages[index]}
+              alt="productImages"
+            />
+          )
         })}
       </div>
       <div className="detailInformationBox">

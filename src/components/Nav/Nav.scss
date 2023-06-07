@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   background-color: #fff;
-  z-index: 300;
+  z-index: 50;
   font-family: 'Noto Sans KR', sans-serif;
 
   .logo {
@@ -74,38 +74,5 @@
       color: #ffbb0f;
       border: 2px solid #ffbb0f;
     }
-  }
-
-  .ham {
-    margin-right: 10px;
-    margin-left: 15px;
-    z-index: 1000;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .line {
-    background-color: #000;
-    width: 30px;
-    height: 3px;
-    margin: 7px 0px;
-    z-index: 300;
-
-    transition-duration: 0.5s;
-  }
-
-  .hamTopLine {
-    transform-origin: center;
-    transform: translateY(10px) rotate(45deg);
-  }
-
-  .hamMidLine {
-    opacity: 0;
-  }
-
-  .hamBtmLine {
-    transform-origin: center;
-    transform: translateY(-10px) rotate(-45deg);
   }
 }

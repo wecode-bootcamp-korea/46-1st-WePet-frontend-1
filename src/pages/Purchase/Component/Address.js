@@ -4,7 +4,6 @@ import ADDRESS_DATA from '../Data/addressData'
 import './Address.scss'
 
 const Address = ({ setIsModal, setIsSaved, inputValue, setInputValue }) => {
-  let savedAddress = []
   const { name, phone, address1, address2 } = inputValue
 
   const keyDownFunction = (e, type) => {
@@ -45,9 +44,9 @@ const Address = ({ setIsModal, setIsSaved, inputValue, setInputValue }) => {
         <div className="addressInnerBox">
           <div className="greyLine">
             <div className="addressMapBox">
-              {ADDRESS_DATA.map(data => {
+              {ADDRESS_DATA.map((data, key, index) => {
                 return (
-                  <div className="addressInput">
+                  <div className="addressInput" key={key} index={index}>
                     <p className="title">
                       {data.title}
                       <span className="must"> {data.must}</span>

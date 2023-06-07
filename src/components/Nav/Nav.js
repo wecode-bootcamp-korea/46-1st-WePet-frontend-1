@@ -10,6 +10,7 @@ import {
 import Modal from './Component/Modal'
 import SearchModal from './Component/SearchModal'
 import MENU_DATA from './data/navData'
+import Ham from './Component/Ham'
 
 import './Nav.scss'
 
@@ -34,9 +35,9 @@ const Nav = () => {
           />
         </Link>
         <div className="category">
-          {MENU_DATA.map(data => {
+          {MENU_DATA.map((data, key, index) => {
             return (
-              <Link to={data.link}>
+              <Link to={data.link} key={key} index={index}>
                 <span className="categoryName">{data.name}</span>
               </Link>
             )
@@ -72,16 +73,11 @@ const Nav = () => {
         {isSearchModal ? (
           ''
         ) : (
-          <div
-            className="ham"
-            onClick={() => {
-              setIsModal(prev => !prev)
-            }}
-          >
-            <div className={`line ${isModal && 'hamTopLine'}`}></div>
-            <div className={`line ${isModal && 'hamMidLine'}`}></div>
-            <div className={`line ${isModal && 'hamBtmLine'}`}></div>
-          </div>
+          <Ham
+            setIsModal={setIsModal}
+            isModal={isModal}
+            // style={{ z-index:1000 }}
+          />
         )}
       </div>
       {isSearchModal && (

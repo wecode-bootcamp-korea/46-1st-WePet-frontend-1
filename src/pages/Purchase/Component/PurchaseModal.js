@@ -9,8 +9,8 @@ const PurchaseModal = ({ setIsPurchaseModal, isPurchaseModalValue }) => {
   const navigate = useNavigate()
 
   const goToMain = () => {
-    if (isPurchaseModalValue === true) {
-      navigate('/main')
+    if (isPurchaseModalValue) {
+      navigate('/')
     }
   }
   return (

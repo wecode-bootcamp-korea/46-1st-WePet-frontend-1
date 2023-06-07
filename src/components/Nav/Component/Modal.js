@@ -12,8 +12,8 @@ const Modal = () => {
     <div className="modal">
       <div className="modalContent">
         <div className="modalPtag">
-          <p>앗!</p>
-          <p>로그인이 필요해요</p>
+          <p className="description">앗!</p>
+          <p className="description">로그인이 필요해요</p>
         </div>
         <span className="ulTitle">테마</span>
         <ul className="ulBox">
@@ -39,9 +39,13 @@ const Modal = () => {
         <div className="modalBottom">
           <div className="inquire">
             <div className="inquireIcon">
-              <FontAwesomeIcon icon={faHeadset} size="lg" className="icon" />
+              <Link to={'/mypage'}>
+                <FontAwesomeIcon icon={faHeadset} size="lg" className="icon" />
+              </Link>
             </div>
-            <span>1:1 문의</span>
+            <Link to={'/mypage'}>
+              <span className="personal">1:1 문의</span>
+            </Link>
           </div>
           <div className="bottomLine"></div>
           <div className="emailInquire">

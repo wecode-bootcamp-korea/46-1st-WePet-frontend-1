@@ -5,6 +5,7 @@
   width: 1200px;
   font-family: 'Noto Sans KR', sans-serif;
   margin: 0 auto;
+  margin-top: 120px;
   .checkBox {
     margin-bottom: 14px;
     accent-color: #ffbb0f;
@@ -19,15 +20,15 @@
   .orderListTitle {
     margin: 50px 0px;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
+    // font-family: 'Roboto', sans-serif;
     font-size: 26px;
-    font-weight: 800;
+    font-weight: 900;
   }
 
   .orderListLeft {
     .title {
       margin-top: 80px;
-      font-family: 'Roboto', sans-serif;
+      // font-family: 'Roboto', sans-serif;
       font-size: 19px;
       font-weight: 600;
     }
@@ -41,10 +42,23 @@
       justify-content: center;
       flex-wrap: wrap;
 
-      .saved {
-        width: 800px;
-        margin-left: 10px;
-        margin-bottom: 20px;
+      .savedAddress {
+        .saved {
+          width: 800px;
+          margin-left: 10px;
+          margin-bottom: 8px;
+        }
+
+        .savedName {
+          width: 800px;
+          margin-left: 10px;
+          margin-bottom: 8px;
+          font-weight: 900;
+        }
+
+        .grey {
+          color: #818181;
+        }
       }
     }
 

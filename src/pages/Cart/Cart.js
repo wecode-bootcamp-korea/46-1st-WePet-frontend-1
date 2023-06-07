@@ -39,25 +39,45 @@ const Cart = () => {
     }
   }
 
-  const deleteCartItem = e => {
-    console.log(e.target)
-    fetch(`http://10.58.52.81:8001/shopping-carts/remove/single-item/`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
-      },
-      body: JSON.stringify({ userId: 4 }),
-      // redirect: 'follow',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setCartData(data.data[0].items)
+  const deleteCartItem = () => {
+    if (checkItems.length === cartData.length) {
+      fetch(`http://10.58.52.81:8001/shopping-carts/remove/all-items`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
+        },
       })
-      .catch(error => {
-        console.error('Error:', error)
-      })
+        .then(res => res.json())
+        .then(data => {
+          setCartData([])
+        })
+        .catch(error => {
+          console.error('Error:', error)
+        })
+    } else {
+      const selectItem = checkItems[0]
+      fetch(
+        `http://10.58.52.81:8001/shopping-carts/remove/single-item/${selectItem}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            Authorization:
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
+          },
+          body: JSON.stringify({ userId: 4 }),
+        }
+      )
+        .then(res => res.json())
+        .then(data => {
+          setCartData(data.data[0].items)
+        })
+        .catch(error => {
+          console.error('Error:', error)
+        })
+    }
   }
 
   const totalPrice = cartData.reduce(
@@ -151,7 +171,6 @@ const Cart = () => {
           <ul className="cartPurchaseContainer">
             <li className="cartPurchaseKeyAmount">
               <span className="keyTitle">총 상품금액</span>
-              {/*     <span className="keyValue"></span>*/}
               <span className="keyValue">{`${totalPrice.toLocaleString()}원`}</span>
             </li>
             <li className="cartPurchaseKeyAmount">

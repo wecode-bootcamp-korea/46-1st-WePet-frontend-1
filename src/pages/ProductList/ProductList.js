@@ -88,7 +88,9 @@ const ProductList = () => {
                     <img className="productImg" src={productImage} />
                     <div className="productText">
                       <p className="itemName">{productName}</p>
-                      <p className="itemPrice">{productPrice}</p>
+                      <p className="itemPrice">{`${parseFloat(
+                        productPrice
+                      ).toLocaleString()}원`}</p>
                     </div>
                   </div>
                 </Link>

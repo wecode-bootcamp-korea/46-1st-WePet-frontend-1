@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import SliderContent from './components/SliderContent'
 import Arrows from '../Carousel/components/Arrows'
+import { APIS } from '../../../../config'
 import './Slider.scss'
 
 const Slider = ({ data }) => {
   const [productData, setProductData] = useState([])
 
   useEffect(() => {
-    fetch(`http://10.58.52.246:8001/products/category?id=${data}`)
+    fetch(`${APIS.product}/category?id=${data}`)
       .then(response => response.json())
       .then(data => setProductData(data.data))
   }, [])

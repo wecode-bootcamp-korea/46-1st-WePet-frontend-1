@@ -15,21 +15,9 @@ const Purchase = () => {
   }, [])
 
   useEffect(() => {
-    fetch('http://10.58.52.81:8001/shopping-carts', {
-      method: 'POST',
-      body: JSON.stringify({
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          Authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
-        },
-        body: JSON.stringify({
-          userId: 4,
-        }),
-      }),
-    })
+    fetch('/data/purchaseCartData.json')
       .then(response => response.json())
-      .then(result => setCartData(result.data))
+      .then(result => setCartData(result))
     console.log(cartData)
   }, [])
 

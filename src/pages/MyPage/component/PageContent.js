@@ -45,6 +45,7 @@ const PageContent = ({ title, content, button }) => {
         <h1 className="pageContentTitle">{title}</h1>
         {button && (
           <button
+            className="modalBtn"
             onClick={() => {
               setIsModalOpen(!isModalOpen)
             }}

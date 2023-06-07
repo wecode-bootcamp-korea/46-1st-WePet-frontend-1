@@ -13,18 +13,23 @@ const MyPageModal = ({ setIsModalOpen }) => {
             className="categoryOption"
           />
           <div className="orderInfo">
-            <input type="text" classNumber="orderNo" placeholder="주문번호" />
-            <button className="selectBtn">주문번호 선택</button>
+            <input type="text" className="orderNo" placeholder="주문번호" />
+            <button className="selectBtn">주문 확인</button>
           </div>
-          <input type="text" placeholder="문의제목" />
+          <input type="text" className="title" placeholder="문의제목" />
           <textarea
             maxLength={1000}
+            className="inquiry"
             placeholder="문의내용을 입력해주세요.(1,000 자이내)"
           />
-          <input type="text" placeholder="이메일" />
-          <input type="text" placeholder="휴대폰 번호" />
+          <input className="emailText" type="text" placeholder="이메일" />
+          <input
+            className="phoneNumber"
+            type="text"
+            placeholder="휴대폰 번호"
+          />
         </form>
-        <div className="modalBtn">
+        <div className="modalSubmit">
           <button
             className="submitBtn"
             onClick={() => {

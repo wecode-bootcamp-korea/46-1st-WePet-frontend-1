@@ -1,18 +1,38 @@
 import React from 'react'
+import { APIS } from '../../../config'
 import './Count.scss'
 
-const Count = ({ id, quantity, cartData, setCartData }) => {
-  const handleCount = value => {
-    const newArray = [...cartData]
-    setCartData(
-      newArray.map(list => {
-        if (list.id === id) {
-          return { ...list, quantity: list.quantity + value }
-        } else {
-          return list
-        }
+const Count = ({ id, quantity, getCartItem }) => {
+  const TOKEN = localStorage.getItem('TOKEN')
+
+  const handleAdd = () => {
+    fetch(`${APIS.cart}/add/single-item`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: TOKEN,
+      },
+      body: JSON.stringify({ productId: id }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'ITEM_QUANTITY_ADD_SUCCESSFUL') getCartItem()
       })
-    )
+  }
+
+  const handleSubtract = () => {
+    fetch(`${APIS.cart}/subtract/single-item`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: TOKEN,
+      },
+      body: JSON.stringify({ productId: id }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'ITEM_QUANTITY_SUBTRACT_SUCCESSFUL') getCartItem()
+      })
   }
 
   return (
@@ -20,7 +40,7 @@ const Count = ({ id, quantity, cartData, setCartData }) => {
       <button
         className="countBtn"
         onClick={() => {
-          if (quantity - 1 > 0) handleCount(-1)
+          if (quantity - 1 > 0) handleSubtract()
         }}
       >
         -
@@ -29,7 +49,7 @@ const Count = ({ id, quantity, cartData, setCartData }) => {
       <button
         className="countBtn"
         onClick={() => {
-          if (quantity + 1 < 21) handleCount(1)
+          if (quantity + 1 < 21) handleAdd()
         }}
       >
         +

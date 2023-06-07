@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Count from './Count/Count'
 import CartModal from './CartModal/CartModal'
+import { APIS } from '../../config'
 import './Cart.scss'
 
 const Cart = () => {
@@ -9,13 +10,27 @@ const Cart = () => {
   const [cartData, setCartData] = useState([])
   const [checkItems, setCheckItems] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const TOKEN = localStorage.getItem('TOKEN')
+  const USER_ID = 4
 
-  useEffect(() => {
-    fetch('/data/product.json')
+  const getCartItem = () => {
+    fetch(`${APIS.cart}?userId=${USER_ID}`, {
+      headers: {
+        Authorization: TOKEN,
+      },
+    })
       .then(res => res.json())
       .then(data => {
-        setCartData(data)
+        if (data.data.length > 0) {
+          setCartData(data.data[0].items)
+        } else {
+          setCartData([])
+        }
       })
+  }
+
+  useEffect(() => {
+    getCartItem()
   }, [])
 
   const handleCheck = (checked, id) => {
@@ -28,20 +43,48 @@ const Cart = () => {
 
   const handleAllCheck = checked => {
     if (checked) {
-      setCheckItems(cartData.map(item => item.id))
+      setCheckItems(cartData.map(item => item.productId))
     } else {
       setCheckItems([])
     }
   }
 
+  const deleteAllCartItem = () => {
+    fetch(`${APIS.cart}/remove/all-items`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: TOKEN,
+      },
+    })
+      .then(res => {
+        if (res.status === 204) {
+          setCartData([])
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error)
+      })
+  }
+
   const deleteCartItem = () => {
-    const newCartItem = cartData.filter(item => !checkItems.includes(item.id))
-    setCartData(newCartItem)
-    setCheckItems([])
+    const selectItem = checkItems[0]
+    fetch(`${APIS.cart}/remove/single-item/${selectItem}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: TOKEN,
+      },
+      body: JSON.stringify({ userId: 4 }),
+    }).then(res => {
+      if (res.status === 204) {
+        getCartItem()
+      }
+    })
   }
 
   const totalPrice = cartData.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) => sum + item.productPrice * item.productQuantity,
     0
   )
 
@@ -84,6 +127,9 @@ const Cart = () => {
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
                 deleteCartItem={deleteCartItem}
+                deleteAllCartItem={deleteAllCartItem}
+                checkItems={checkItems}
+                cartData={cartData}
               />
             </div>
           )}
@@ -94,23 +140,28 @@ const Cart = () => {
                   <li className="cartProductItem" key={index}>
                     <input
                       type="checkbox"
-                      onChange={e => handleCheck(e.target.checked, item.id)}
-                      checked={checkItems.includes(item.id)}
+                      onChange={e =>
+                        handleCheck(e.target.checked, item.productId)
+                      }
+                      checked={checkItems.includes(item.productId)}
                     />
                     <img
                       className="cartProductItemImg"
-                      src={item.url}
-                      alt={`${item.name}-product-img`}
+                      src={item.productImage}
+                      alt={`${item.productName}-product-img`}
                     />
-                    <div className="cartProductName">{item.name}</div>
+                    <div className="cartProductName">{item.productName}</div>
                     <Count
-                      id={item.id}
-                      quantity={item.quantity}
+                      id={item.productId}
+                      quantity={item.productQuantity}
                       cartData={cartData}
                       setCartData={setCartData}
+                      getCartItem={getCartItem}
                     />
                     <span className="cartProductPrice">
-                      {`${(item.price * item.quantity).toLocaleString()}원`}
+                      {`${(
+                        item.productPrice * item.productQuantity
+                      ).toLocaleString()}원`}
                     </span>
                   </li>
                 )

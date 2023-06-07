@@ -33,7 +33,7 @@ const BANNER_DATA = {
 }
 
 const RECOMMEND_TYPE = {
-  first: 'popular',
+  first: 'recommended',
   second: 'newest',
 }
 

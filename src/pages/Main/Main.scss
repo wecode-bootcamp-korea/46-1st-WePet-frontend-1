@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
 .main {
   position: relative;
 }
@@ -10,9 +12,10 @@
   .popularTitle {
     padding-top: 80px;
     padding-bottom: 80px;
-    border-top: 1px solid #bbb;
+    border-top: 1px solid #bebebe;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 30px;
-    font-weight: 800;
+    font-weight: 500;
     text-align: center;
   }
 }

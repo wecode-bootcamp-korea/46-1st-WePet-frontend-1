@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
 .count {
   display: flex;
   line-height: 16px;
@@ -15,6 +17,8 @@
   .totalQuantity {
     width: 20px;
     border: 1px solid #ffbb0b;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
     text-align: center;
   }
 }

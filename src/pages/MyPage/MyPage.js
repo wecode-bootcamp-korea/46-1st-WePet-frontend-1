@@ -48,7 +48,7 @@ const MyPage = () => {
           <ul className="menuBox">
             <div className="menuTitle">고객 센터</div>
             <li className="menuText">
-              <Link to={`/mypage/qna`}>1:1 문의 내역</Link>
+              <Link to="/mypage/qna">1:1 문의 내역</Link>
             </li>
             <li className="menuText">
               <a href="mailto:@">이메일 문의</a>
@@ -67,7 +67,7 @@ const MyPage = () => {
               <h4 className="welcome">
                 반가워요,
                 <p>
-                  <b>WePet</b>님
+                  <b className="userName">WePet</b>님
                 </p>
               </h4>
             )}
@@ -84,7 +84,7 @@ const SHOPPING_DATA = [
   '주문/배송조회',
   '취소/반품/교환 내역',
   '나의 상품 후기',
-  '쿠폰함',
+  '포인트',
 ]
 
 const USER_DATA = ['회원정보 변경', '배송지 관리']
@@ -92,7 +92,7 @@ const ENG_TITLE = {
   '주문/배송조회': 'order',
   '취소/반품/교환 내역': 'claim',
   '나의 상품 후기': 'review',
-  쿠폰함: 'coupon',
+  포인트: 'coupon',
   '회원정보 변경': 'member',
   '배송지 관리': 'address',
   '1:1 문의 내역': 'qna',

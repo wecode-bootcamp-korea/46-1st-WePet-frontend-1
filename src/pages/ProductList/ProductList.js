@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link, useSearchParams } from 'react-router-dom'
+import { APIS } from '../../config'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import './ProductList.scss'
@@ -9,7 +10,6 @@ const ProductList = () => {
 
   const [dropBox, isOpenDropBox] = useState(false)
   const [products, setProducts] = useState([])
-  const [orderBy, setOrderBy] = useState('newest')
   const [searchParams, setSearchParams] = useSearchParams()
 
   const query = searchParams.toString()
@@ -19,14 +19,12 @@ const ProductList = () => {
       ? searchParams.delete('categoryId')
       : searchParams.set('categoryId', id)
     setSearchParams(searchParams)
-    fetch(`http://10.58.52.246:8001/products/filter?${query}`, {
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
-    })
+    fetch(`${APIS.product}/filter?offset=0&limit=40${query}`)
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)
       })
-  }, [query])
+  }, [query, id])
 
   const handleQueryString = key => {
     searchParams.set('orderBy', key)
@@ -34,78 +32,73 @@ const ProductList = () => {
   }
 
   return (
-    <>
-      <div className="productList">
-        <header className="productListHeader">
-          <h1 className="productListTitle">
-            {HEADER_DATA[id].title}
-            <sup className="totalQuantity">총 {products.length} 개</sup>
-          </h1>
+    <div className="productList">
+      <header className="productListHeader">
+        <h1 className="productListTitle">
+          {HEADER_DATA[id].title}
+          <sup className="totalQuantity">총 {products.length} 개</sup>
+        </h1>
 
-          <div className="headerContentBox">
-            <p
-              className="headerContent"
-              dangerouslySetInnerHTML={{ __html: HEADER_DATA[id].descripion }}
-            ></p>
-          </div>
-        </header>
-        <div className="filterBox">
-          <div className="dropBoxWrapper">
-            <button
-              className="dropBox"
-              onClick={() => {
-                isOpenDropBox(prev => !prev)
-              }}
-            >
-              추천순
-              <FontAwesomeIcon className="dropBoxArrow" icon={faChevronDown} />
-            </button>
-            {dropBox && (
-              <div className="dropBoxListContainer">
-                <div className="dropBoxList">
-                  {DROP_BOX.map(({ title, key }) => {
-                    return (
-                      <span
-                        className="dropBoxContent"
-                        onClick={() => {
-                          handleQueryString(key)
-                        }}
-                      >
-                        {title}
-                      </span>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
+        <div className="headerContentBox">
+          <p
+            className="headerContent"
+            dangerouslySetInnerHTML={{ __html: HEADER_DATA[id].descripion }}
+          ></p>
         </div>
-
-        <div className="productListMain">
-          {products.map(
-            ({
-              product_category_id,
-              main_image_thumbnail,
-              product_name,
-              product_price,
-            }) => {
-              return (
-                <Link to={`/products/${product_category_id}`}>
-                  <div className="productItem">
-                    <img className="productImg" src={main_image_thumbnail} />
-                    <div className="productText">
-                      <p className="itemIcon" />
-                      <p className="itemName">{product_name}</p>
-                      <p className="itemPrice">{product_price}</p>
-                    </div>
-                  </div>
-                </Link>
-              )
-            }
+      </header>
+      <div className="filterBox">
+        <div className="dropBoxWrapper">
+          <button
+            className="dropBox"
+            onClick={() => {
+              isOpenDropBox(prev => !prev)
+            }}
+          >
+            추천순
+            <FontAwesomeIcon className="dropBoxArrow" icon={faChevronDown} />
+          </button>
+          {dropBox && (
+            <div className="dropBoxListContainer">
+              <div className="dropBoxList">
+                {DROP_BOX.map(({ title, key }, index) => {
+                  return (
+                    <span
+                      key={index}
+                      className="dropBoxContent"
+                      onClick={() => {
+                        handleQueryString(key)
+                      }}
+                    >
+                      {title}
+                    </span>
+                  )
+                })}
+              </div>
+            </div>
           )}
         </div>
       </div>
-    </>
+
+      <div className="productListMain">
+        {products.map(
+          ({ productId, productImage, productName, productPrice, index }) => {
+            return (
+              <Link to={`/products/details/${productId}`}>
+                <div className="productItem" key={index}>
+                  <img className="productImg" src={productImage} />
+                  <div className="productText">
+                    <p className="itemName">{productName}</p>
+                    <p className="itemPrice">{`${parseFloat(
+                      productPrice
+                    ).toLocaleString()}원`}</p>
+                  </div>
+                </div>
+              </Link>
+            )
+          }
+        )}
+      </div>
+    </div>
   )
 }
 
@@ -126,7 +119,7 @@ const HEADER_DATA = {
   3: {
     title: '용품',
     descripion:
-      '가장 신선하고, 차별화된 유기농 제품으로<br><br>  우리 아이들의 건강까지 생각합니다',
+      '편리하고, 안전한 제품들로<br><br> 우리 아이들의 행복한 라이프까지 생각합니다 ',
   },
 }
 

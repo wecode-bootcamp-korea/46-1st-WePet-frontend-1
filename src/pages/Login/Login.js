@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import UserModal from './component/UserModal'
+import { APIS } from '../../config'
 import './Login.scss'
+import './component/UserModal.scss'
 
 const Login = () => {
   const navigate = useNavigate()
+  const [isOpenModal, setIsOpenModal] = useState(false)
   const [signInfo, setSignInfo] = useState({ email: '', password: '' })
   const [isErrors, setIsErrors] = useState({
     email: false,
@@ -21,7 +25,7 @@ const Login = () => {
   const isAllValidation = isError && signValidation
 
   const signIn = () => {
-    fetch('http://10.58.52.245:3000/users/login', {
+    fetch(APIS.login, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
@@ -33,11 +37,11 @@ const Login = () => {
         return response.json()
       })
       .then(response => {
-        if (response.messge === 'LOGIN_SUCCESS') {
-          // localStorage.setItem('TOKEN', response.data.accessToken) 추가구현예정
+        if (response.message === 'Login_Success') {
+          localStorage.setItem('TOKEN', response.result)
           navigate('/main')
         } else {
-          alert('로그인에 실패하셨습니다.')
+          setIsOpenModal(true)
         }
       })
   }
@@ -53,9 +57,8 @@ const Login = () => {
       }
     })
   }
-
   return (
-    <div className="Login">
+    <div className="login">
       <div className="signIn">
         <h1 className="loginTitle">로그인</h1>
         <ul className="loginInputContainer">
@@ -100,6 +103,13 @@ const Login = () => {
           </Link>
         </div>
       </div>
+      {isOpenModal === true && (
+        <UserModal
+          text={'회원정보를 찾을 수 없습니다.'}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
+        />
+      )}
     </div>
   )
 }

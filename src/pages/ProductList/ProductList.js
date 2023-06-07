@@ -18,7 +18,7 @@ const ProductList = () => {
       ? searchParams.delete('categoryId')
       : searchParams.set('categoryId', id)
     setSearchParams(searchParams)
-    fetch(`http://10.58.52.176:8001/products/filter?offset=0&limit=40${query}`)
+    fetch(`http://10.58.52.81:8001/products/filter?offset=0&limit=40${query}`)
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)
@@ -83,7 +83,7 @@ const ProductList = () => {
           {products.map(
             ({ productId, productImage, productName, productPrice, index }) => {
               return (
-                <Link to={`/products/${productId}`}>
+                <Link to={`/products/details/${productId}`}>
                   <div className="productItem" key={index}>
                     <img className="productImg" src={productImage} />
                     <div className="productText">
@@ -118,7 +118,7 @@ const HEADER_DATA = {
   3: {
     title: '용품',
     descripion:
-      '가장 신선하고, 차별화된 유기농 제품으로<br><br>  우리 아이들의 건강까지 생각합니다',
+      '편리하고, 안전한 제품들로<br><br> 우리 아이들의 행복한 라이프까지 생각합니다 ',
   },
 }
 

@@ -61,7 +61,6 @@ const Cart = () => {
           setCartData([])
         }
       })
-
       .catch(error => {
         console.error('Error:', error)
       })

@@ -48,9 +48,10 @@ const SignUp = () => {
         return response.json()
       })
       .then(response => {
-        if (response.messge === 'SIGNUP_SUCCESS') {
+        console.log(response)
+        if (response.message === 'Signup_Success') {
           navigate('/login')
-        } else if (response.messge === 'DUPLICATE EMAIL') {
+        } else if (response.message === 'Duplicate Email') {
           alert('중복된 이메일을 가진 사용자가 존재합니다.')
         } else {
           alert('회원가입에 실패했습니다.')

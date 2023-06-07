@@ -1,7 +1,5 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCashRegister } from '@fortawesome/free-solid-svg-icons'
 
 import './PurchaseModal.scss'
 
@@ -9,7 +7,7 @@ const PurchaseModal = ({ text, isOpenModal, setIsOpenModal }) => {
   const navigate = useNavigate()
 
   const goToMain = () => {
-    if (isOpenModal === false) {
+    if (isOpenModal === true) {
       navigate('/login')
     }
   }
@@ -20,14 +18,14 @@ const PurchaseModal = ({ text, isOpenModal, setIsOpenModal }) => {
           <div
             className="ham"
             onClick={() => {
-              // setIsPurchaseModal(prev => !prev)
+              setIsOpenModal(prev => !prev)
               goToMain()
             }}
           >
             <div className="line hamTopLine" />
             <div className="line hamBtmLine" />
           </div>
-          <FontAwesomeIcon icon={faCashRegister} className="icon" size="lg" />
+          <div className="modalTitle">앗</div>
           <span className="text">{text}</span>
         </div>
       </div>

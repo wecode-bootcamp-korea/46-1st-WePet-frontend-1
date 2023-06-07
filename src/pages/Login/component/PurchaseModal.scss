@@ -44,10 +44,20 @@
     }
   }
 
+  .modalTitle {
+    font-size: 50px;
+    font-weight: 700;
+    margin: 40px 0;
+  }
+
+  .text {
+    margin-bottom: 40px;
+  }
+
   .title {
+    flex-direction: column;
     position: fixed;
     width: 500px;
-    height: 150px;
     left: 50%;
     top: 50%;
     margin-left: -250px;

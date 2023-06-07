@@ -21,7 +21,7 @@ function Product({ sort }) {
               <div className="productItem">
                 <img
                   className="productImg"
-                  src={item.main_image_thumbnail}
+                  src={item.productImage}
                   alt={`${item.productName} productImg`}
                 />
                 <div className="productText">

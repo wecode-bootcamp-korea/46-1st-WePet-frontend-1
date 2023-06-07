@@ -11,10 +11,16 @@ const Cart = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
-    fetch('http://10.58.52.176:8001/shopping-carts?userId=1')
+    fetch('http://10.58.52.81:8001/shopping-carts?userId=4', {
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjg2MDM5OTAxLCJleHAiOjE3NzIzNTM1MDF9.xkedNNKZOXYe0SA8KJL9xtyuyvjwIQheW4ETTUx-qO8',
+      },
+    })
       .then(res => res.json())
       .then(data => {
-        setCartData(data.data[0].items)
+        //  setCartData(data.data[0].items)
+        console.log(data.data)
       })
   }, [])
 

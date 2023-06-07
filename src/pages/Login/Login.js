@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import PurchaseModal from './component/PurchaseModal'
+import './component/PurchaseModal.scss'
 import './Login.scss'
 
 const Login = () => {
   const navigate = useNavigate()
+  const [isOpenModal, setIsOpenModal] = useState(false)
   const [signInfo, setSignInfo] = useState({ email: '', password: '' })
   const [isErrors, setIsErrors] = useState({
     email: false,
@@ -37,7 +40,8 @@ const Login = () => {
           localStorage.setItem('TOKEN', response.result)
           navigate('/main')
         } else {
-          alert('로그인에 실패하셨습니다.')
+          setIsOpenModal(true)
+          // alert('회원가입에 실패하셨습니다.')
         }
       })
   }
@@ -53,7 +57,6 @@ const Login = () => {
       }
     })
   }
-
   return (
     <div className="Login">
       <div className="signIn">
@@ -100,6 +103,9 @@ const Login = () => {
           </Link>
         </div>
       </div>
+      {isOpenModal === true && (
+        <PurchaseModal text={'로그인에 실패하셨습니다.'} />
+      )}
     </div>
   )
 }

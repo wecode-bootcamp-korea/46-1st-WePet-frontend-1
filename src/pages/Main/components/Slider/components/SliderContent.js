@@ -8,16 +8,18 @@ const SliderContent = ({ firstSlide, productData }) => {
       {productData
         .map(item => {
           return (
-            <Link to={`products/${item.productId}`} key={item.id}>
+            <Link to={`products/details/${item.productId}`} key={item.id}>
               <div className="sliderItem">
                 <img
                   className="sliderImg"
-                  src={item.productImage}
+                  src={item.mainThumbnailImage}
                   alt="productChoice"
                 />
                 <div className="sliderText">
                   <p className="sliderName">{item.productName}</p>
-                  <p className="sliderPrice">{item.productPrice}</p>
+                  <p className="sliderPrice">{`${parseFloat(
+                    item.productPrice
+                  ).toLocaleString()}원`}</p>
                 </div>
               </div>
             </Link>

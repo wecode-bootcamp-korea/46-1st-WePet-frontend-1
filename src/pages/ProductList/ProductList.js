@@ -19,7 +19,7 @@ const ProductList = () => {
       ? searchParams.delete('categoryId')
       : searchParams.set('categoryId', id)
     setSearchParams(searchParams)
-    fetch(`${APIS.product}/filter?offset=0&limit=40${query}`)
+    fetch(`${APIS.product}/filter?offset=0&limit=40&${query}`)
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)
@@ -43,7 +43,7 @@ const ProductList = () => {
           <p
             className="headerContent"
             dangerouslySetInnerHTML={{ __html: HEADER_DATA[id].descripion }}
-          ></p>
+          />
         </div>
       </header>
       <div className="filterBox">
@@ -83,9 +83,13 @@ const ProductList = () => {
         {products.map(
           ({ productId, productImage, productName, productPrice, index }) => {
             return (
-              <Link to={`/products/details/${productId}`}>
+              <Link to={`/products/details/${productId}`} key={id}>
                 <div className="productItem" key={index}>
-                  <img className="productImg" src={productImage} />
+                  <img
+                    className="productImg"
+                    src={productImage}
+                    alt="productDetailImg"
+                  />
                   <div className="productText">
                     <p className="itemName">{productName}</p>
                     <p className="itemPrice">{`${parseFloat(

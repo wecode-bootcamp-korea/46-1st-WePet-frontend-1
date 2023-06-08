@@ -10,12 +10,12 @@ export const IMAGE_INFO_LIST = [
   },
   {
     title: 'WePet',
-    description: 'WePet is...',
-    urls: Second,
+    description: '행복한 우리 아이들을 위한',
+    urls: Third,
   },
   {
     title: 'WePet',
-    description: 'WePet is...',
-    urls: Third,
+    description: '가족같은 우리 아이들을 위한',
+    urls: Second,
   },
 ]

@@ -39,7 +39,7 @@ const Login = () => {
       .then(response => {
         if (response.message === 'Login_Success') {
           localStorage.setItem('TOKEN', response.result)
-          navigate('/main')
+          navigate('/')
         } else {
           setIsOpenModal(true)
         }
@@ -105,7 +105,7 @@ const Login = () => {
       </div>
       {isOpenModal === true && (
         <UserModal
-          text={'회원정보를 찾을 수 없습니다.'}
+          text="회원정보를 찾을 수 없습니다."
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
         />

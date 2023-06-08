@@ -10,7 +10,7 @@ const Cart = () => {
   const [cartData, setCartData] = useState([])
   const [checkItems, setCheckItems] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const TOKEN = localStorage.getItem('TOKEN')
+  const TOKEN = localStorage.getItem('TOKEN_cart')
   const USER_ID = 4
 
   const getCartItem = () => {

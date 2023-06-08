@@ -39,17 +39,19 @@ const Modal = () => {
         <div className="modalBottom">
           <div className="inquire">
             <div className="inquireIcon">
-              <Link to={'/mypage'}>
+              <Link to="/mypage">
                 <FontAwesomeIcon icon={faHeadset} size="lg" className="icon" />
               </Link>
             </div>
-            <Link to={'/mypage'}>
+            <Link to="/mypage/qna">
               <span className="personal">1:1 문의</span>
             </Link>
           </div>
-          <div className="bottomLine"></div>
+          <div className="bottomLine" />
           <div className="emailInquire">
-            <span>이메일 문의</span>
+            <a href="mailto:@">
+              <span className="mail">이메일 문의</span>
+            </a>
           </div>
         </div>
       </div>

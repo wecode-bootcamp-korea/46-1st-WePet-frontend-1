@@ -2,12 +2,12 @@
 
 .login {
   display: flex;
+  flex: 1;
   flex-direction: column;
   width: 1200px;
   height: 100%;
-  margin: 0 auto;
+  margin: 90px auto 0 auto;
   padding: 80px 0 200px 0;
-  flex: 1;
 }
 
 .signIn {
@@ -17,10 +17,10 @@
 
   .loginTitle {
     padding-bottom: 40px;
-    text-align: center;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 24px;
     font-weight: 700;
+    text-align: center;
   }
 
   .loginInputContainer {
@@ -36,12 +36,12 @@
       }
 
       .input {
-        height: 62px;
         width: 400px;
-        padding: 22px 20px;
+        height: 62px;
         margin: 10px 0 10px 0;
-        border-radius: 6px;
+        padding: 22px 20px;
         border: 1px solid #dadada;
+        border-radius: 6px;
 
         &:focus {
           outline: none;
@@ -53,8 +53,8 @@
         height: 62px;
         margin-top: 10px;
         padding: 22px 20px;
-        border-radius: 6px;
         border: 1px solid red;
+        border-radius: 6px;
 
         &:focus {
           outline: none;
@@ -65,19 +65,19 @@
 
   .errorMsg {
     padding: 10px 0 10px 0;
+    color: red;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 12px;
     font-weight: 300;
-    color: red;
   }
 
   .saveEmail {
     width: 400px;
     margin: 20px 0;
+    color: gray;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     font-weight: 300;
-    color: gray;
   }
 
   .loginBtn {
@@ -87,16 +87,16 @@
     margin-bottom: 30px;
     border: none;
     border-radius: 5px;
+    background-color: rgba(241, 241, 241, 0.7215686275);
+    color: #bebebe;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
     font-weight: 500;
-    background-color: rgba(241, 241, 241, 0.7215686275);
-    color: #bebebe;
   }
   .valid {
-    cursor: pointer;
     background-color: #ffbb0f;
     color: white;
+    cursor: pointer;
   }
 
   .toSignUpBox {
@@ -104,11 +104,11 @@
     justify-content: center;
 
     .toSignUp {
-      text-align: center;
+      color: gray;
       font-family: 'Noto Sans KR', sans-serif;
       font-size: 13px;
       font-weight: 500;
-      color: gray;
+      text-align: center;
 
       &:hover {
         color: #ffbb0f;

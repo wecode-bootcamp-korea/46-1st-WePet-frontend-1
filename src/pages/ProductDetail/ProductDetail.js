@@ -10,7 +10,7 @@ import DetailInformation from './Component/DetailInformation'
 import ImgCarousel from './Component/ImgCarousel'
 import Review from './Component/Review'
 import GoToTop from './Component/GoToTop'
-import Cart from './Component/Cart'
+import CartBtn from './Component/CartBtn'
 
 import './ProductDetail.scss'
 
@@ -28,12 +28,9 @@ const ProductDetail = () => {
     fetch(`http://10.58.52.81:8001/products/details/${productId}`)
       .then(response => response.json())
       .then(result => {
-        console.log(result)
         setProductData(result.data)
       })
   }, [productId])
-
-  console.log(productData)
 
   if (!productData?.productPrice) return null
   if (!productData?.extraImages) return null
@@ -144,7 +141,7 @@ const ProductDetail = () => {
       >
         <GoToTop />
         {isCartBtn && (
-          <Cart isCartBtn={isCartBtn} setIsCartBtn={setIsCartBtn} />
+          <CartBtn isCartBtn={isCartBtn} setIsCartBtn={setIsCartBtn} />
         )}
       </div>
     </div>

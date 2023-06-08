@@ -2,27 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 .nav {
+  display: flex;
   position: fixed;
+  z-index: 4;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
+  align-items: center;
   width: 100%;
   height: 90px;
-  line-height: 90px;
   padding: 7px;
-
-  display: flex;
-  align-items: center;
   background-color: #fff;
-  z-index: 4;
   font-family: 'Noto Sans KR', sans-serif;
+  line-height: 90px;
 
   .logo {
     width: 180px;
     height: 45px;
-    padding: 0px 15px;
     margin-top: 20px;
     margin-right: 40px;
+    padding: 0px 15px;
     text-align: center;
 
     &:hover {
@@ -35,9 +34,9 @@
     min-width: 300px;
 
     .categoryName {
+      margin-right: 30px;
       color: #000;
       font-size: 22px;
-      margin-right: 30px;
       font-weight: 700;
       &:hover {
         color: #ffbb0f;
@@ -59,20 +58,20 @@
   }
 
   .loginBtn {
-    width: 90px;
+    width: 120px;
     height: 40px;
-    border-radius: 25px;
     margin: 0px 5px;
-    font-size: 18px;
-    font-weight: 700;
-    text-align: center;
-    color: #000;
-    background-color: #fff;
     border: 2px solid #000;
+    border-radius: 25px;
+    background-color: #fff;
+    color: #000;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
 
     &:hover {
-      color: #ffbb0f;
       border: 2px solid #ffbb0f;
+      color: #ffbb0f;
     }
   }
 }

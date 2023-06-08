@@ -25,8 +25,8 @@ const Modal = () => {
           </div>
         ) : (
           <div className="modalPtag">
-            <p className="description">앗!</p>
-            <p className="description">로그인이 필요해요</p>{' '}
+            <span className="description">앗!</span>
+            <span className="description">로그인이 필요해요</span>
           </div>
         )}
         <span className="ulTitle">테마</span>
@@ -41,10 +41,11 @@ const Modal = () => {
         </ul>
         <span className="ulTitle">카테고리</span>
         <ul className="ulBox">
-          {MODAL_LOWER_DATA.map(data => {
+          {MODAL_LOWER_DATA.map((data, i) => {
+            const url = `productList/${i}`
             return (
-              <Link to={data.link} key={data.id}>
-                <li className="list">{data.name}</li>
+              <Link className="list" to={url} key={data.name}>
+                {data.name}
               </Link>
             )
           })}

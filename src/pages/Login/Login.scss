@@ -26,41 +26,6 @@
   .loginInputContainer {
     margin-top: 40px;
     padding: 0;
-
-    .inputBox {
-      position: relative;
-      list-style: none;
-
-      .label {
-        position: absolute;
-      }
-
-      .input {
-        width: 400px;
-        height: 62px;
-        margin: 10px 0 10px 0;
-        padding: 22px 20px;
-        border: 1px solid #dadada;
-        border-radius: 6px;
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      .inputError {
-        width: 400px;
-        height: 62px;
-        margin-top: 10px;
-        padding: 22px 20px;
-        border: 1px solid red;
-        border-radius: 6px;
-
-        &:focus {
-          outline: none;
-        }
-      }
-    }
   }
 
   .errorMsg {
@@ -69,6 +34,41 @@
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 12px;
     font-weight: 300;
+  }
+
+  .inputBox {
+    position: relative;
+    list-style: none;
+
+    .label {
+      position: absolute;
+    }
+
+    .input {
+      width: 400px;
+      height: 62px;
+      margin: 10px 0 10px 0;
+      padding: 22px 20px;
+      border: 1px solid #dadada;
+      border-radius: 6px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .inputError {
+      width: 400px;
+      height: 62px;
+      margin-top: 10px;
+      padding: 22px 20px;
+      border: 1px solid red;
+      border-radius: 6px;
+
+      &:focus {
+        outline: none;
+      }
+    }
   }
 
   .saveEmail {
@@ -93,6 +93,7 @@
     font-size: 16px;
     font-weight: 500;
   }
+
   .valid {
     background-color: #ffbb0f;
     color: white;

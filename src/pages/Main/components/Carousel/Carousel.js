@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import CarouselContent from './components/CarouselContent'
-import Arrows from './components/Arrows'
 import Dots from './components/Dots'
 import { IMAGE_INFO_LIST } from './carouselImageData'
 import './Carousel.scss'
@@ -28,16 +27,24 @@ const Carousel = () => {
         activeCarousel={activeCarousel}
         imageSlider={IMAGE_INFO_LIST}
       />
-      <Arrows
-        prev={() =>
+      <span
+        className="prev"
+        onClick={() =>
           setActiveCarousel(activeCarousel < 1 ? lastIndex : activeCarousel - 1)
         }
-        next={() =>
+      >
+        &#10094;
+      </span>
+      <span
+        className="next"
+        onClick={() =>
           setActiveCarousel(
             activeCarousel === lastIndex ? 0 : activeCarousel + 1
           )
         }
-      />
+      >
+        &#10095;
+      </span>
       <Dots
         activeCarousel={activeCarousel}
         imageSlider={IMAGE_INFO_LIST}

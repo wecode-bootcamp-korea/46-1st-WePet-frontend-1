@@ -10,7 +10,7 @@ import DetailInformation from './Component/DetailInformation'
 import ImgCarousel from './Component/ImgCarousel'
 import Review from './Component/Review'
 import GoToTop from './Component/GoToTop'
-import CartBtn from './Component/CartBtn'
+import CartButton from './Component/CartButton'
 
 import './ProductDetail.scss'
 
@@ -19,7 +19,6 @@ const ProductDetail = () => {
   const productId = params.id
 
   const [products, setProducts] = useState()
-
   const [quantity, setQuantity] = useState(0)
   const [productData, setProductData] = useState({})
   const [isCartBtn, setIsCartBtn] = useState(false)
@@ -63,7 +62,7 @@ const ProductDetail = () => {
         <div className="productRight">
           <div className="line" />
           <p className="delivery">배송정보</p>
-          <p className="grey">3,000원 &#40; 30,000원 이상 구매 시 무료&#41;</p>
+          <p className="grey">3,000원 &#40; 80,000원 이상 구매 시 무료&#41;</p>
           <p className="grey">오후 1시 당일배송마감</p>
           <div className="line" />
           <div className="greyBox">
@@ -146,7 +145,7 @@ const ProductDetail = () => {
       >
         <GoToTop />
         {isCartBtn && (
-          <CartBtn isCartBtn={isCartBtn} setIsCartBtn={setIsCartBtn} />
+          <CartButton isCartBtn={isCartBtn} setIsCartBtn={setIsCartBtn} />
         )}
       </div>
     </div>

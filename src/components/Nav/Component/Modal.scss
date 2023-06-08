@@ -1,137 +1,138 @@
 .modal {
   position: fixed;
-  z-index: 500;
+  z-index: 103;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-color: #00000054;
-}
 
-.modalContent {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 300px;
-  padding: 20px;
-  padding-top: 80px;
-  animation: modalShowRight 0.3s;
-  background-color: #fff;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-
-  .modalPtag {
-    margin-bottom: 20px;
-
-    .description {
-      height: 25px;
-      font-family: 'Noto Sans KR', sans-serif;
-      font-size: 25px;
-      font-weight: 500;
-      &:first-child {
-        margin-bottom: 8px;
-      }
-    }
-  }
-
-  .ulTitle {
-    color: #bebebe;
-    font-size: 18px;
-    font-weight: 700;
-  }
-
-  .ulBox {
-    margin-bottom: 30px;
-
-    .list {
-      height: 20px;
-      margin: 9px 0px;
-      margin-bottom: 10px;
-      color: #000;
-      font-family: 'Noto Sans KR', sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-    }
-  }
-
-  .modalBottom {
-    display: flex;
+  .modalContent {
     position: fixed;
+    z-index: 103;
+    top: 0;
     right: 0;
     bottom: 0;
-    align-items: center;
-    justify-content: center;
     width: 300px;
-    height: 80px;
-  }
+    padding: 20px;
+    padding-top: 150px;
+    animation: modalShowRight 0.3s;
+    background-color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
 
-  .inquire {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 130px;
-    color: #000;
+    .modalPtag {
+      margin-bottom: 20px;
 
-    &:hover {
-      cursor: pointer;
+      .description {
+        height: 25px;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 25px;
+        font-weight: 500;
+        &:first-child {
+          margin-bottom: 8px;
+        }
+      }
     }
 
-    .inquireIcon {
+    .ulTitle {
+      color: #bebebe;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .ulBox {
+      display: flex;
+      flex-direction: column;
+      .list {
+        height: 20px;
+        margin: 9px 0px;
+        margin-bottom: 10px;
+        color: #000;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+
+    .modalBottom {
+      display: flex;
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+      height: 80px;
+    }
+
+    .inquire {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 30px;
-      height: 30px;
-      margin-right: 7px;
-      border-radius: 15px;
-      background-color: #000;
-      .icon {
-        color: #fff;
+      width: 130px;
+      color: #000;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .inquireIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        margin-right: 7px;
+        border-radius: 15px;
+        background-color: #000;
+        .icon {
+          color: #fff;
+        }
+      }
+
+      .personal {
+        color: #000;
       }
     }
+    .bottomLine {
+      width: 1px;
+      height: 20px;
+      background-color: #bebebe;
+    }
 
-    .personal {
-      color: #000;
+    .emailInquire {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 130px;
+      &:hover {
+        cursor: pointer;
+      }
+      .mail {
+        color: black;
+        text-decoration: none;
+      }
     }
   }
-  .bottomLine {
-    width: 1px;
-    height: 20px;
-    background-color: #bebebe;
-  }
+  .welcomeContent {
+    .welcome {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100px;
+      border-radius: 6px;
+      color: #444;
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 40px;
 
-  .emailInquire {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 130px;
-    &:hover {
-      cursor: pointer;
-    }
-    .mail {
-      color: black;
-      text-decoration: none;
-    }
-  }
-}
-.welcomeContent {
-  .welcome {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 100px;
-    border-radius: 6px;
-    color: #444;
-    font-size: 30px;
-    font-weight: 500;
-    line-height: 40px;
-
-    .userName {
-      display: inline-block;
-      color: #ffbb0f;
-      font-weight: 600;
+      .userName {
+        display: inline-block;
+        color: #ffbb0f;
+        font-weight: 600;
+      }
     }
   }
 }

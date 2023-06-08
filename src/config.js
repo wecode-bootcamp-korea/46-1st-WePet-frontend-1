@@ -6,4 +6,5 @@ export const APIS = {
   product: `${BASE_URL_O}/products`,
   signup: `${BASE_URL_L}/users/signup`,
   cart: `${BASE_URL_O}/shopping-carts`,
+  order: `${BASE_URL_O}/orders`,
 }

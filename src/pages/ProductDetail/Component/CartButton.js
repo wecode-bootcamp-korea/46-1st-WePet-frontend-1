@@ -3,11 +3,11 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCashRegister } from '@fortawesome/free-solid-svg-icons'
 
-import './CartBtn.scss'
+import './CartButton.scss'
 
-const CartBtn = ({ isCartBtn, setIsCartBtn }) => {
+const CartButton = ({ isCartBtn, setIsCartBtn }) => {
   return (
-    <div className="cartBtn">
+    <div className="cartButton">
       <div className="cartModalContent">
         <div className="title">
           <div
@@ -27,4 +27,4 @@ const CartBtn = ({ isCartBtn, setIsCartBtn }) => {
   )
 }
 
-export default CartBtn
+export default CartButton

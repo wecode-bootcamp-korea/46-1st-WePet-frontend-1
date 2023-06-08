@@ -20,10 +20,6 @@ export const FOOTER_LINK_LIST = [
     link: '/',
   },
   {
-    name: '대량구매/제휴안내',
-    link: '/',
-  },
-  {
     name: '@wepet_store',
     icon: true,
     link: '/',

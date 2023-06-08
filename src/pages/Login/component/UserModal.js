@@ -18,7 +18,7 @@ const UserModal = ({ text, isOpenModal, setIsOpenModal, messageNum }) => {
             <div className="line hamTopLine" />
             <div className="line hamBtmLine" />
           </div>
-          <div className="modalTitle">앗</div>
+          <div className="modalTitle">앗!</div>
           <span className="text">{text}</span>
         </div>
       </div>

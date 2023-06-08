@@ -6,20 +6,26 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import './ImgCarousel.scss'
 
-const ImgCarousel = () => {
+const ImgCarousel = ({ imageData, setImageData, productId }) => {
   const [productData, setProductData] = useState({})
   const [isCarousel, setIsCarousel] = useState(false)
 
   useEffect(() => {
-    fetch('http://10.58.52.81:8001/products/details/1')
+    fetch(`http://10.58.52.236:8001/products/details/${productId}`)
       .then(response => response.json())
       .then(result => setProductData(result.data))
-  }, [])
+
+    fetch('/data/productData.json')
+      .then(response => response.json())
+      .then(result => {
+        setImageData(result)
+      })
+  }, [productId])
 
   if (
     !productData ||
-    !productData?.mainThumbnailImage ||
-    productData?.extraImages.length === 0
+    !imageData?.productImg ||
+    imageData?.productImg.length === 0
   ) {
     return null
   }
@@ -29,12 +35,12 @@ const ImgCarousel = () => {
       <div className={`imgBox ${isCarousel ? '' : 'carousel'}`}>
         <img
           className="mainImg"
-          src={productData.extraImages[0]}
+          src={imageData.productImg[0]}
           alt="productImage"
         />
         <img
           className="mainImg"
-          src={productData.extraImages[1]}
+          src={imageData.productImg[1]}
           alt="productImage"
         />
       </div>

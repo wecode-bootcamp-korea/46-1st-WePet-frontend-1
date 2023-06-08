@@ -23,23 +23,28 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(0)
   const [productData, setProductData] = useState({})
   const [isCartBtn, setIsCartBtn] = useState(false)
+  const [orderList, setOrderList] = useState({})
+  const [imageData, setImageData] = useState()
 
   useEffect(() => {
-    fetch(`http://10.58.52.81:8001/products/details/${productId}`)
+    fetch(`http://10.58.52.236:8001/products/details/${productId}`)
       .then(response => response.json())
       .then(result => {
-        console.log(result)
         setProductData(result.data)
+      })
+
+    fetch('/data/productData.json')
+      .then(response => response.json())
+      .then(result => {
+        setImageData(result)
       })
   }, [productId])
 
-  console.log(productData)
-
   if (!productData?.productPrice) return null
-  if (!productData?.extraImages) return null
+  if (!productData?.mainThumbnailImage) return null
 
   const productPriceNum = Number(productData.productPrice)
-  const detailImages = productData.extraImages
+  const productImg = productData.mainThumbnailImage
 
   return (
     <div className="productDetail">
@@ -49,7 +54,11 @@ const ProductDetail = () => {
           <p className="price">{productPriceNum.toLocaleString()}원</p>
         </div>
 
-        <ImgCarousel />
+        <ImgCarousel
+          imageData={imageData}
+          setImageData={setImageData}
+          productId={productId}
+        />
 
         <div className="productRight">
           <div className="line" />
@@ -119,15 +128,8 @@ const ProductDetail = () => {
       </div>
       <div className="rowLine" />
       <div className="productImgs">
-        {detailImages.map((key, index) => {
-          return (
-            <img
-              key={key}
-              index={index}
-              src={productData.extraImages[index]}
-              alt="productImages"
-            />
-          )
+        {imageData.productImg.map((img, index) => {
+          return <img key={index} src={img} alt="productImages" />
         })}
       </div>
       <div className="detailInformationBox">

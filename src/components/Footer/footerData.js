@@ -61,4 +61,7 @@ export const FOOTER_INFO = [
   {
     name: '© Wepet Corp. All rights reserved',
   },
+  {
+    name: '이미지 출처: https://kr.freepik.com/free-photo/beautiful-pet-portrait-of-cat_21249194.htm#query=cat%20toy&position=31&from_view=search&track=ais, freepik',
+  },
 ]

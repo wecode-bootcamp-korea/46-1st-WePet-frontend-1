@@ -3,7 +3,13 @@ import ADDRESS_DATA from '../Data/addressData'
 
 import './Address.scss'
 
-const Address = ({ setIsModal, setIsSaved, inputValue, setInputValue }) => {
+const Address = ({
+  setIsModal,
+  setIsSaved,
+  inputValue,
+  setInputValue,
+  handleSaveAddress,
+}) => {
   const { name, phone, address1, address2 } = inputValue
 
   const keyDownFunction = (e, type) => {
@@ -26,6 +32,11 @@ const Address = ({ setIsModal, setIsSaved, inputValue, setInputValue }) => {
   const handleUserInput = e => {
     const { name, value } = e.target
     setInputValue({ ...inputValue, [name]: value })
+  }
+  const handleClick = () => {
+    handleSaveAddress()
+    setIsModal(prev => !prev)
+    setIsSaved(prev => !prev)
   }
 
   return (
@@ -68,10 +79,7 @@ const Address = ({ setIsModal, setIsSaved, inputValue, setInputValue }) => {
 
             <button
               className={`applyBtn ${!isButtonActive ? '' : 'Active'}`}
-              onClick={() => {
-                setIsModal(prev => !prev)
-                setIsSaved(prev => !prev)
-              }}
+              onClick={() => handleClick()}
             >
               등록하기
             </button>

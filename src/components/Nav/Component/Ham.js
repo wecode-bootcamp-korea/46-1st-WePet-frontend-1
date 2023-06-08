@@ -9,9 +9,9 @@ const Ham = ({ isModal, setIsModal }) => {
         setIsModal(prev => !prev)
       }}
     >
-      <div className={`line ${isModal && 'hamTopLine'}`}></div>
-      <div className={`line ${isModal && 'hamMidLine'}`}></div>
-      <div className={`line ${isModal && 'hamBtmLine'}`}></div>
+      <div className={`line ${isModal && 'hamTopLine'}`} />
+      <div className={`line ${isModal && 'hamMidLine'}`} />
+      <div className={`line ${isModal && 'hamBtmLine'}`} />
     </div>
   )
 }

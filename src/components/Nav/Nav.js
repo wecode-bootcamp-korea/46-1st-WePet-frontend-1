@@ -109,8 +109,9 @@ const Nav = () => {
             // style={{ z-index:1000 }}
           />
         )}
-        {isModal && <Modal />}
       </div>
+      {isModal && <Modal />}
+
       {isSearchModal && (
         <SearchModal
           searchModal={isSearchModal}

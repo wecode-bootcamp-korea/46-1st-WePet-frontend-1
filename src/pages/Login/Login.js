@@ -105,7 +105,7 @@ const Login = () => {
       </div>
       {isOpenModal === true && (
         <UserModal
-          text={'회원정보를 찾을 수 없습니다.'}
+          text="회원정보를 찾을 수 없습니다."
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
         />

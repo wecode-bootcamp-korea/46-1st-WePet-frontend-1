@@ -1,13 +1,13 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+//import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCashRegister } from '@fortawesome/free-solid-svg-icons'
 
-import './Cart.scss'
+import './CartBtn.scss'
 
-const Cart = ({ isCartBtn, setIsCartBtn }) => {
+const CartBtn = ({ isCartBtn, setIsCartBtn }) => {
   return (
-    <div className="cart">
+    <div className="cartBtn">
       <div className="cartModalContent">
         <div className="title">
           <div
@@ -27,4 +27,4 @@ const Cart = ({ isCartBtn, setIsCartBtn }) => {
   )
 }
 
-export default Cart
+export default CartBtn

@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 .footer {
   display: flex;
   flex-wrap: wrap;
-  height: 100px;
   width: 100%;
+  height: 100px;
   padding-top: 30px;
   padding-left: 20px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -13,13 +12,14 @@
   .logo {
     width: 140px;
     height: 38px;
-    padding: 0px 15px;
     margin-right: 100px;
-    font-family: 'Roboto', sans-serif;
+    padding: 0px 15px;
+    color: #000;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
     line-height: 50px;
     text-align: center;
-    font-size: 20px;
-    color: #000;
 
     &:hover {
       cursor: pointer;
@@ -31,9 +31,11 @@
 
     .list {
       display: inline-block;
-      font-size: 13px;
       margin: 10px;
       color: #000;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
 
       .icon {
         margin-right: 8px;
@@ -44,13 +46,16 @@
 
   .footerDetails {
     width: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 
     .info {
       display: inline-block;
-      font-size: 11px;
       margin: 0px 6px;
+      padding: 3px;
       color: #bebebe;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
     }
   }
 }

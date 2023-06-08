@@ -13,18 +13,18 @@ export const MODAL_UPPER_DATA = [
 export const MODAL_LOWER_DATA = [
   {
     name: '전체보기',
-    link: '/productlist',
+    link: '/productList/0',
   },
   {
     name: '사료',
-    link: '/productlist',
+    link: '/productList/1',
   },
   {
     name: '간식',
-    link: '/productlist',
+    link: '/productList/2',
   },
   {
     name: '용품',
-    link: '/productlist',
+    link: '/productList/3',
   },
 ]

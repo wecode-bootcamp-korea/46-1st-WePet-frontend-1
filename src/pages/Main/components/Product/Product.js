@@ -14,10 +14,10 @@ function Product({ sort }) {
 
   return (
     <div className="product">
-      <div className="productList">
+      <div className="productDisplay">
         {recommendData.map(item => {
           return (
-            <Link to={`products/${item.productId}`} key={item.id}>
+            <Link to={`products/details/${item.productId}`} key={item.id}>
               <div className="productItem">
                 <img
                   className="productImg"
@@ -27,7 +27,9 @@ function Product({ sort }) {
                 <div className="productText">
                   <p className="itemIcon">{item.icon}</p>
                   <p className="itemName">{item.productName}</p>
-                  <p className="itemPrice">{item.productPrice}</p>
+                  <p className="itemPrice">{`${parseFloat(
+                    item.productPrice
+                  ).toLocaleString()}원`}</p>
                 </div>
               </div>
             </Link>

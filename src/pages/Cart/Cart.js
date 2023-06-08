@@ -10,7 +10,7 @@ const Cart = () => {
   const [cartData, setCartData] = useState([])
   const [checkItems, setCheckItems] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const TOKEN = localStorage.getItem('TOKEN')
+  const TOKEN = localStorage.getItem('TOKEN_cart')
   const USER_ID = 4
 
   const getCartItem = () => {
@@ -88,7 +88,7 @@ const Cart = () => {
     0
   )
 
-  const deliveryPrice = totalPrice > 30000 || totalPrice === 0 ? 0 : 3000
+  const deliveryPrice = totalPrice > 80000 || totalPrice === 0 ? 0 : 3000
 
   const isCartPriceValid = totalPrice + deliveryPrice > 0
 
@@ -184,10 +184,10 @@ const Cart = () => {
               <span className="keyTitle">배송비</span>
               <span className="keyValue">{`${deliveryPrice.toLocaleString()}원`}</span>
             </li>
-            {totalPrice > 0 && totalPrice < 30000 && (
+            {totalPrice > 0 && totalPrice < 80000 && (
               <div className="deliveryAlert">
                 <div className="deliveryAlertMessage">{`${(
-                  30000 - totalPrice
+                  80000 - totalPrice
                 ).toLocaleString()}원 더 주문 시, 무료배송`}</div>
                 <div className="deliveryAlertTriangle" />
               </div>

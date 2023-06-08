@@ -6,9 +6,9 @@
 
 .productDetail {
   width: 1200px;
-  font-family: 'Noto Sans KR', sans-serif;
   margin: 0 auto;
   margin-top: 120px;
+  font-family: 'Noto Sans KR', sans-serif;
 
   .product {
     display: flex;
@@ -28,8 +28,8 @@
       }
 
       .price {
-        font-size: 15px;
         margin: 6px 0px;
+        font-size: 15px;
       }
     }
 
@@ -45,22 +45,22 @@
       .line {
         width: 300px;
         height: 1px;
-        background-color: #dadada;
         margin: 20px 0px;
+        background-color: #dadada;
       }
 
       .grey {
-        color: #afafaf;
         margin: 10px 0px;
+        color: #afafaf;
       }
 
       .greyBox {
-        background-color: #ebebeb55;
-        border-radius: 7px;
         width: 300px;
         height: 100px;
-        padding: 20px;
         margin: 44px 0px;
+        padding: 20px;
+        border-radius: 7px;
+        background-color: #ebebeb55;
         font-size: 16px;
 
         .title {
@@ -75,8 +75,8 @@
         margin-top: 50px;
         margin-bottom: 30px;
         span {
-          font-weight: 900;
           font-size: 18px;
+          font-weight: 900;
         }
       }
 
@@ -90,21 +90,21 @@
         justify-content: space-between;
 
         .cartBtn {
-          border: 2px solid #ffbb0f;
-          border-radius: 4px;
-          padding: 7px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 50px;
           height: 50px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          padding: 7px;
+          border: 2px solid #ffbb0f;
+          border-radius: 4px;
           &:hover {
             cursor: pointer;
           }
 
           .cartIcon {
-            font-size: 24px;
             color: #ffbb0f;
+            font-size: 24px;
           }
         }
 
@@ -113,8 +113,8 @@
           height: 51px;
           border: none;
           border-radius: 4px;
-          color: #fff;
           background-color: #ffbb0f;
+          color: #fff;
           font-size: 18px;
           &:hover {
             cursor: pointer;
@@ -127,8 +127,8 @@
   .rowLine {
     width: 1200px;
     height: 1px;
-    background-color: #dadada;
     margin: 20px 0px;
+    background-color: #dadada;
   }
 
   .table {
@@ -136,18 +136,18 @@
     justify-content: space-evenly;
 
     .columLine {
-      height: 10px;
       width: 1px;
+      height: 10px;
       background-color: #dadada;
     }
 
     .greyTitle {
-      color: #bebebe;
       width: 100px;
+      color: #bebebe;
       text-align: center;
       &:hover {
-        cursor: pointer;
         color: #000;
+        cursor: pointer;
       }
     }
   }
@@ -164,9 +164,9 @@
   .goToTopIcon {
     position: sticky;
     bottom: 6%;
-    margin-left: 1150px;
     width: 28px;
     height: 20px;
+    margin-left: 1150px;
     :hover {
       cursor: pointer;
     }

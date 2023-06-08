@@ -7,6 +7,8 @@
   left: 50%;
   justify-content: space-around;
   width: 90%;
+  height: 300px;
+  padding: 0 60px;
   overflow: hidden;
   transform: translate(-50%, -50%);
 
@@ -19,37 +21,46 @@
     height: 250px;
     margin: 0 15px;
     padding: 15px;
-    overflow: hidden;
-    border: 1px solid black;
 
     .sliderImg {
-      width: 150px;
-      height: 150px;
-
+      width: 200px;
+      height: 200px;
       &:hover {
         transform: scale(1.05);
       }
     }
 
     .sliderText {
+      position: absolute;
+      bottom: 20px;
       height: 53px;
-      padding: 10px 0;
+      padding: 20px 0;
       text-align: center;
     }
 
     .sliderName {
       height: 24px;
       margin: 0;
+      color: black;
       font-family: 'Noto Sans KR', sans-serif;
-      font-weight: 300;
+      font-weight: 500;
+      text-decoration: none;
       white-space: nowrap;
+      &:hover {
+        color: #ffbb0f;
+      }
     }
 
     .sliderPrice {
       height: 19px;
       margin-bottom: 0;
+      color: black;
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 300;
+      text-decoration: none;
+      &:hover {
+        color: #ffbb0f;
+      }
     }
   }
 }

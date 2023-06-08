@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCartShopping,
@@ -15,6 +15,9 @@ import Ham from './Component/Ham'
 import './Nav.scss'
 
 const Nav = () => {
+  const navigate = useNavigate()
+
+  let token = localStorage.getItem('TOKEN')
   const [isLogoHover, setIsLogoHover] = useState(false)
   const [isModal, setIsModal] = useState(false)
   const [isSearchModal, setIsSearchModal] = useState(false)
@@ -23,9 +26,15 @@ const Nav = () => {
     setIsLogoHover(prev => !prev)
   }
 
-  const [isLogin, setIsLogin] = useState(false)
-
-  console.log(isSearchModal)
+  const handleLogout = () => {
+    if (token !== null) {
+      localStorage.removeItem('TOKEN')
+      token = null
+      navigate('/')
+    } else {
+      navigate('/login')
+    }
+  }
 
   return (
     <>
@@ -34,6 +43,7 @@ const Nav = () => {
           <img
             className="logo"
             src={`/images/Logo${isLogoHover ? 'Yellow' : 'Black'}.png`}
+            alt="wepetIcon"
           />
         </Link>
         <div className="category">
@@ -65,11 +75,9 @@ const Nav = () => {
             <FontAwesomeIcon icon={faFaceSmile} size="xl" className="icon" />
           </div>
         </Link>
-        <Link to="/login">
-          <button className="loginBtn">
-            {isLogin ? '로그아웃' : '로그인'}
-          </button>
-        </Link>
+        <button className="loginBtn" onClick={handleLogout}>
+          {token ? '로그아웃' : '로그인'}
+        </button>
         {isSearchModal ? (
           ''
         ) : (
@@ -90,5 +98,4 @@ const Nav = () => {
     </>
   )
 }
-
 export default Nav

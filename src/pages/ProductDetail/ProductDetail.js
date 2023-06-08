@@ -10,7 +10,7 @@ import DetailInformation from './Component/DetailInformation'
 import ImgCarousel from './Component/ImgCarousel'
 import Review from './Component/Review'
 import GoToTop from './Component/GoToTop'
-import Cart from './Component/Cart'
+import CartBtn from './Component/CartBtn'
 
 import './ProductDetail.scss'
 
@@ -146,7 +146,7 @@ const ProductDetail = () => {
       >
         <GoToTop />
         {isCartBtn && (
-          <Cart isCartBtn={isCartBtn} setIsCartBtn={setIsCartBtn} />
+          <CartBtn isCartBtn={isCartBtn} setIsCartBtn={setIsCartBtn} />
         )}
       </div>
     </div>

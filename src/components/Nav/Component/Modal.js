@@ -8,18 +8,32 @@ import './Modal.scss'
 import './modalAnimation.scss'
 
 const Modal = () => {
+  let token = localStorage.getItem('TOKEN')
+
   return (
     <div className="modal">
       <div className="modalContent">
-        <div className="modalPtag">
-          <p className="description">앗!</p>
-          <p className="description">로그인이 필요해요</p>
-        </div>
+        {token ? (
+          <div className="welcomeContent">
+            <div className="welcome">
+              <p>
+                반가워요,
+                <br />
+                <b className="userName">RM</b>님
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="modalPtag">
+            <p className="description">앗!</p>
+            <p className="description">로그인이 필요해요</p>{' '}
+          </div>
+        )}
         <span className="ulTitle">테마</span>
         <ul className="ulBox">
           {MODAL_UPPER_DATA.map(data => {
             return (
-              <Link to={data.link}>
+              <Link to={data.link} key={data.id}>
                 <li className="list">{data.name}</li>
               </Link>
             )
@@ -29,7 +43,7 @@ const Modal = () => {
         <ul className="ulBox">
           {MODAL_LOWER_DATA.map(data => {
             return (
-              <Link to={data.link}>
+              <Link to={data.link} key={data.id}>
                 <li className="list">{data.name}</li>
               </Link>
             )
@@ -39,17 +53,19 @@ const Modal = () => {
         <div className="modalBottom">
           <div className="inquire">
             <div className="inquireIcon">
-              <Link to={'/mypage'}>
+              <Link to="/mypage">
                 <FontAwesomeIcon icon={faHeadset} size="lg" className="icon" />
               </Link>
             </div>
-            <Link to={'/mypage'}>
+            <Link to="/mypage/qna">
               <span className="personal">1:1 문의</span>
             </Link>
           </div>
-          <div className="bottomLine"></div>
+          <div className="bottomLine" />
           <div className="emailInquire">
-            <span>이메일 문의</span>
+            <a href="mailto:@">
+              <span className="mail">이메일 문의</span>
+            </a>
           </div>
         </div>
       </div>

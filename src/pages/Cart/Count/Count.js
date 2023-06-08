@@ -3,7 +3,7 @@ import { APIS } from '../../../config'
 import './Count.scss'
 
 const Count = ({ id, quantity, getCartItem }) => {
-  const TOKEN = localStorage.getItem('TOKEN')
+  const TOKEN = localStorage.getItem('TOKEN_cart')
 
   const handleAdd = () => {
     fetch(`${APIS.cart}/add/single-item`, {

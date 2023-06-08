@@ -23,8 +23,8 @@ const Purchase = () => {
 
   const handleSaveAddress = () => {
     const TOKEN =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQ2LCJlbWFpbCI6Im1peGVyMDMyNkBnbWFpbC5jb20iLCJpYXQiOjE2ODYxNDE1NzR9.aphnpU0CZTJuvlXpwVK97UhKNpzEBd6CwVdUjKFHfi0'
-    fetch('http://10.58.52.92:3000/users/address', {
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQ2LCJlbWFpbCI6Im1peGVyMDMyNkBnbWFpbC5jb20iLCJpYXQiOjE2ODYxOTIxNTN9.kUNatf3DMv5BpxZsGGTCMKxRxiL90y7scDh96VhISwk'
+    fetch('http://10.58.52.51:3000/users/address', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

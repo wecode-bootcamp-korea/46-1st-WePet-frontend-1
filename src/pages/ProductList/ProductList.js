@@ -7,28 +7,28 @@ import './ProductList.scss'
 
 const ProductList = () => {
   const { id } = useParams()
-
   const [dropBox, isOpenDropBox] = useState(false)
   const [products, setProducts] = useState([])
-  const [searchParams, setSearchParams] = useSearchParams()
-
-  const query = searchParams.toString()
+  const [orderBy, setOrderBy] = useState('')
 
   useEffect(() => {
-    id === '0'
-      ? searchParams.delete('categoryId')
-      : searchParams.set('categoryId', id)
-    setSearchParams(searchParams)
-    fetch(`${APIS.product}/filter?offset=0&limit=40&${query}`)
+    let url = `${APIS.product}/filter?offset=0&limit=40${
+      id === '0' ? '' : `&categoryId=${id}`
+    }`
+
+    if (orderBy !== '') {
+      url += `&orderBy=${orderBy}`
+    }
+
+    fetch(url)
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)
       })
-  }, [query, id])
+  }, [id, orderBy])
 
   const handleQueryString = key => {
-    searchParams.set('orderBy', key)
-    setSearchParams(searchParams)
+    setOrderBy(key)
   }
 
   return (
@@ -83,7 +83,7 @@ const ProductList = () => {
         {products.map(
           ({ productId, productImage, productName, productPrice, index }) => {
             return (
-              <Link to={`/products/details/${productId}`} key={id}>
+              <Link to={`/products/details/${productId}`} key={productId}>
                 <div className="productItem" key={index}>
                   <img
                     className="productImg"

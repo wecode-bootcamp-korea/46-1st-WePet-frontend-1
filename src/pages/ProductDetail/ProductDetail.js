@@ -40,9 +40,6 @@ const ProductDetail = () => {
       })
   }, [productId])
 
-  console.log(productData)
-  console.log(imageData)
-
   if (!productData?.productPrice) return null
   if (!productData?.mainThumbnailImage) return null
 
@@ -57,7 +54,11 @@ const ProductDetail = () => {
           <p className="price">{productPriceNum.toLocaleString()}원</p>
         </div>
 
-        <ImgCarousel imageData={imageData} />
+        <ImgCarousel
+          imageData={imageData}
+          setImageData={setImageData}
+          productId={productId}
+        />
 
         <div className="productRight">
           <div className="line" />

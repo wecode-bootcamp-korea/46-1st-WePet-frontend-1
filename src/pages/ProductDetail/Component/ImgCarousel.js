@@ -6,20 +6,26 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import './ImgCarousel.scss'
 
-const ImgCarousel = imageData => {
+const ImgCarousel = ({ imageData, setImageData, productId }) => {
   const [productData, setProductData] = useState({})
   const [isCarousel, setIsCarousel] = useState(false)
 
   useEffect(() => {
-    fetch('http://10.58.52.236:8001/products/details/80')
+    fetch(`http://10.58.52.236:8001/products/details/${productId}`)
       .then(response => response.json())
       .then(result => setProductData(result.data))
-  }, [])
+
+    fetch('/data/productData.json')
+      .then(response => response.json())
+      .then(result => {
+        setImageData(result)
+      })
+  }, [productId])
 
   if (
     !productData ||
-    !productData?.productImage ||
-    imageData?.productImage.length === 0
+    !imageData?.productImg ||
+    imageData?.productImg.length === 0
   ) {
     return null
   }

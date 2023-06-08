@@ -18,7 +18,6 @@ const Purchase = () => {
     fetch('/data/purchaseCartData.json')
       .then(response => response.json())
       .then(result => setCartData(result))
-    console.log(cartData)
   }, [])
 
   const handleSaveAddress = () => {

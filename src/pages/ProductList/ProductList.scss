@@ -101,27 +101,28 @@
           transform: scale(1.05);
         }
       }
-      .productText {
-        height: 53px;
-        margin-top: 20px;
-        text-align: center;
+    }
+  }
 
-        .itemName {
-          height: 24px;
-          margin: 0;
-          padding-top: 5px;
-          font-family: 'Noto Sans KR', sans-serif;
-          font-weight: 300;
-        }
+  .productText {
+    height: 53px;
+    margin-top: 20px;
+    text-align: center;
 
-        .itemPrice {
-          height: 19px;
-          margin-top: 10px;
-          margin-bottom: 0;
-          font-family: 'Noto Sans KR', sans-serif;
-          font-weight: 300;
-        }
-      }
+    .itemName {
+      height: 24px;
+      margin: 0;
+      padding-top: 5px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 500;
+    }
+
+    .itemPrice {
+      height: 19px;
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
     }
   }
 }

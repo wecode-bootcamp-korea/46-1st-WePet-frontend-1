@@ -30,6 +30,7 @@ const Nav = () => {
     if (token !== null) {
       localStorage.removeItem('TOKEN')
       token = null
+      navigate('/')
     } else {
       navigate('/login')
     }

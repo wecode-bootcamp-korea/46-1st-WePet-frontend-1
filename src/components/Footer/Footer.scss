@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 .footer {
   display: flex;
@@ -16,8 +15,9 @@
     margin-right: 100px;
     padding: 0px 15px;
     color: #000;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 20px;
+    font-weight: 500;
     line-height: 50px;
     text-align: center;
 
@@ -33,7 +33,9 @@
       display: inline-block;
       margin: 10px;
       color: #000;
-      font-size: 13px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
 
       .icon {
         margin-right: 8px;
@@ -49,8 +51,11 @@
     .info {
       display: inline-block;
       margin: 0px 6px;
+      padding: 3px;
       color: #bebebe;
-      font-size: 11px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
     }
   }
 }

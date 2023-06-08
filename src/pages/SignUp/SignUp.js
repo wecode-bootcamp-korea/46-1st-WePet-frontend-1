@@ -9,6 +9,7 @@ import '../Login/component/UserModal.scss'
 
 const SignUp = () => {
   const navigate = useNavigate()
+  const [messageNum, setMessageNum] = useState(0)
   const [isOpenModal, setIsOpenModal] = useState(false)
   const passwordRegex =
     /^(?=.*[!@#$%^&*])(?=.*[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣])(?=.*\d).{8,}$/
@@ -52,14 +53,22 @@ const SignUp = () => {
         return response.json()
       })
       .then(response => {
+        console.log(response)
         if (response.message === 'Signup_Success') {
           navigate('/login')
         } else if (response.message === 'Duplicate Email') {
+          setMessageNum(1)
           setIsOpenModal(true)
         } else {
+          setMessageNum(2)
           setIsOpenModal(true)
         }
       })
+  }
+
+  const alertMessageList = {
+    1: '중복된 이메일을 가진 사용자가 존재합니다.',
+    2: '회원가입에 실패하였습니다.',
   }
 
   const handleSingleCheck = (checked, id) => {
@@ -152,11 +161,12 @@ const SignUp = () => {
           가입하기
         </button>
       </footer>
-      {isOpenModal === true && (
+      {isOpenModal && (
         <UserModal
-          text={'중복된 이메일을 가진 사용자가 존재합니다.'}
+          text={alertMessageList[messageNum]}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
+          messageNum={messageNum}
         />
       )}
     </div>

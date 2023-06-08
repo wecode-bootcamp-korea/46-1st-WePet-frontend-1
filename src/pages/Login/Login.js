@@ -39,7 +39,7 @@ const Login = () => {
       .then(response => {
         if (response.message === 'Login_Success') {
           localStorage.setItem('TOKEN', response.result)
-          navigate('/main')
+          navigate('/')
         } else {
           setIsOpenModal(true)
         }

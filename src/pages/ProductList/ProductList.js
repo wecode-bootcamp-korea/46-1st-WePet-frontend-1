@@ -19,7 +19,7 @@ const ProductList = () => {
       ? searchParams.delete('categoryId')
       : searchParams.set('categoryId', id)
     setSearchParams(searchParams)
-    fetch(`${APIS.product}/filter?offset=0&limit=40${query}`)
+    fetch(`${APIS.product}/filter?offset=0&limit=40&${query}`)
       .then(response => response.json())
       .then(response => {
         setProducts(response.data)

@@ -37,7 +37,7 @@ const Login = () => {
         return response.json()
       })
       .then(response => {
-        if (response.message === 'Login_Success') {
+        if (response.message === 'LOGIN_SUCCESS') {
           localStorage.setItem('TOKEN', response.result)
           navigate('/')
         } else {

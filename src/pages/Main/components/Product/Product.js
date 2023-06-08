@@ -17,7 +17,10 @@ function Product({ sort }) {
       <div className="productDisplay">
         {recommendData.map(item => {
           return (
-            <Link to={`products/details/${item.productId}`} key={item.id}>
+            <Link
+              to={`products/details/${item.productId}`}
+              key={item.productId}
+            >
               <div className="productItem">
                 <img
                   className="productImg"

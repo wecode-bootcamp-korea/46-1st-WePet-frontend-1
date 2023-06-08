@@ -36,6 +36,22 @@ const Nav = () => {
     }
   }
 
+  const handleCart = () => {
+    if (token !== null) {
+      navigate('/cart')
+    } else {
+      navigate('/login')
+    }
+  }
+
+  const handleMyPage = () => {
+    if (token !== null) {
+      navigate('/mypage')
+    } else {
+      navigate('/login')
+    }
+  }
+
   return (
     <>
       <div className="nav">
@@ -65,16 +81,22 @@ const Nav = () => {
             className="icon"
           />
         </div>
-        <Link to="/cart">
-          <div className="navIcon">
-            <FontAwesomeIcon icon={faCartShopping} size="xl" className="icon" />
-          </div>
-        </Link>
-        <Link to="/mypage">
-          <div className="navIcon">
-            <FontAwesomeIcon icon={faFaceSmile} size="xl" className="icon" />
-          </div>
-        </Link>
+        <div className="navIcon">
+          <FontAwesomeIcon
+            icon={faCartShopping}
+            size="xl"
+            className="icon"
+            onClick={handleCart}
+          />
+        </div>
+        <div className="navIcon">
+          <FontAwesomeIcon
+            icon={faFaceSmile}
+            size="xl"
+            className="icon"
+            onClick={handleMyPage}
+          />
+        </div>
         <button className="loginBtn" onClick={handleLogout}>
           {token ? '로그아웃' : '로그인'}
         </button>

@@ -53,9 +53,9 @@ const SignUp = () => {
         return response.json()
       })
       .then(response => {
-        if (response.message === 'Signup_Success') {
+        if (response.message === 'SIGNUP_SUCCESS') {
           navigate('/login')
-        } else if (response.message === 'Duplicate Email') {
+        } else if (response.message === 'DUPLICATE_EMAIL') {
           setMessageNum(1)
           setIsOpenModal(true)
         } else {

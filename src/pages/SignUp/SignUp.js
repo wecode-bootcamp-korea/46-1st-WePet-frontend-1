@@ -53,7 +53,6 @@ const SignUp = () => {
         return response.json()
       })
       .then(response => {
-        console.log(response)
         if (response.message === 'Signup_Success') {
           navigate('/login')
         } else if (response.message === 'Duplicate Email') {

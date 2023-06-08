@@ -24,6 +24,7 @@ const ProductDetail = () => {
   const [productData, setProductData] = useState({})
   const [isCartBtn, setIsCartBtn] = useState(false)
   const [orderList, setOrderList] = useState({})
+  const [imageData, setImageData] = useState()
 
   useEffect(() => {
     fetch(`http://10.58.52.236:8001/products/details/${productId}`)
@@ -31,15 +32,16 @@ const ProductDetail = () => {
       .then(result => {
         setProductData(result.data)
       })
+
+    fetch('/data/productData.json')
+      .then(response => response.json())
+      .then(result => {
+        setImageData(result)
+      })
   }, [productId])
 
-  useEffect(() => {
-    fetch('')
-      .then(response => response.json())
-      .then(result => setOrderList(data))
-  })
-
   console.log(productData)
+  console.log(imageData)
 
   if (!productData?.productPrice) return null
   if (!productData?.mainThumbnailImage) return null
@@ -55,7 +57,7 @@ const ProductDetail = () => {
           <p className="price">{productPriceNum.toLocaleString()}원</p>
         </div>
 
-        <ImgCarousel />
+        <ImgCarousel imageData={imageData} />
 
         <div className="productRight">
           <div className="line" />
@@ -122,11 +124,10 @@ const ProductDetail = () => {
         >
           상품후기
         </span>
-        3
       </div>
       <div className="rowLine" />
       <div className="productImgs">
-        {productData.extraImages.map((img, index) => {
+        {imageData.productImg.map((img, index) => {
           return <img key={index} src={img} alt="productImages" />
         })}
       </div>

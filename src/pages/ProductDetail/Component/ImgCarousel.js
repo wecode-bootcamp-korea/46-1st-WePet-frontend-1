@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import './ImgCarousel.scss'
 
-const ImgCarousel = () => {
+const ImgCarousel = imageData => {
   const [productData, setProductData] = useState({})
   const [isCarousel, setIsCarousel] = useState(false)
 
@@ -19,7 +19,7 @@ const ImgCarousel = () => {
   if (
     !productData ||
     !productData?.productImage ||
-    productData?.mainThumbnailImage.length === 0
+    imageData?.productImage.length === 0
   ) {
     return null
   }
@@ -29,12 +29,12 @@ const ImgCarousel = () => {
       <div className={`imgBox ${isCarousel ? '' : 'carousel'}`}>
         <img
           className="mainImg"
-          src={productData.mainThumbnailImage[0]}
+          src={imageData.productImg[0]}
           alt="productImage"
         />
         <img
           className="mainImg"
-          src={productData.mainThumbnailImage[1]}
+          src={imageData.productImg[1]}
           alt="productImage"
         />
       </div>

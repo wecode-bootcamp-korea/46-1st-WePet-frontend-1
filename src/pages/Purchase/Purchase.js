@@ -39,6 +39,25 @@ const Purchase = () => {
       .then(result => setAddressData(result.data))
   }
 
+  // const OrderList = () => {
+  //   const TOKEN =
+  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQ2LCJlbWFpbCI6Im1peGVyMDMyNkBnbWFpbC5jb20iLCJpYXQiOjE2ODYxOTIxNTN9.kUNatf3DMv5BpxZsGGTCMKxRxiL90y7scDh96VhISwk'
+  //   fetch('http://10.58.52.51:3000/users/address', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       Authorization: TOKEN,
+  //     },
+  //     body: JSON.stringify({
+  //       address1: inputValue.address1,
+  //       address2: inputValue.address2,
+  //     }),
+  //   })
+  //     .then(response => response.json())
+  //     .then(result => setAddressData(result.data))
+  // }
+
+  const [orderList, setIsOrderList] = useState({})
   const [isModal, setIsModal] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
   const [isCheckedRadio, setIsCheckedRadio] = useState(false)

@@ -18,7 +18,6 @@ const ProductDetail = () => {
   const params = useParams()
   const productId = params.id
 
-  const [products, setProducts] = useState()
   const [quantity, setQuantity] = useState(0)
   const [productData, setProductData] = useState({})
   const [isCartBtn, setIsCartBtn] = useState(false)
@@ -26,7 +25,9 @@ const ProductDetail = () => {
   const [imageData, setImageData] = useState()
 
   useEffect(() => {
-    fetch(`http://10.58.52.236:8001/products/details/${productId}`)
+    let url = `${APIS.product}/details/${productId}`
+
+    fetch(url)
       .then(response => response.json())
       .then(result => {
         setProductData(result.data)

@@ -62,13 +62,11 @@ Teammates: 오티모시(B), 이관용(B), 조수진(F) <br />
 <br />
 <h3>Nav/Footer</h3>
 <span>1) 로그인 여부에 따라 버튼 문구 변경 (로그인/로그아웃)</span> <br />
-<span>2) 로그인 여부에 따라 NAV 모달에 노출 문구 변경 (앗 로그인이 필요합니다, 안녕하세요 ~님)</span> <br />
-<span>3) 로그인이 된 경우에만 장바구니, 마이페이지로 진입(로그인이 안 된 경우에는 로그인 페이지로 이동)</span> <br />
-<span>4) useNavigate Hook 을 활용한 페이지 이동</span> <br />
-<span>5) localStorage의 token의 유무를 확인하여 결과에 따른 다른 페이지 출력</span> <br />
-<span>6) map 메서드를 이용해 반복되는 UI 구현</span> <br />
-<span>7) css keyframes 를 활용하여 모달창 출력에 애니메이션 부여</span> <br />
-<span>8) css transition-duration과 translate, rotate 이용으로 ham menu 애니메이션 구현</span> <br />
+<span>2) 로그인이 된 경우에만 장바구니, 마이페이지로 진입(로그인이 안 된 경우에는 로그인 페이지로 이동)</span> <br />
+<span>3) localStorage의 token의 유무를 확인하여 결과에 따른 다른 페이지 출력</span> <br />
+<span>4) map 메서드를 이용해 반복되는 UI 구현</span> <br />
+<span>5) css keyframes 를 활용하여 모달창 출력에 애니메이션 부여</span> <br />
+<span>6) css transition-duration과 translate, rotate 이용으로 ham menu 애니메이션 구현</span> <br />
 <br />
 <br />
 <h3>메인페이지</h3>

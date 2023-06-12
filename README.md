@@ -33,3 +33,6 @@ Teammates: 오티모시(B), 이관용(B), 조수진(F) <br />
 <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" alt="Eslint">
 <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E" alt="prettier">
 </div>
+<br />
+<br />
+<h2>기능구현</h2>

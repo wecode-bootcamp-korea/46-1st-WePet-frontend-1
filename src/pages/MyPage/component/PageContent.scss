@@ -86,3 +86,39 @@
     }
   }
 }
+
+.order {
+  width: 100%;
+  padding: 10px 0 200px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+
+  .orderHistory {
+    width: 250px;
+    padding: 20px 0;
+    border: 1px solid #dadada;
+    border-radius: 10px;
+
+    .orderHistoryItemNo {
+      padding-top: 10px;
+      box-shadow: inset 0 -5px 0 rgba(255, 187, 15, 0.3);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 500;
+    }
+
+    .orderHistoryItemLength {
+      padding-top: 20px;
+      padding-bottom: 10px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
+    }
+
+    .orderHistoryItem {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
+    }
+  }
+}

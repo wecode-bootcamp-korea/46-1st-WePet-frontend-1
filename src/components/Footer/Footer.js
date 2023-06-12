@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <Link to="/">
-        <img src="/images/LogoBlack.png" className="logo" />{' '}
+        <img src="/images/LogoBlack.png" className="logo" />
       </Link>
       <ul className="footerList">
         {FOOTER_LINK_LIST.map((data, key, index) => {

@@ -83,6 +83,20 @@ const Cart = () => {
     })
   }
 
+  const handlePurchase = () => {
+    fetch(APIS.order, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: TOKEN,
+      },
+    }).then(res => {
+      if (res.message === 'CREATE_ORDER_SUCCESSFUL') {
+        navigate('/purchase')
+      }
+    })
+  }
+
   const totalPrice = cartData.reduce(
     (sum, item) => sum + item.productPrice * item.productQuantity,
     0
@@ -204,9 +218,7 @@ const Cart = () => {
               isCartPriceValid ? 'cartPurchaseBtn' : 'cartPurchaseBtn disabled'
             }
             disabled={!isCartPriceValid}
-            onClick={() => {
-              navigate('/purchase')
-            }}
+            onClick={handlePurchase}
           >
             {`${(totalPrice + deliveryPrice).toLocaleString()}원`} 주문하기
           </button>

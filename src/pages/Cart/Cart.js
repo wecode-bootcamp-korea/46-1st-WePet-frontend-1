@@ -11,7 +11,7 @@ const Cart = () => {
   const [checkItems, setCheckItems] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const TOKEN = localStorage.getItem('TOKEN_cart')
-  const USER_ID = 4
+  const USER_ID = 5
 
   const getCartItem = () => {
     fetch(`${APIS.cart}?userId=${USER_ID}`, {

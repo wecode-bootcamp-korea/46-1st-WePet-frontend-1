@@ -64,6 +64,11 @@ Teammates: 오티모시(B), 이관용(B), 조수진(F) <br />
 <span>1) 로그인 여부에 따라 버튼 문구 변경 (로그인/로그아웃)</span> <br />
 <span>2) 로그인 여부에 따라 NAV 모달에 노출 문구 변경 (앗 로그인이 필요합니다, 안녕하세요 ~님)</span> <br />
 <span>3) 로그인이 된 경우에만 장바구니, 마이페이지로 진입(로그인이 안 된 경우에는 로그인 페이지로 이동)</span> <br />
+<span>4) useNavigate Hook 을 활용한 페이지 이동</span> <br />
+<span>5) localStorage의 token의 유무를 확인하여 결과에 따른 다른 페이지 출력</span> <br />
+<span>6) map 메서드를 이용해 반복되는 UI 구현</span> <br />
+<span>7) css keyframes 를 활용하여 모달창 출력에 애니메이션 부여</span> <br />
+<span>8) css transition-duration과 translate, rotate 이용으로 ham menu 애니메이션 구현</span> <br />
 <br />
 <br />
 <h3>메인페이지</h3>
@@ -85,6 +90,17 @@ Teammates: 오티모시(B), 이관용(B), 조수진(F) <br />
 <span>6) 상품 클릭시, Link 태그 사용 상세페이지 이동사</span> <br />
 <br />
 <br />
+<h3>상품상세 페이지</h3>
+<span>1) config.js 파일을 통한 url 관리</span> <br />
+<span>2) useEffect 함수 내부의 데이터를 불러오기 전에 UI 를 그릴 수 있도록 하는 조건부 렌더링 활용</span> <br />
+   - if(!productData?.productPrice) return null<br />
+   - if(!productData?.mainThumbnailImage) return null<br />
+<span>3) toLocalString() 메서드 활용</span> <br />
+<span>4) onClick 이벤트로 scrollTo 활용하여, 버튼 클릭시 원하는 지점으로 스크롤 이동</span> <br />
+<span>5) css translate 를 활용한 img carousel box</span> <br />
+<span>6) map 메서드를 활용한 상품상세정보 table과 리뷰, 이미지 나열 등</span> <br />
+<br />
+<br />
 <h3>장바구니 페이지</h3>
 <span>1) checkbox 기능으로 전체 선택 및 일부 선택 기능, 선택 갯수 노출</span> <br />
 <span>2) count 컴포넌트로 실시간 제품별 구매 수량 변경 및 reduce 함수를 통한 실시간 총 구매 금액 산출</span> <br />
@@ -97,11 +113,19 @@ Teammates: 오티모시(B), 이관용(B), 조수진(F) <br />
 <span>3) 선택 삭제 및 전체 삭제 기능은 DELETE 메서드 통신 (개별 삭제 및 전체 선택 endpoint)</span> <br />
 <br />
 <br />
+<h3>결제 페이지</h3>
+<span>1) TOKEN 을 부여받은 회원의 배송지 정보 등록 (POST)</span> <br />
+<span>2) useState hook 을 활용하여 input Value 관리 및 저장</span> <br />
+<span>3) 'Object.values(agreeList).every(list => list === true) 로 구조분해 할당 및 전체 동의 state 관리</span> <br />
+<span>4) reduce 메서드로 총 금액 계산 및 관리</span> <br />
+<br />
+<br />
 <h3>마이페이지</h3>
 <span>1) 조건부 렌더링으로 클릭하는 메뉴에 따라 다른 문구 노출</span> <br />
 <span>2) 1:1 문의 내역에는 버튼 클릭 시 문의 내용 입력 모달 확인 가능</span> <br />
 <span>3) 이메일 문의 클릭 시 바로 메일을 보낼 수 있게 링크가 적용</span> <br />
-
+<br />
+<br />
 
 
 

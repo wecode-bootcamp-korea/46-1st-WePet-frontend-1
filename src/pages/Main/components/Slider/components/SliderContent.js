@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom'
 import './sliderContent.scss'
 
 const SliderContent = ({ firstSlide, productData }) => {
+  const displayProductData = productData.slice(0, 8)
   return (
     <div className="sliderContent">
-      {productData
+      {displayProductData
         .map(item => {
           return (
-            <Link to={`products/details/${item.productId}`} key={item.id}>
+            <Link
+              to={`products/details/${item.productId}`}
+              key={item.productId}
+            >
               <div className="sliderItem">
                 <img
                   className="sliderImg"

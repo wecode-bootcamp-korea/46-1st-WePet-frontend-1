@@ -8,6 +8,13 @@ Teammates: 오티모시(B), 이관용(B), 조수진(F) <br />
 1.  개발기간: 2023/5/26 ~ 2023/6/9<br />
 2.  백엔드 github 링크: https://github.com/wecode-bootcamp-korea/46-1st-WePet-backend<br />
 3.  프로젝트 목적과 소개<br />
+<h4>[반려동물 시장 변화 3 KEYWORD]</h4>
+<span>Professional Care ( 대충 키우지 않고 제대로 키운다 )</span><br />
+<span>Together Time ( 가족이기에 소중한 시간을 함께 )</span><br />
+<span>Segmented Market ( 세분화 된 니즈를 공략 )</span><br />
+<br />
+반려동물을 단순히 키우는 동물을 넘어선, 함께 살아가는 가족처럼 여기고 이들에 대한 투자를 아끼지 않는 사람들이 증가하고, <br />
+반려동물 관련 시장의 가능성이 무한대로 성장하고 있는 변화를 반영하여 'WePet'의 프로젝트를 시작하게 되었습니다.
 
 
 <br />

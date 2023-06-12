@@ -4,6 +4,7 @@ import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import Address from './Component/Address'
 import PurchaseModal from './Component/PurchaseModal'
+import { APIS } from '../../config'
 
 import './Purchase.scss'
 
@@ -23,7 +24,7 @@ const Purchase = () => {
   const handleSaveAddress = () => {
     const TOKEN =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQ2LCJlbWFpbCI6Im1peGVyMDMyNkBnbWFpbC5jb20iLCJpYXQiOjE2ODYxOTIxNTN9.kUNatf3DMv5BpxZsGGTCMKxRxiL90y7scDh96VhISwk'
-    fetch('http://10.58.52.51:3000/users/address', {
+    fetch(`${APIS.address}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -38,32 +39,12 @@ const Purchase = () => {
       .then(result => setAddressData(result.data))
   }
 
-  // const OrderList = () => {
-  //   const TOKEN =
-  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQ2LCJlbWFpbCI6Im1peGVyMDMyNkBnbWFpbC5jb20iLCJpYXQiOjE2ODYxOTIxNTN9.kUNatf3DMv5BpxZsGGTCMKxRxiL90y7scDh96VhISwk'
-  //   fetch('http://10.58.52.51:3000/users/address', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       Authorization: TOKEN,
-  //     },
-  //     body: JSON.stringify({
-  //       address1: inputValue.address1,
-  //       address2: inputValue.address2,
-  //     }),
-  //   })
-  //     .then(response => response.json())
-  //     .then(result => setAddressData(result.data))
-  // }
-
-  const [orderList, setIsOrderList] = useState({})
   const [isModal, setIsModal] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
   const [isCheckedRadio, setIsCheckedRadio] = useState(false)
   const [addressData, setAddressData] = useState({})
 
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
-  // const [isPurchaseModalValue, setIsPurchaseModalValue] = useState(false)
 
   const [point, setPoint] = useState({})
   const [cartData, setCartData] = useState()
@@ -93,14 +74,6 @@ const Purchase = () => {
   )
 
   const isPurchaseModalValue = totalPrice <= point.points
-
-  // const compareWithPoint = () => {
-  //   if (totalPrice <= point.points) {
-  //     setIsPurchaseModalValue(true)
-  //   } else {
-  //     setIsPurchaseModalValue(false)
-  //   }
-  // }
 
   const handleAgree = name => {
     setAgreeList(prev => ({ ...prev, [name]: !prev[name] }))
@@ -269,7 +242,6 @@ const Purchase = () => {
               disabled={!isAllChecked && isSaved && isCheckedRadio}
               onClick={() => {
                 setIsPurchaseModal(prev => !prev)
-                // compareWithPoint()
               }}
             >
               {totalPrice > 30000

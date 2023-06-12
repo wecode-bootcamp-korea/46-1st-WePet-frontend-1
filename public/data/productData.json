@@ -1,13 +1,13 @@
 {
-  "productImg": [
-    "/images/beautiful-pet-portrait-of-cat (1).jpg",
-    "/images/beautiful-pet-portrait-of-cat (2).jpg"
-  ],
+  "id": 1,
+  "title": "우리 아가가 제일 좋아하는 뾱뾱이 ! ",
+  "price": 6000,
+  "productImg": ["/images/main1.jpg", "/images/main2.jpg"],
+
   "detailImg": [
-    "/images/beautiful-pet-portrait-of-cat (3).jpg",
-    "/images/beautiful-pet-portrait-of-cat-jumping.jpg",
-    "/images/beautiful-pet-portrait-of-cat",
-    "/images/beautiful-pet-portrait-of-cat (1).jpg",
-    "/images/beautiful-pet-portrait-of-cat (2).jpg"
+    "/images/beautiful-dog-looking-at-photographer.jpg",
+    "/images/cute-dog-smelling-a-little-rubber-ball.jpg",
+    "/images/hand-offering-a-rubber-ball-to-a-dog.jpg",
+    "/images/happy-dog-posing-with-a-rubber-ball.jpg"
   ]
 }

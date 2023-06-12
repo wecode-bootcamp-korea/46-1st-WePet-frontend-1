@@ -1,5 +1,5 @@
 export const BASE_URL_O = 'http://10.58.52.71:8001'
-export const BASE_URL_L = 'http://10.58.52.51:3000'
+export const BASE_URL_L = 'http://10.58.52.229:3000'
 
 export const APIS = {
   login: `${BASE_URL_L}/users/login`,

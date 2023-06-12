@@ -9,40 +9,14 @@ import { APIS } from '../../config'
 import './Purchase.scss'
 
 const Purchase = () => {
-  useEffect(() => {
-    fetch('/data/pointData.json')
-      .then(response => response.json())
-      .then(result => setPoint(result))
-  }, [])
-
-  useEffect(() => {
-    fetch('/data/purchaseCartData.json')
-      .then(response => response.json())
-      .then(result => setCartData(result))
-  }, [])
-
-  const handleSaveAddress = () => {
-    const TOKEN =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQ2LCJlbWFpbCI6Im1peGVyMDMyNkBnbWFpbC5jb20iLCJpYXQiOjE2ODYxOTIxNTN9.kUNatf3DMv5BpxZsGGTCMKxRxiL90y7scDh96VhISwk'
-    fetch(`${APIS.address}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: TOKEN,
-      },
-      body: JSON.stringify({
-        address1: inputValue.address1,
-        address2: inputValue.address2,
-      }),
-    })
-      .then(response => response.json())
-      .then(result => setAddressData(result.data))
-  }
+  const TOKEN = localStorage.getItem('TOKEN_cart')
 
   const [isModal, setIsModal] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
   const [isCheckedRadio, setIsCheckedRadio] = useState(false)
   const [addressData, setAddressData] = useState({})
+  const [orderList, setOrderList] = useState([])
+  const [orderTotal, setOrderTotal] = useState({})
 
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
 
@@ -65,15 +39,61 @@ const Purchase = () => {
     address2: '',
     memo: '',
   })
+  useEffect(() => {
+    fetch('/data/pointData.json')
+      .then(response => response.json())
+      .then(result => setPoint(result))
+  }, [])
 
-  if (!cartData) return null
+  useEffect(() => {
+    fetch(`${APIS.order}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: TOKEN,
+      },
+    })
+      .then(response => response.json())
+      .then(result => {
+        setOrderList(result.data)
+      })
+  }, [])
 
-  const totalPrice = cartData.reduce(
-    (acc, cur) => acc + cur.quantity * cur.price,
-    0
-  )
+  const handleOrderTotal = () => {
+    fetch(`${APIS.order}/order-total`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: TOKEN,
+      },
+      body: JSON.stringify({
+        orderTotal: totalPrice,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => setOrderTotal(result))
+  }
 
-  const isPurchaseModalValue = totalPrice <= point.points
+  const handleSaveAddress = () => {
+    const TOKEN =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcwLCJlbWFpbCI6IndlY29kZSEhQG5hdmVyLmNvbSIsImlhdCI6MTY4NjU1NjEwN30.Q1kAFeyryMm3jggdWbcr9L9nUCDJQhhDNwcx2J7nd7A'
+    fetch(`${APIS.address}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: TOKEN,
+      },
+      body: JSON.stringify({
+        userName: inputValue.name,
+        phoneNumber: inputValue.phone,
+        address1: inputValue.address1,
+        address2: inputValue.address2,
+        memo: inputValue.memo,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => setAddressData(result.data))
+  }
 
   const handleAgree = name => {
     setAgreeList(prev => ({ ...prev, [name]: !prev[name] }))
@@ -88,7 +108,14 @@ const Purchase = () => {
   }
 
   if (!point.points) return null
-  if (!cartData) return null
+  if (!orderList) return null
+
+  const totalPrice = orderList.reduce(
+    (acc, cur) => acc + cur.itemQuantity * cur.itemPrice,
+    0
+  )
+
+  const isPurchaseModalValue = totalPrice <= point.points
 
   return (
     <>
@@ -120,11 +147,11 @@ const Purchase = () => {
             </div>
             <p className="title">주문상품</p>
             <div className="leftInnerBox">
-              {cartData.map(data => {
+              {orderList.map(data => {
                 return (
                   <p className="spaceBetween" key={data.id}>
-                    {data.name}
-                    <span>{data.quantity}개</span>
+                    {data.productName}
+                    <span>{data.itemQuantity}개</span>
                   </p>
                 )
               })}
@@ -239,9 +266,10 @@ const Purchase = () => {
                   ? 'purchaseBtnActive'
                   : 'purchaseBtn'
               }`}
-              disabled={!isAllChecked && isSaved && isCheckedRadio}
+              disabled={!isAllChecked && !isSaved && !isCheckedRadio}
               onClick={() => {
                 setIsPurchaseModal(prev => !prev)
+                handleOrderTotal()
               }}
             >
               {totalPrice > 30000

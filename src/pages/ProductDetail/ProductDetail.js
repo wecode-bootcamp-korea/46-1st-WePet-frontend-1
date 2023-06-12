@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { APIS } from '../../config'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
@@ -21,42 +22,32 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(0)
   const [productData, setProductData] = useState({})
   const [isCartBtn, setIsCartBtn] = useState(false)
-  const [orderList, setOrderList] = useState({})
-  const [imageData, setImageData] = useState()
 
   useEffect(() => {
-    let url = `${APIS.product}/details/${productId}`
-
-    fetch(url)
-      .then(response => response.json())
-      .then(result => {
-        setProductData(result.data)
-      })
-
     fetch('/data/productData.json')
       .then(response => response.json())
       .then(result => {
-        setImageData(result)
+        setProductData(result)
       })
-  }, [productId])
+  }, [])
 
-  if (!productData?.productPrice) return null
-  if (!productData?.mainThumbnailImage) return null
+  if (!productData?.price) return null
+  if (!productData?.detailImg) return null
 
-  const productPriceNum = Number(productData.productPrice)
-  const productImg = productData.mainThumbnailImage
+  const productPriceNum = Number(productData.price)
+  const productImages = productData.detailImg
 
   return (
     <div className="productDetail">
       <div className="product">
         <div className="productLeft">
-          <p className="productName">{productData.productName}</p>
+          <p className="productName">{productData.title}</p>
           <p className="price">{productPriceNum.toLocaleString()}원</p>
         </div>
 
         <ImgCarousel
-          imageData={imageData}
-          setImageData={setImageData}
+          productData={productData}
+          setProductData={setProductData}
           productId={productId}
         />
 
@@ -67,7 +58,7 @@ const ProductDetail = () => {
           <p className="grey">오후 1시 당일배송마감</p>
           <div className="line" />
           <div className="greyBox">
-            <p className="title">{productData.productName}</p>
+            <p className="title">{productData.title}</p>
             <div className="countPrice">
               <Count quantity={quantity} setQuantity={setQuantity} />
               <p>{(quantity * productPriceNum).toLocaleString()}원</p>
@@ -128,7 +119,7 @@ const ProductDetail = () => {
       </div>
       <div className="rowLine" />
       <div className="productImgs">
-        {imageData.productImg.map((img, index) => {
+        {productData.detailImg.map((img, index) => {
           return <img key={index} src={img} alt="productImages" />
         })}
       </div>

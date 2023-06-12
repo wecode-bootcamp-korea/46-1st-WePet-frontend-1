@@ -1,31 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons'
+
 import './ImgCarousel.scss'
 
-const ImgCarousel = ({ imageData, setImageData, productId }) => {
-  const [productData, setProductData] = useState({})
+const ImgCarousel = ({ productData, productId }) => {
   const [isCarousel, setIsCarousel] = useState(false)
-
-  useEffect(() => {
-    fetch(`http://10.58.52.236:8001/products/details/${productId}`)
-      .then(response => response.json())
-      .then(result => setProductData(result.data))
-
-    fetch('/data/productData.json')
-      .then(response => response.json())
-      .then(result => {
-        setImageData(result)
-      })
-  }, [productId])
 
   if (
     !productData ||
-    !imageData?.productImg ||
-    imageData?.productImg.length === 0
+    !productData?.productImg ||
+    productData?.productImg.length === 0
   ) {
     return null
   }
@@ -35,12 +23,12 @@ const ImgCarousel = ({ imageData, setImageData, productId }) => {
       <div className={`imgBox ${isCarousel ? '' : 'carousel'}`}>
         <img
           className="mainImg"
-          src={imageData.productImg[0]}
+          src={productData.productImg[0]}
           alt="productImage"
         />
         <img
           className="mainImg"
-          src={imageData.productImg[1]}
+          src={productData.productImg[1]}
           alt="productImage"
         />
       </div>

@@ -4,9 +4,9 @@ import { faLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import Address from './Component/Address'
 import PurchaseModal from './Component/PurchaseModal'
+import { APIS } from '../../config'
 
 import './Purchase.scss'
-import { APIS } from '../../config'
 
 const Purchase = () => {
   useEffect(() => {
@@ -22,7 +22,6 @@ const Purchase = () => {
   }, [])
 
   const handleSaveAddress = () => {
-
     const TOKEN =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQ2LCJlbWFpbCI6Im1peGVyMDMyNkBnbWFpbC5jb20iLCJpYXQiOjE2ODYxOTIxNTN9.kUNatf3DMv5BpxZsGGTCMKxRxiL90y7scDh96VhISwk'
     fetch(`${APIS.address}`, {
@@ -40,14 +39,12 @@ const Purchase = () => {
       .then(result => setAddressData(result.data))
   }
 
-  const [orderList, setIsOrderList] = useState({})
   const [isModal, setIsModal] = useState(false)
   const [isSaved, setIsSaved] = useState(false)
   const [isCheckedRadio, setIsCheckedRadio] = useState(false)
   const [addressData, setAddressData] = useState({})
 
   const [isPurchaseModal, setIsPurchaseModal] = useState(false)
-
 
   const [point, setPoint] = useState({})
   const [cartData, setCartData] = useState()

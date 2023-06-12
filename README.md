@@ -9,7 +9,6 @@ Teammates: 오티모시(B), 이관용(B), 조수진(F) <br />
 2.  백엔드 github 링크: https://github.com/wecode-bootcamp-korea/46-1st-WePet-backend<br />
 3.  프로젝트 목적과 소개<br />
 
-
 <br />
 <br />
 <h2>Tech Stack</h2>
@@ -33,3 +32,5 @@ Teammates: 오티모시(B), 이관용(B), 조수진(F) <br />
 <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" alt="Eslint">
 <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E" alt="prettier">
 </div>
+
+## Component Nav / Footer

@@ -27,6 +27,7 @@ const ProductDetail = () => {
     fetch(`${APIS.product}/details/${productId}`)
       .then(response => response.json())
       .then(result => {
+        console.log(result)
         setProductData(result.data)
       })
   }, [])
@@ -118,9 +119,7 @@ const ProductDetail = () => {
       </div>
       <div className="rowLine" />
       <div className="productImgs">
-        {productData.mainThumbnailImage.map((img, index) => {
-          return <img key={index} src={img} alt="productImages" />
-        })}
+        <img src={productData.mainThumbnailImage} alt="productImages" />
       </div>
       <div className="detailInformationBox">
         <DetailInformation />

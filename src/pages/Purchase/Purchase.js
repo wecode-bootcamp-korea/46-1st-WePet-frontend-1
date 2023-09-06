@@ -101,10 +101,17 @@ const Purchase = () => {
 
   const handleAllCheck = () => {
     if (isAllChecked) {
-      setAgreeList(prev => ({ ...prev, isInfoAgree: false, isUseAgree: false }))
-    } else {
-      setAgreeList(prev => ({ ...prev, isInfoAgree: true, isUseAgree: true }))
+      return setAgreeList(prev => ({
+        ...prev,
+        isInfoAgree: false,
+        isUseAgree: false,
+      }))
     }
+    return setAgreeList(prev => ({
+      ...prev,
+      isInfoAgree: true,
+      isUseAgree: true,
+    }))
   }
 
   if (!point.points) return null

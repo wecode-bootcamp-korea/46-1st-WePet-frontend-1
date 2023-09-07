@@ -25,11 +25,18 @@ const ProductDetail = () => {
 
   useEffect(() => {
     fetch(`${APIS.product}/details/${productId}`)
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          response.json()
+        } else {
+          throw new Error('network error')
+        }
+      })
       .then(result => {
         console.log(result)
         setProductData(result.data)
       })
+      .catch(error => console.log(error))
   }, [])
 
   if (!productData?.productPrice) return null

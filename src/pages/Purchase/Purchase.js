@@ -53,10 +53,17 @@ const Purchase = () => {
         Authorization: TOKEN,
       },
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          response.json()
+        } else {
+          throw new Error('network error')
+        }
+      })
       .then(result => {
         setOrderList(result.data)
       })
+      .catch(error => console.log(error))
   }, [])
 
   const handleOrderTotal = () => {
@@ -70,8 +77,15 @@ const Purchase = () => {
         orderTotal: totalPrice,
       }),
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          response.json()
+        } else {
+          throw new error('network error')
+        }
+      })
       .then(result => setOrderTotal(result))
+      .catch(error => console.log(error))
   }
 
   const handleSaveAddress = () => {
@@ -91,8 +105,15 @@ const Purchase = () => {
         memo: inputValue.memo,
       }),
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          response.json()
+        } else {
+          throw new Error('network error')
+        }
+      })
       .then(result => setAddressData(result.data))
+      .catch(error => console.log(error))
   }
 
   const handleAgree = name => {

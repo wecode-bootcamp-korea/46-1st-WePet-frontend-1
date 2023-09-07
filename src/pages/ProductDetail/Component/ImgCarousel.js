@@ -7,28 +7,20 @@ import {
 
 import './ImgCarousel.scss'
 
-const ImgCarousel = ({ productData, productId }) => {
+const ImgCarousel = ({ productData }) => {
   const [isCarousel, setIsCarousel] = useState(false)
-
-  if (
-    !productData ||
-    !productData?.productImg ||
-    productData?.productImg.length === 0
-  ) {
-    return null
-  }
 
   return (
     <div className="imgCarousel">
       <div className={`imgBox ${isCarousel ? '' : 'carousel'}`}>
         <img
           className="mainImg"
-          src={productData.productImg[0]}
+          src={productData.mainThumbnailImage}
           alt="productImage"
         />
         <img
           className="mainImg"
-          src={productData.productImg[1]}
+          src={productData.mainThumbnailImage}
           alt="productImage"
         />
       </div>

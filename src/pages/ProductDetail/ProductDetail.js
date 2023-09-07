@@ -24,24 +24,31 @@ const ProductDetail = () => {
   const [isCartBtn, setIsCartBtn] = useState(false)
 
   useEffect(() => {
-    fetch('/data/productData.json')
-      .then(response => response.json())
-      .then(result => {
-        setProductData(result)
+    fetch(`${APIS.product}/details/${productId}`)
+      .then(response => {
+        if (response.ok) {
+          response.json()
+        } else {
+          throw new Error('network error')
+        }
       })
+      .then(result => {
+        console.log(result)
+        setProductData(result.data)
+      })
+      .catch(error => console.log(error))
   }, [])
 
-  if (!productData?.price) return null
-  if (!productData?.detailImg) return null
+  if (!productData?.productPrice) return null
+  if (!productData?.mainThumbnailImage) return null
 
-  const productPriceNum = Number(productData.price)
-  const productImages = productData.detailImg
+  const productPriceNum = Number(productData.productPrice)
 
   return (
     <div className="productDetail">
       <div className="product">
         <div className="productLeft">
-          <p className="productName">{productData.title}</p>
+          <p className="productName">{productData.productName}</p>
           <p className="price">{productPriceNum.toLocaleString()}원</p>
         </div>
 
@@ -58,7 +65,7 @@ const ProductDetail = () => {
           <p className="grey">오후 1시 당일배송마감</p>
           <div className="line" />
           <div className="greyBox">
-            <p className="title">{productData.title}</p>
+            <p className="title">{productData.productName}</p>
             <div className="countPrice">
               <Count quantity={quantity} setQuantity={setQuantity} />
               <p>{(quantity * productPriceNum).toLocaleString()}원</p>
@@ -119,9 +126,7 @@ const ProductDetail = () => {
       </div>
       <div className="rowLine" />
       <div className="productImgs">
-        {productData.detailImg.map((img, index) => {
-          return <img key={index} src={img} alt="productImages" />
-        })}
+        <img src={productData.mainThumbnailImage} alt="productImages" />
       </div>
       <div className="detailInformationBox">
         <DetailInformation />
